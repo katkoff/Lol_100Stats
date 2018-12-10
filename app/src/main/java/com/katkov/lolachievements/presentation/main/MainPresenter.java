@@ -6,22 +6,33 @@ import android.support.v4.app.FragmentTransaction;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
+import com.katkov.lolachievements.di.Scopes;
 import com.katkov.lolachievements.domain.usecase.MainUseCase;
 import com.katkov.lolachievements.presentation.choiceServer.ChoiceServerFragment;
 import com.katkov.lolachievements.presentation.playerInfo.PlayerInfoFragment;
 
+import javax.inject.Inject;
+
+import toothpick.Scope;
+import toothpick.Toothpick;
+
 @InjectViewState
 public class MainPresenter extends MvpPresenter<MainView> {
 
-    // Первая зависимость!
-    MainUseCase mainUseCase = new MainUseCase();
+    @Inject
+    MainUseCase mainUseCase;
+
+    @Override
+    protected void onFirstViewAttach() {
+        super.onFirstViewAttach();
+        Toothpick.inject(this, Toothpick.openScope(Scopes.APP_SCOPE));
+        checkFirstEntry();
+    }
 
     public void checkFirstEntry() {
         // TODO: 09.12.2018 делаем запрос в БД
-        // mainUseCase.checkFirstEntry();
-
         // временный метод. Представим, что я узнал, какой первый фрагмент нужно запускать
-        getViewState().showFirstFragment(true);
+        getViewState().showFirstFragment(mainUseCase.checkFirstEntry());
     }
 
     public void startChoiceServerFragment(FragmentManager fragmentManager, int fragmentContainer) {

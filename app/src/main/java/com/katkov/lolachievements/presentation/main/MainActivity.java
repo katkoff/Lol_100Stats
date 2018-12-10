@@ -18,7 +18,7 @@ public class MainActivity extends MvpAppCompatActivity implements MainView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mainPresenter.checkFirstEntry();
+
     }
 
 
@@ -27,9 +27,9 @@ public class MainActivity extends MvpAppCompatActivity implements MainView {
         FragmentManager fragmentManager = getSupportFragmentManager();
 
         if (isThisFirstEntry) {
-            mainPresenter.startChoiceServerFragment(fragmentManager, R.layout.fragment_choice_server);
+            mainPresenter.startChoiceServerFragment(fragmentManager, R.id.fragmentContainer);
         } else {
-            mainPresenter.startPlayerInfoFragment(fragmentManager, R.layout.fragment_player_info);
+            mainPresenter.startPlayerInfoFragment(fragmentManager, R.id.fragmentContainer);
         }
     }
 }
