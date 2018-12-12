@@ -20,6 +20,8 @@ public class LolApp extends Application {
     public void onCreate() {
         super.onCreate();
 
+        INSTANCE = this;
+
         initDi();
         initCicerone();
     }
