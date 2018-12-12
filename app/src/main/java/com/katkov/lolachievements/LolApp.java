@@ -5,19 +5,23 @@ import android.app.Application;
 import com.katkov.lolachievements.di.Scopes;
 import com.katkov.lolachievements.domain.usecase.MainUseCase;
 
-import javax.inject.Singleton;
-
+import ru.terrakok.cicerone.Cicerone;
+import ru.terrakok.cicerone.NavigatorHolder;
+import ru.terrakok.cicerone.Router;
 import toothpick.Scope;
 import toothpick.Toothpick;
 import toothpick.config.Module;
 
 public class LolApp extends Application {
+    public static LolApp INSTANCE;
+    private Cicerone<Router> cicerone;
 
     @Override
     public void onCreate() {
         super.onCreate();
 
         initDi();
+        initCicerone();
     }
 
     private void initDi() {
@@ -26,5 +30,17 @@ public class LolApp extends Application {
             bind(MainUseCase.class);
         }});
         Toothpick.inject(this, appScope);
+    }
+
+    private void initCicerone() {
+        cicerone = Cicerone.create();
+    }
+
+    public NavigatorHolder getNavigatorHolder() {
+        return cicerone.getNavigatorHolder();
+    }
+
+    public Router getRouter() {
+        return cicerone.getRouter();
     }
 }

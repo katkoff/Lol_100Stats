@@ -21,9 +21,7 @@ public class ChoiceServerFragment extends MvpAppCompatFragment {
     }
 
     public static ChoiceServerFragment newInstance() {
-        
         Bundle args = new Bundle();
-        
         ChoiceServerFragment fragment = new ChoiceServerFragment();
         fragment.setArguments(args);
         return fragment;
