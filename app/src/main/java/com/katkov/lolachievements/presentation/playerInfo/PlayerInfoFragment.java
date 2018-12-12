@@ -21,9 +21,7 @@ public class PlayerInfoFragment extends MvpAppCompatFragment {
     }
 
     public static PlayerInfoFragment newInstance() {
-        
         Bundle args = new Bundle();
-        
         PlayerInfoFragment fragment = new PlayerInfoFragment();
         fragment.setArguments(args);
         return fragment;
