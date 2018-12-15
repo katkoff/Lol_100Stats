@@ -28,13 +28,13 @@ public class MainPresenter extends MvpPresenter<MainView> {
     protected void onFirstViewAttach() {
         super.onFirstViewAttach();
         Toothpick.inject(this, Toothpick.openScope(Scopes.APP_SCOPE));
-        checkFirstEntry();
+        checkSummonerAvailability();
     }
 
-    public void checkFirstEntry() {
+    public void checkSummonerAvailability() {
         // TODO: 09.12.2018 делаем запрос в БД
         // временный метод. Представим, что я узнал, какой первый фрагмент нужно запускать
-        loginUseCase.checkFirstEntry()
+        loginUseCase.checkSummonerAvailability()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new DisposableSingleObserver<Boolean>() {
@@ -50,11 +50,11 @@ public class MainPresenter extends MvpPresenter<MainView> {
                 });
     }
 
-    private Screen getFirstScreen(boolean isFirstEntry) {
-        if (isFirstEntry) {
-            return new Screens.ServerChoiceScreen();
-        } else {
+    private Screen getFirstScreen(boolean isAvailable) {
+        if (isAvailable) {
             return new Screens.PlayerInfoScreen();
+        } else {
+            return new Screens.ServerChoiceScreen();
         }
     }
 }

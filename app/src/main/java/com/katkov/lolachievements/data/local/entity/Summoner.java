@@ -9,12 +9,12 @@ public class Summoner {
     @PrimaryKey
     private long id;
     private String name;
-    private boolean isLoggedIn;
+    private boolean isAvailable;
 
-    public Summoner(long id, String name, boolean isLoggedIn) {
+    public Summoner(long id, String name, boolean isAvailable) {
         this.id = id;
         this.name = name;
-        this.isLoggedIn = isLoggedIn;
+        this.isAvailable = isAvailable;
     }
 
     public long getId() {
@@ -25,7 +25,7 @@ public class Summoner {
         return name;
     }
 
-    public boolean isLoggedIn() {
-        return isLoggedIn;
+    public boolean isAvailable() {
+        return isAvailable;
     }
 }

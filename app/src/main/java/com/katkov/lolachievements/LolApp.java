@@ -33,7 +33,7 @@ public class LolApp extends Application {
 
     private void initDataBase() {
         appDataBase = Room.databaseBuilder(this, AppDataBase.class, "database")
-//                .allowMainThreadQueries()
+                .allowMainThreadQueries() //????
                 .build();
     }
 }
