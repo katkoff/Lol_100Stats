@@ -16,6 +16,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
@@ -36,6 +40,11 @@ dependencies {
     implementation "com.arello-mobile:moxy-android:1.5.3"
     implementation "com.arello-mobile:moxy-app-compat:1.5.3"
     annotationProcessor "com.arello-mobile:moxy-compiler:1.5.3"
+
+    // ORM - ROOM
+    implementation "android.arch.persistence.room:runtime:1.1.1"
+    annotationProcessor "android.arch.persistence.room:compiler:1.1.1"
+    implementation "android.arch.persistence.room:rxjava2:1.1.1"
 
     // DI - TOOTHPICK
     implementation "com.github.stephanenicolas.toothpick:toothpick-runtime:1.1.3"

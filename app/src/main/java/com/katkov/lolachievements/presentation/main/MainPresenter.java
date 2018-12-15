@@ -4,10 +4,13 @@ import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 import com.katkov.lolachievements.Screens;
 import com.katkov.lolachievements.di.Scopes;
-import com.katkov.lolachievements.domain.usecase.MainUseCase;
+import com.katkov.lolachievements.domain.usecase.LoginUseCase;
 
 import javax.inject.Inject;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.observers.DisposableSingleObserver;
+import io.reactivex.schedulers.Schedulers;
 import ru.terrakok.cicerone.Router;
 import ru.terrakok.cicerone.Screen;
 import toothpick.Toothpick;
@@ -19,7 +22,7 @@ public class MainPresenter extends MvpPresenter<MainView> {
     Router router;
 
     @Inject
-    MainUseCase mainUseCase;
+    LoginUseCase loginUseCase;
 
     @Override
     protected void onFirstViewAttach() {
@@ -31,9 +34,20 @@ public class MainPresenter extends MvpPresenter<MainView> {
     public void checkFirstEntry() {
         // TODO: 09.12.2018 делаем запрос в БД
         // временный метод. Представим, что я узнал, какой первый фрагмент нужно запускать
-        boolean isFirstEntry = mainUseCase.checkFirstEntry();
-        Screen firstScreen = getFirstScreen(isFirstEntry);
-        router.navigateTo(firstScreen);
+        loginUseCase.checkFirstEntry()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DisposableSingleObserver<Boolean>() {
+                    @Override
+                    public void onSuccess(Boolean isFirstEntry) {
+                        router.navigateTo(getFirstScreen(isFirstEntry));
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        e.printStackTrace();
+                    }
+                });
     }
 
     private Screen getFirstScreen(boolean isFirstEntry) {
