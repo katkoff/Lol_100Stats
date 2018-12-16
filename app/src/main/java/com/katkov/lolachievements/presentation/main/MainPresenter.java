@@ -3,6 +3,7 @@ package com.katkov.lolachievements.presentation.main;
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 import com.katkov.lolachievements.Screens;
+import com.katkov.lolachievements.data.local.entity.Summoner;
 import com.katkov.lolachievements.di.Scopes;
 import com.katkov.lolachievements.domain.usecase.LoginUseCase;
 
@@ -31,12 +32,11 @@ public class MainPresenter extends MvpPresenter<MainView> {
         checkSummonerAvailability();
     }
 
-    public void checkSummonerAvailability() {
-        // TODO: 09.12.2018 делаем запрос в БД
-        // временный метод. Представим, что я узнал, какой первый фрагмент нужно запускать
-        loginUseCase.checkSummonerAvailability()
+    private void checkSummonerAvailability() {
+        loginUseCase.getSummonersFromDB()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .map(Summoner::isAvailable)
                 .subscribe(new DisposableSingleObserver<Boolean>() {
                     @Override
                     public void onSuccess(Boolean isFirstEntry) {

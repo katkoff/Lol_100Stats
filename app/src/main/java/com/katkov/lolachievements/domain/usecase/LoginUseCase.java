@@ -19,10 +19,8 @@ public class LoginUseCase {
         this.loginService = loginService;
     }
 
-    // временный метод. Представим, что я узнал, какой первый фрагмент нужно запускать
-    public Single<Boolean> checkSummonerAvailability() {
+    public Single<Summoner> getSummonersFromDB() {
         return loginService.getSummonersFromDB()
-                .subscribeOn(Schedulers.io())
-                .map(Summoner::isAvailable);
+                .subscribeOn(Schedulers.io());
     }
 }

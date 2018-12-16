@@ -22,7 +22,7 @@ public class LoginService {
         SummonerDao summonerDao = appDataBase.summonerDao();
 
 //         Метод используемый при первом запуске, для добавления записи в БД
-        summonerDao.insert(new Summoner(1, "Test", 55, true));
+//        summonerDao.insert(new Summoner(1, "Test", 55, true));
 
         return summonerDao.getAll()
                 .subscribeOn(Schedulers.io());
