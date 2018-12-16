@@ -3,7 +3,7 @@ package com.katkov.lolachievements;
 import android.support.v4.app.Fragment;
 
 import com.katkov.lolachievements.presentation.choiceServer.ChoiceServerFragment;
-import com.katkov.lolachievements.presentation.summonerInfo.PlayerInfoFragment;
+import com.katkov.lolachievements.presentation.summonerInfo.SummonerInfoFragment;
 
 import ru.terrakok.cicerone.android.support.SupportAppScreen;
 
@@ -19,7 +19,7 @@ public class Screens {
     public static class PlayerInfoScreen extends SupportAppScreen {
         @Override
         public Fragment getFragment() {
-            return PlayerInfoFragment.newInstance();
+            return SummonerInfoFragment.newInstance();
         }
     }
 }

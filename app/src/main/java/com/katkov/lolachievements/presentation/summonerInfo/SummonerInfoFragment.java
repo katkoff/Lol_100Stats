@@ -10,19 +10,19 @@ import android.view.ViewGroup;
 import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.katkov.lolachievements.R;
 
-public class PlayerInfoFragment extends MvpAppCompatFragment {
+public class SummonerInfoFragment extends MvpAppCompatFragment {
 
     @Nullable
     @Override
     public View onCreateView(
             @NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_player_info, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_summoner_info, container, false);
         return rootView;
     }
 
-    public static PlayerInfoFragment newInstance() {
+    public static SummonerInfoFragment newInstance() {
         Bundle args = new Bundle();
-        PlayerInfoFragment fragment = new PlayerInfoFragment();
+        SummonerInfoFragment fragment = new SummonerInfoFragment();
         fragment.setArguments(args);
         return fragment;
     }
