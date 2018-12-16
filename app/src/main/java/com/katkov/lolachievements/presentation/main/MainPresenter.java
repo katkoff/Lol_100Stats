@@ -36,11 +36,10 @@ public class MainPresenter extends MvpPresenter<MainView> {
         loginUseCase.getSummonersFromDB()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .map(Summoner::isAvailable)
-                .subscribe(new DisposableSingleObserver<Boolean>() {
+                .subscribe(new DisposableSingleObserver<Summoner>() {
                     @Override
-                    public void onSuccess(Boolean isFirstEntry) {
-                        router.navigateTo(getFirstScreen(isFirstEntry));
+                    public void onSuccess(Summoner summoner) {
+                        router.navigateTo(getFirstScreen(summoner));
                     }
 
                     @Override
@@ -50,9 +49,9 @@ public class MainPresenter extends MvpPresenter<MainView> {
                 });
     }
 
-    private Screen getFirstScreen(boolean isAvailable) {
-        if (isAvailable) {
-            return new Screens.PlayerInfoScreen();
+    private Screen getFirstScreen(Summoner summoner) {
+        if (summoner.isAvailable()) {
+            return new Screens.PlayerInfoScreen(summoner);
         } else {
             return new Screens.ServerChoiceScreen();
         }

@@ -3,8 +3,10 @@ package com.katkov.lolachievements.data.local.entity;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity
-public class Summoner {
+public class Summoner implements Serializable {
 
     @PrimaryKey
     private long id;
