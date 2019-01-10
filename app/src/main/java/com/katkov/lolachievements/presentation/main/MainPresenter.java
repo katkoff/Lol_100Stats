@@ -10,6 +10,8 @@ import com.katkov.lolachievements.domain.usecase.LoginUseCase;
 import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
 import ru.terrakok.cicerone.Router;
@@ -18,6 +20,8 @@ import toothpick.Toothpick;
 
 @InjectViewState
 public class MainPresenter extends MvpPresenter<MainView> {
+
+    private CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     @Inject
     Router router;
@@ -33,10 +37,10 @@ public class MainPresenter extends MvpPresenter<MainView> {
     }
 
     private void checkSummonerAvailability() {
-        loginUseCase.getSummonersFromDB()
+        final Disposable disposableSingleObserver = loginUseCase.getSummonersFromDB()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new DisposableSingleObserver<Summoner>() {
+                .subscribeWith(new DisposableSingleObserver<Summoner>() {
                     @Override
                     public void onSuccess(Summoner summoner) {
                         router.navigateTo(getFirstScreen(summoner));
@@ -47,6 +51,7 @@ public class MainPresenter extends MvpPresenter<MainView> {
                         e.printStackTrace();
                     }
                 });
+        compositeDisposable.add(disposableSingleObserver);
     }
 
     private Screen getFirstScreen(Summoner summoner) {
@@ -55,5 +60,11 @@ public class MainPresenter extends MvpPresenter<MainView> {
         } else {
             return new Screens.ServerChoiceScreen();
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        compositeDisposable.dispose();
     }
 }

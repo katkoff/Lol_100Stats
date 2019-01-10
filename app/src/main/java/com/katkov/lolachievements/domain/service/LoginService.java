@@ -5,10 +5,12 @@ import com.katkov.lolachievements.data.local.database.AppDataBase;
 import com.katkov.lolachievements.data.local.entity.Summoner;
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
 import io.reactivex.Single;
 import io.reactivex.schedulers.Schedulers;
 
+@Singleton
 public class LoginService {
 
     private AppDataBase appDataBase;
