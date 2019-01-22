@@ -9,19 +9,12 @@ import com.katkov.lolachievements.domain.usecase.LoginUseCase;
 
 import javax.inject.Inject;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.observers.DisposableSingleObserver;
-import io.reactivex.schedulers.Schedulers;
 import ru.terrakok.cicerone.Router;
 import ru.terrakok.cicerone.Screen;
 import toothpick.Toothpick;
 
 @InjectViewState
 public class MainPresenter extends MvpPresenter<MainView> {
-
-    private CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     @Inject
     Router router;
@@ -37,34 +30,15 @@ public class MainPresenter extends MvpPresenter<MainView> {
     }
 
     private void checkSummonerAvailability() {
-        final Disposable disposableSingleObserver = loginUseCase.getSummonersFromDB()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableSingleObserver<Summoner>() {
-                    @Override
-                    public void onSuccess(Summoner summoner) {
-                        router.navigateTo(getFirstScreen(summoner));
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        e.printStackTrace();
-                    }
-                });
-        compositeDisposable.add(disposableSingleObserver);
+        router.navigateTo(new Screens.FirstEntryScreen());
     }
 
     private Screen getFirstScreen(Summoner summoner) {
         if (summoner.isAvailable()) {
-            return new Screens.PlayerInfoScreen(summoner);
+            return new Screens.SummonerInfoScreen(summoner);
         } else {
-            return new Screens.ServerChoiceScreen();
+            return new Screens.FirstEntryScreen();
         }
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        compositeDisposable.dispose();
-    }
 }

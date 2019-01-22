@@ -25,7 +25,7 @@ public class LolApp extends Application {
 
     private void initDi() {
         Scope appScope = Toothpick.openScope(Scopes.APP_SCOPE);
-        appScope.installModules(new LoginModule(appDataBase));
+        appScope.installModules(new LoginModule());
         appScope.installModules(new CiceroneModule());
 
         Toothpick.inject(this, appScope);
