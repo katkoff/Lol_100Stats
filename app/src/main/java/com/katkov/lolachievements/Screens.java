@@ -28,7 +28,7 @@ public class Screens {
 
     public static class SummonerInfoScreen extends SupportAppScreen {
 
-        public Summoner summoner;
+        private Summoner summoner;
 
         public SummonerInfoScreen(Summoner summoner) {
             this.summoner = summoner;

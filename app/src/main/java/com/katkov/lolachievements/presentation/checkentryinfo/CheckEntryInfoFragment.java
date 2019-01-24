@@ -1,42 +1,56 @@
 package com.katkov.lolachievements.presentation.checkentryinfo;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.katkov.lolachievements.R;
+import com.katkov.lolachievements.di.BindingNamesUtils;
 import com.katkov.lolachievements.di.Scopes;
-import com.katkov.lolachievements.domain.service.LoginService;
 import com.katkov.lolachievements.utils.TextInputUtils;
 
 import javax.inject.Inject;
+import javax.inject.Provider;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+import toothpick.Scope;
 import toothpick.Toothpick;
 
 public class CheckEntryInfoFragment extends MvpAppCompatFragment implements CheckEntryInfoView {
 
     @BindView(R.id.textView_summonerName)
     TextView summonerNameTextView;
+    @BindView(R.id.button_logout)
+    Button logoutButton;
 
+    @Inject
+    Provider<CheckEntryInfoPresenter> presenterProvider;
+    @ProvidePresenter
+    CheckEntryInfoPresenter providePresenter() {
+        return presenterProvider.get();
+    }
     @InjectPresenter
     CheckEntryInfoPresenter presenter;
 
-    @Inject
-    SharedPreferences preferences;
+    private String summonerName;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        Toothpick.inject(this, Toothpick.openScope(Scopes.APP_SCOPE));
+        final Scope scope = Toothpick.openScope(Scopes.USER_SCOPE);
+        Toothpick.inject(this, scope);
         super.onCreate(savedInstanceState);
+
+        summonerName = scope.getInstance(String.class, BindingNamesUtils.SUMMONER_NAME);
     }
 
     @Nullable
@@ -62,7 +76,11 @@ public class CheckEntryInfoFragment extends MvpAppCompatFragment implements Chec
 
     @Override
     public void fillInfo() {
-        String summoner = preferences.getString(LoginService.SUMMONER_NAME_PREF, "unknown name");
-        TextInputUtils.setText(summonerNameTextView, summoner);
+        TextInputUtils.setText(summonerNameTextView, summonerName);
+    }
+
+    @OnClick(R.id.button_logout)
+    void logoutButtonClicked() {
+        presenter.onLogoutButtonClicked();
     }
 }

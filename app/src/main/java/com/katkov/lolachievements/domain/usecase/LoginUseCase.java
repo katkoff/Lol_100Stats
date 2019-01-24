@@ -18,4 +18,8 @@ public class LoginUseCase {
     public void saveSummonerNameToPref(String summonerName) {
         loginService.saveSummonerNameToPref(summonerName);
     }
+
+    public void removeSummonerNameFromPref() {
+        loginService.removeSummonerNameFromPref();
+    }
 }

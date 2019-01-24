@@ -3,6 +3,7 @@ package com.katkov.lolachievements.presentation.firstentry;
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 import com.katkov.lolachievements.Screens;
+import com.katkov.lolachievements.di.Scopes;
 import com.katkov.lolachievements.domain.usecase.LoginUseCase;
 
 import javax.inject.Inject;
@@ -27,6 +28,7 @@ public class FirstEntryPresenter extends MvpPresenter<FirstEntryView> {
     }
 
     public void onLoginButtonPressed(String summonerName) {
+        Scopes.openUserScope(summonerName);
         loginUseCase.saveSummonerNameToPref(summonerName);
         router.navigateTo(new Screens.CheckFirstEntryInfoScreen());
     }
