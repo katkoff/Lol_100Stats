@@ -1,4 +1,4 @@
-package com.katkov.lolachievements.presentation.summonerInfo;
+package com.katkov.lolachievements.presentation.summonerinfo;
 
 import com.arellomobile.mvp.MvpView;
 

@@ -8,11 +8,14 @@ import javax.inject.Singleton;
 @Singleton
 public class LoginUseCase {
 
-    private LoginService loginService;
+    private final LoginService loginService;
 
     @Inject
     public LoginUseCase(LoginService loginService) {
         this.loginService = loginService;
     }
 
+    public void saveSummonerNameToPref(String summonerName) {
+        loginService.saveSummonerNameToPref(summonerName);
+    }
 }

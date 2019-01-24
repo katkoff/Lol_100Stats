@@ -3,9 +3,9 @@ package com.katkov.lolachievements;
 import android.support.v4.app.Fragment;
 
 import com.katkov.lolachievements.data.local.entity.Summoner;
-import com.katkov.lolachievements.presentation.checkEntryInfo.CheckEntryInfoFragment;
-import com.katkov.lolachievements.presentation.firstEntry.FirstEntryFragment;
-import com.katkov.lolachievements.presentation.summonerInfo.SummonerInfoFragment;
+import com.katkov.lolachievements.presentation.checkentryinfo.CheckEntryInfoFragment;
+import com.katkov.lolachievements.presentation.firstentry.FirstEntryFragment;
+import com.katkov.lolachievements.presentation.summonerinfo.SummonerInfoFragment;
 
 import ru.terrakok.cicerone.android.support.SupportAppScreen;
 

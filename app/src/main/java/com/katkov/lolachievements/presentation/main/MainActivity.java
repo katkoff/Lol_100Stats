@@ -4,10 +4,12 @@ import android.os.Bundle;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.katkov.lolachievements.R;
 import com.katkov.lolachievements.di.Scopes;
 
 import javax.inject.Inject;
+import javax.inject.Provider;
 
 import ru.terrakok.cicerone.Navigator;
 import ru.terrakok.cicerone.NavigatorHolder;
@@ -19,17 +21,22 @@ public class MainActivity extends MvpAppCompatActivity implements MainView {
     @Inject
     NavigatorHolder navigatorHolder;
 
+    @Inject
+    Provider<MainPresenter> presenterProvider;
+    @ProvidePresenter
+    MainPresenter presenterProvide() {
+        return presenterProvider.get();
+    }
     @InjectPresenter
-    MainPresenter mainPresenter;
+    MainPresenter presenter;
 
     private Navigator navigator = new SupportAppNavigator(this, R.id.fragmentContainer);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Toothpick.inject(this, Toothpick.openScope(Scopes.APP_SCOPE));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        Toothpick.inject(this, Toothpick.openScope(Scopes.APP_SCOPE));
     }
 
     @Override

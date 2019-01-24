@@ -1,4 +1,4 @@
-package com.katkov.lolachievements.presentation.summonerInfo;
+package com.katkov.lolachievements.presentation.summonerinfo;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -17,7 +17,7 @@ import butterknife.ButterKnife;
 
 public class SummonerInfoFragment extends MvpAppCompatFragment {
 
-    public static final String SUMMONER_INFO_FRAGMENT = "summoner_info_fragment";
+    private static final String SUMMONER = "summoner";
 
     @BindView(R.id.textView_summonerName)
     TextView summonerNameTextView;
@@ -41,14 +41,14 @@ public class SummonerInfoFragment extends MvpAppCompatFragment {
 
     public static SummonerInfoFragment newInstance(Summoner summoner) {
         Bundle args = new Bundle();
-        args.putSerializable(SUMMONER_INFO_FRAGMENT, summoner);
+        args.putSerializable(SUMMONER, summoner);
         SummonerInfoFragment fragment = new SummonerInfoFragment();
         fragment.setArguments(args);
         return fragment;
     }
 
     private void fillSummonerInfo() {
-        Summoner summoner = (Summoner) getArguments().getSerializable(SUMMONER_INFO_FRAGMENT);
+        Summoner summoner = (Summoner) getArguments().getSerializable(SUMMONER);
         if (summoner != null) {
             if (summoner.getName() != null && !summoner.getName().isEmpty()) {
                 summonerNameTextView.setText(summoner.getName());

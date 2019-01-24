@@ -5,7 +5,7 @@ import android.arch.persistence.room.Room;
 
 import com.katkov.lolachievements.data.local.database.AppDataBase;
 import com.katkov.lolachievements.di.Scopes;
-import com.katkov.lolachievements.di.auth.LoginModule;
+import com.katkov.lolachievements.di.common.CommonModule;
 import com.katkov.lolachievements.di.cicerone.CiceroneModule;
 
 import toothpick.Scope;
@@ -25,7 +25,7 @@ public class LolApp extends Application {
 
     private void initDi() {
         Scope appScope = Toothpick.openScope(Scopes.APP_SCOPE);
-        appScope.installModules(new LoginModule());
+        appScope.installModules(new CommonModule(this));
         appScope.installModules(new CiceroneModule());
 
         Toothpick.inject(this, appScope);
