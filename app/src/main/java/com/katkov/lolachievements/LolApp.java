@@ -1,7 +1,7 @@
 package com.katkov.lolachievements;
 
 import android.app.Application;
-import android.arch.persistence.room.Room;
+import androidx.room.Room;
 
 import com.katkov.lolachievements.data.local.database.AppDataBase;
 import com.katkov.lolachievements.di.Scopes;
