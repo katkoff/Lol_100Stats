@@ -86,6 +86,6 @@ public class CheckEntryInfoFragment extends MvpAppCompatFragment implements Chec
         presenter.onLogoutButtonClicked();
     }
 
-    @OnClick(R.id.R.id.button_summonerInfo)
+    @OnClick(R.id.button_summonerInfo)
     void onSummonerInfoButtonClick() { presenter.onSummonerInfoButtonClicked(); }
 }

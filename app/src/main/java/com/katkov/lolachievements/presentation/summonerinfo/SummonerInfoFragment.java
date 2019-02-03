@@ -22,7 +22,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import toothpick.Toothpick;
 
-public class SummonerInfoFragment extends MvpAppCompatFragment {
+public class SummonerInfoFragment extends MvpAppCompatFragment implements SummonerInfoView {
 
     @BindView(R.id.textView_summonerName)
     TextView summonerNameTextView;
@@ -65,7 +65,8 @@ public class SummonerInfoFragment extends MvpAppCompatFragment {
         return fragment;
     }
 
-    private void fillSummonerInfo(Summoner summoner) {
+    @Override
+    public void fillSummonerInfo(Summoner summoner) {
 //        Summoner summoner = (Summoner) getArguments().getSerializable(SUMMONER);
 //        if (summoner != null) {
 //            if (summoner.getName() != null && !summoner.getName().isEmpty()) {
