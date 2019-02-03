@@ -27,16 +27,9 @@ public class Screens {
     }
 
     public static class SummonerInfoScreen extends SupportAppScreen {
-
-        private Summoner summoner;
-
-        public SummonerInfoScreen(Summoner summoner) {
-            this.summoner = summoner;
-        }
-
         @Override
         public Fragment getFragment() {
-            return SummonerInfoFragment.newInstance(summoner);
+            return SummonerInfoFragment.newInstance();
         }
     }
 }

@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.katkov.lolachievements">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name=".LolApp"
         android:allowBackup="true"

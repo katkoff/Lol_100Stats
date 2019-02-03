@@ -32,6 +32,8 @@ public class CheckEntryInfoFragment extends MvpAppCompatFragment implements Chec
     TextView summonerNameTextView;
     @BindView(R.id.button_logout)
     Button logoutButton;
+    @BindView(R.id.button_summonerInfo)
+    Button showSummonerInfoButton;
 
     @Inject
     Provider<CheckEntryInfoPresenter> presenterProvider;
@@ -83,4 +85,7 @@ public class CheckEntryInfoFragment extends MvpAppCompatFragment implements Chec
     void logoutButtonClicked() {
         presenter.onLogoutButtonClicked();
     }
+
+    @OnClick(R.id.R.id.button_summonerInfo)
+    void onSummonerInfoButtonClick() { presenter.onSummonerInfoButtonClicked(); }
 }

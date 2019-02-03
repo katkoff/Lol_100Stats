@@ -34,4 +34,8 @@ public class CheckEntryInfoPresenter extends MvpPresenter<CheckEntryInfoView> {
         router.navigateTo(new Screens.FirstEntryScreen());
         loginUseCase.removeSummonerNameFromPref();
     }
+
+    public void onSummonerInfoButtonClicked() {
+        router.navigateTo(new Screens.SummonerInfoScreen());
+    }
 }
