@@ -1,30 +1,30 @@
 package com.katkov.lolachievements.presentation.firstentry;
 
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import com.google.android.material.textfield.TextInputLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
+import com.google.android.material.textfield.TextInputLayout;
 import com.katkov.lolachievements.R;
 import com.katkov.lolachievements.di.Scopes;
+import com.katkov.lolachievements.presentation.base.BaseFragmentAndroidX;
 import com.katkov.lolachievements.utils.TextInputUtils;
 
 import javax.inject.Inject;
 import javax.inject.Provider;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import toothpick.Toothpick;
 
-public class FirstEntryFragment extends MvpAppCompatFragment implements FirstEntryView {
+public class FirstEntryFragment extends BaseFragmentAndroidX implements FirstEntryView {
 
     @BindView(R.id.inputLayout_summonerName)
     TextInputLayout summonerNameInputLayout;

@@ -6,12 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.katkov.lolachievements.R;
 import com.katkov.lolachievements.data.local.entity.Summoner;
 import com.katkov.lolachievements.di.Scopes;
+import com.katkov.lolachievements.presentation.base.BaseFragmentAndroidX;
 
 import javax.inject.Inject;
 import javax.inject.Provider;
@@ -22,7 +22,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import toothpick.Toothpick;
 
-public class SummonerInfoFragment extends MvpAppCompatFragment implements SummonerInfoView {
+public class SummonerInfoFragmentAndroid extends BaseFragmentAndroidX implements SummonerInfoView {
 
     @BindView(R.id.textView_summonerName)
     TextView summonerNameTextView;
@@ -58,9 +58,9 @@ public class SummonerInfoFragment extends MvpAppCompatFragment implements Summon
         ButterKnife.bind(this, view);
     }
 
-    public static SummonerInfoFragment newInstance() {
+    public static SummonerInfoFragmentAndroid newInstance() {
         Bundle args = new Bundle();
-        SummonerInfoFragment fragment = new SummonerInfoFragment();
+        SummonerInfoFragmentAndroid fragment = new SummonerInfoFragmentAndroid();
         fragment.setArguments(args);
         return fragment;
     }

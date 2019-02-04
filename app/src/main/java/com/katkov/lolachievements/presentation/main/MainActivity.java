@@ -2,11 +2,11 @@ package com.katkov.lolachievements.presentation.main;
 
 import android.os.Bundle;
 
-import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.katkov.lolachievements.R;
 import com.katkov.lolachievements.di.Scopes;
+import com.katkov.lolachievements.presentation.base.BaseActivityAndroidX;
 
 import javax.inject.Inject;
 import javax.inject.Provider;
@@ -16,7 +16,7 @@ import ru.terrakok.cicerone.NavigatorHolder;
 import ru.terrakok.cicerone.android.support.SupportAppNavigator;
 import toothpick.Toothpick;
 
-public class MainActivity extends MvpAppCompatActivity implements MainView {
+public class MainActivity extends BaseActivityAndroidX implements MainView {
 
     @Inject
     NavigatorHolder navigatorHolder;

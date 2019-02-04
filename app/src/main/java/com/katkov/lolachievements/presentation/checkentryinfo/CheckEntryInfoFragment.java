@@ -1,32 +1,32 @@
 package com.katkov.lolachievements.presentation.checkentryinfo;
 
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.katkov.lolachievements.R;
 import com.katkov.lolachievements.di.BindingNamesUtils;
 import com.katkov.lolachievements.di.Scopes;
+import com.katkov.lolachievements.presentation.base.BaseFragmentAndroidX;
 import com.katkov.lolachievements.utils.TextInputUtils;
 
 import javax.inject.Inject;
 import javax.inject.Provider;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import toothpick.Scope;
 import toothpick.Toothpick;
 
-public class CheckEntryInfoFragment extends MvpAppCompatFragment implements CheckEntryInfoView {
+public class CheckEntryInfoFragment extends BaseFragmentAndroidX implements CheckEntryInfoView {
 
     @BindView(R.id.textView_summonerName)
     TextView summonerNameTextView;
