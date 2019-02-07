@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.katkov.lolachievements.data.cloud.api.LolApiService;
+import com.katkov.lolachievements.data.cloud.utils.ApiStringUtils;
 
 import javax.inject.Inject;
 import javax.inject.Provider;
@@ -58,7 +59,7 @@ public class CommonModule extends Module {
         @Override
         public LolApiService get() {
             final Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(baseUrl)
+                    .baseUrl(ApiStringUtils.BASE_URL)
                     .client(okHttpClient)
                     .build();
             return retrofit.create(LolApiService.class);
