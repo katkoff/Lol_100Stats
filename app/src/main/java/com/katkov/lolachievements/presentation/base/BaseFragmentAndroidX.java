@@ -1,6 +1,7 @@
 package com.katkov.lolachievements.presentation.base;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.arellomobile.mvp.MvpDelegate;
 
@@ -10,7 +11,7 @@ import androidx.fragment.app.Fragment;
  * This class will exist until introduced support AndroidX
  */
 
-public class BaseFragmentAndroidX extends Fragment {
+public class BaseFragmentAndroidX extends Fragment implements ErrorView {
     private boolean mIsStateSaved;
     private MvpDelegate<? extends BaseFragmentAndroidX> mMvpDelegate;
 
@@ -94,5 +95,10 @@ public class BaseFragmentAndroidX extends Fragment {
         }
 
         return mMvpDelegate;
+    }
+
+    @Override
+    public void showError(Error error) {
+        Toast.makeText(getContext(), error.toString(), Toast.LENGTH_LONG).show();
     }
 }

@@ -1,7 +1,7 @@
 package com.katkov.lolachievements.domain.interactor;
 
-import com.katkov.lolachievements.data.local.entity.Summoner;
 import com.katkov.lolachievements.data.cloud.repository.SummonerInfoRepository;
+import com.katkov.lolachievements.domain.model.SummonerDTO;
 
 import javax.inject.Inject;
 
@@ -16,7 +16,7 @@ public class SummonerInfoInteractor {
         this.summonerInfoRepository = summonerInfoRepository;
     }
 
-    public Single<Summoner> getSummonerInfo() {
-        return summonerInfoRepository.getSummonerInfo();
+    public Single<SummonerDTO> getSummonerDTO(String name) {
+        return summonerInfoRepository.getSummonerDTO(name);
     }
 }

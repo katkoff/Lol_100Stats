@@ -1,11 +1,10 @@
 package com.katkov.lolachievements;
 
-import androidx.fragment.app.Fragment;
-
 import com.katkov.lolachievements.presentation.checkentryinfo.CheckEntryInfoFragment;
 import com.katkov.lolachievements.presentation.firstentry.FirstEntryFragment;
-import com.katkov.lolachievements.presentation.summonerinfo.SummonerInfoFragmentAndroid;
+import com.katkov.lolachievements.presentation.summonerinfo.SummonerInfoFragment;
 
+import androidx.fragment.app.Fragment;
 import ru.terrakok.cicerone.android.support.SupportAppScreen;
 
 public class Screens {
@@ -26,9 +25,15 @@ public class Screens {
     }
 
     public static class SummonerInfoScreen extends SupportAppScreen {
+        private String summonerName;
+
+        public SummonerInfoScreen(String summonerName) {
+            this.summonerName = summonerName;
+        }
+
         @Override
         public Fragment getFragment() {
-            return SummonerInfoFragmentAndroid.newInstance();
+            return SummonerInfoFragment.newInstance(summonerName);
         }
     }
 }

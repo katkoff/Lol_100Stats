@@ -87,5 +87,7 @@ public class CheckEntryInfoFragment extends BaseFragmentAndroidX implements Chec
     }
 
     @OnClick(R.id.button_summonerInfo)
-    void onSummonerInfoButtonClick() { presenter.onSummonerInfoButtonClicked(); }
+    void onSummonerInfoButtonClick() {
+        presenter.onSummonerInfoButtonClicked(summonerNameTextView.getText().toString());
+    }
 }
