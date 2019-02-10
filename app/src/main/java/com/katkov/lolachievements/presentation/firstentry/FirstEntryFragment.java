@@ -106,10 +106,5 @@ public class FirstEntryFragment extends BaseFragmentAndroidX implements FirstEnt
     @OnClick(R.id.button_login)
     void loginButtonClick() {
         presenter.onLoginButtonClicked(TextInputUtils.getText(summonerNameInputLayout));
-//        SummonerEntry summonerEntry = new SummonerEntry(
-//                TextInputUtils.getText(summonerNameInputLayout),
-//                textView_serverName.getText().toString()
-//        );
-//        presenter.onLoginButtonClicked();
     }
 }
