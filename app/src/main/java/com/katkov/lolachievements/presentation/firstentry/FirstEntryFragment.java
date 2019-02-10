@@ -1,10 +1,13 @@
 package com.katkov.lolachievements.presentation.firstentry;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
@@ -28,15 +31,21 @@ public class FirstEntryFragment extends BaseFragmentAndroidX implements FirstEnt
 
     @BindView(R.id.inputLayout_summonerName)
     TextInputLayout summonerNameInputLayout;
+    @BindView(R.id.textView_serverName)
+    TextView textView_serverName;
+    @BindView(R.id.button_serverName)
+    Button serverNameButton;
     @BindView(R.id.button_login)
     Button loginButton;
 
     @Inject
     Provider<FirstEntryPresenter> presenterProvider;
+
     @ProvidePresenter
     FirstEntryPresenter providePresenter() {
-        return presenterProvider.get() ;
+        return presenterProvider.get();
     }
+
     @InjectPresenter
     FirstEntryPresenter presenter;
 
@@ -67,8 +76,40 @@ public class FirstEntryFragment extends BaseFragmentAndroidX implements FirstEnt
         return fragment;
     }
 
+    @OnClick(R.id.button_serverName)
+    void serverNameButtonClick() {
+        presenter.onServerNameButtonClicked();
+        showServerChoiceDialog();
+    }
+
+    @Override
+    public void showServerChoiceDialog() {
+        String[] itemsArray = getResources().getStringArray(R.array.server_names);
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getContext());
+        dialogBuilder.setTitle("Choose server name")
+                .setSingleChoiceItems(itemsArray, 0, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        textView_serverName.setText(itemsArray[i]);
+                    }
+                })
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                })
+                .create()
+                .show();
+    }
+
     @OnClick(R.id.button_login)
-    void loginButtonPressed() {
-        presenter.onLoginButtonPressed(TextInputUtils.getText(summonerNameInputLayout));
+    void loginButtonClick() {
+        presenter.onLoginButtonClicked(TextInputUtils.getText(summonerNameInputLayout));
+//        SummonerEntry summonerEntry = new SummonerEntry(
+//                TextInputUtils.getText(summonerNameInputLayout),
+//                textView_serverName.getText().toString()
+//        );
+//        presenter.onLoginButtonClicked();
     }
 }

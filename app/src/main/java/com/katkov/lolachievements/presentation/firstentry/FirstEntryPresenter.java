@@ -27,9 +27,13 @@ public class FirstEntryPresenter extends MvpPresenter<FirstEntryView> {
         super.onFirstViewAttach();
     }
 
-    public void onLoginButtonPressed(String summonerName) {
+    public void onLoginButtonClicked(String summonerName) {
         Scopes.openUserScope(summonerName);
         loginUseCase.saveSummonerNameToPref(summonerName);
         router.navigateTo(new Screens.CheckFirstEntryInfoScreen());
+    }
+
+    public void onServerNameButtonClicked() {
+
     }
 }
