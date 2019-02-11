@@ -34,7 +34,7 @@ public class MainPresenter extends MvpPresenter<MainView> {
 
     private void checkAlreadyLogged() {
         String summonerName = sharedPreferences.getString(PreferenceKeysUtils.SUMMONER_NAME_PREF, CommonTextUtils.UNKNOWN_VALUE);
-        router.navigateTo(getFirstScreen(summonerName));
+        router.newRootScreen(getFirstScreen(summonerName));
     }
 
     private Screen getFirstScreen(String summonerName) {

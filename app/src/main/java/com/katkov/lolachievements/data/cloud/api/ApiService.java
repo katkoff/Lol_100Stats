@@ -15,5 +15,4 @@ public interface ApiService {
             @Path("summoner_name") String summonerName,
             @Query("api_key") String apiKey
     );
-
 }
