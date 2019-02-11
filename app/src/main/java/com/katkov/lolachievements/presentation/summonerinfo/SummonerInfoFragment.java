@@ -50,12 +50,7 @@ public class SummonerInfoFragment extends BaseFragmentAndroidX implements Summon
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        String summonerName = getArguments().getString(ARG_SUMMONER_NAME);
-        final Scope scope = Toothpick.openScope(Scopes.USER_SCOPE);
-        scope.installModules(new Module() {{
-            bind(String.class).withName("summonerName").toInstance(summonerName);
-        }});
-        Toothpick.inject(this, scope);
+        Toothpick.inject(this, Toothpick.openScope(Scopes.USER_SCOPE));
         super.onCreate(savedInstanceState);
     }
 

@@ -7,5 +7,5 @@ import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;
 public interface CheckEntryInfoView extends MvpView {
 
     @StateStrategyType(AddToEndSingleStrategy.class)
-    void fillInfo();
+    void fillInfo(String summonerName);
 }

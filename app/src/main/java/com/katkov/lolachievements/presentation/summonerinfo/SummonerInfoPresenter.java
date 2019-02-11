@@ -2,6 +2,7 @@ package com.katkov.lolachievements.presentation.summonerinfo;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
+import com.katkov.lolachievements.di.BindingNamesUtils;
 import com.katkov.lolachievements.domain.interactor.SummonerInfoInteractor;
 
 import javax.inject.Inject;
@@ -16,12 +17,12 @@ public class SummonerInfoPresenter extends MvpPresenter<SummonerInfoView> {
 
     private final SummonerInfoInteractor summonerInfoInteractor;
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
-    private String summonerName;
+    private final String summonerName;
 
     @Inject
     public SummonerInfoPresenter(
             SummonerInfoInteractor summonerInfoInteractor,
-            @Named("summonerName") String summonerName) {
+            @Named(BindingNamesUtils.SUMMONER_NAME) String summonerName) {
         this.summonerInfoInteractor = summonerInfoInteractor;
         this.summonerName = summonerName;
     }

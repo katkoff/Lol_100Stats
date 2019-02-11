@@ -10,7 +10,6 @@ import android.widget.TextView;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.katkov.lolachievements.R;
-import com.katkov.lolachievements.di.BindingNamesUtils;
 import com.katkov.lolachievements.di.Scopes;
 import com.katkov.lolachievements.presentation.base.BaseFragmentAndroidX;
 import com.katkov.lolachievements.utils.TextInputUtils;
@@ -44,15 +43,10 @@ public class CheckEntryInfoFragment extends BaseFragmentAndroidX implements Chec
     @InjectPresenter
     CheckEntryInfoPresenter presenter;
 
-    private String summonerName;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        final Scope scope = Toothpick.openScope(Scopes.USER_SCOPE);
-        Toothpick.inject(this, scope);
+        Toothpick.inject(this, Toothpick.openScope(Scopes.USER_SCOPE));
         super.onCreate(savedInstanceState);
-
-        summonerName = scope.getInstance(String.class, BindingNamesUtils.SUMMONER_NAME);
     }
 
     @Nullable
@@ -77,7 +71,7 @@ public class CheckEntryInfoFragment extends BaseFragmentAndroidX implements Chec
     }
 
     @Override
-    public void fillInfo() {
+    public void fillInfo(String summonerName) {
         TextInputUtils.setText(summonerNameTextView, summonerName);
     }
 
