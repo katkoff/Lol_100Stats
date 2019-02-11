@@ -20,41 +20,22 @@
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!--<com.google.android.material.textfield.TextInputLayout-->
-    <!--android:id="@+id/inputLayout_serverName"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginTop="8dp"-->
-    <!--android:hint="Enter server name"-->
-    <!--app:hintEnabled="false"-->
-    <!--app:layout_constraintLeft_toLeftOf="parent"-->
-    <!--app:layout_constraintRight_toRightOf="parent"-->
-    <!--app:layout_constraintTop_toBottomOf="@+id/inputLayout_summonerName">-->
-
-    <!--<com.google.android.material.textfield.TextInputEditText-->
-    <!--android:id="@+id/inputEditText_serverName"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content" />-->
-    <!--</com.google.android.material.textfield.TextInputLayout>-->
-
-    <TextView
-        android:id="@+id/textView_serverName"
-        android:layout_width="wrap_content"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inputLayout_serverName"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Server name"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputLayout_summonerName" />
-
-    <Button
-        android:id="@+id/button_serverName"
+        android:layout_marginTop="8dp"
+        android:hint="Enter server name"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="8dp"
-        android:text="Click to choose server"
-        app:layout_constraintTop_toBottomOf="@+id/textView_serverName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content" />
+        app:layout_constraintTop_toBottomOf="@+id/inputLayout_summonerName">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputEditText_serverName"
+            style="@style/DropdownEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/button_login"

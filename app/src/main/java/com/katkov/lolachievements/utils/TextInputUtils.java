@@ -1,9 +1,10 @@
 package com.katkov.lolachievements.utils;
 
-import com.google.android.material.textfield.TextInputLayout;
 import android.text.Editable;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.google.android.material.textfield.TextInputLayout;
 
 public class TextInputUtils {
 
@@ -24,6 +25,7 @@ public class TextInputUtils {
         if (editText == null) {
             return;
         }
+        editText.setText(text);
     }
 
     public static void setText(TextView textView, String text) {

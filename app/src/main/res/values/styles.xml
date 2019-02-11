@@ -6,7 +6,14 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <!--<item name="colorOnBackground">@color/colorBackground</item>-->
+    </style>
+
+    <!-- EditText. -->
+    <style name="DropdownEditText">
+        <item name="android:drawableRight">@drawable/ic_arrow_drop_down_gray</item>
+        <item name="android:focusable">false</item>
+        <item name="android:inputType">textNoSuggestions|textMultiLine</item>
+        <item name="android:longClickable">false</item>
     </style>
 
 </resources>

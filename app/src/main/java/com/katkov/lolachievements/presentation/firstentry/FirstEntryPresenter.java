@@ -33,7 +33,7 @@ public class FirstEntryPresenter extends MvpPresenter<FirstEntryView> {
         router.navigateTo(new Screens.CheckFirstEntryInfoScreen());
     }
 
-    public void onServerNameButtonClicked() {
+    public void onServerNameClicked() {
 
     }
 }

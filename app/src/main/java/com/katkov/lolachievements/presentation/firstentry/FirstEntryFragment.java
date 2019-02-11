@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
@@ -31,10 +30,8 @@ public class FirstEntryFragment extends BaseFragmentAndroidX implements FirstEnt
 
     @BindView(R.id.inputLayout_summonerName)
     TextInputLayout summonerNameInputLayout;
-    @BindView(R.id.textView_serverName)
-    TextView textView_serverName;
-    @BindView(R.id.button_serverName)
-    Button serverNameButton;
+    @BindView(R.id.inputLayout_serverName)
+    TextInputLayout serverNameInputLayout;
     @BindView(R.id.button_login)
     Button loginButton;
 
@@ -76,9 +73,9 @@ public class FirstEntryFragment extends BaseFragmentAndroidX implements FirstEnt
         return fragment;
     }
 
-    @OnClick(R.id.button_serverName)
+    @OnClick(R.id.inputEditText_serverName)
     void serverNameButtonClick() {
-        presenter.onServerNameButtonClicked();
+//        presenter.onServerNameClicked();
         showServerChoiceDialog();
     }
 
@@ -90,7 +87,7 @@ public class FirstEntryFragment extends BaseFragmentAndroidX implements FirstEnt
                 .setSingleChoiceItems(itemsArray, 0, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        textView_serverName.setText(itemsArray[i]);
+                        TextInputUtils.setText(serverNameInputLayout, itemsArray[i]);
                     }
                 })
                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
