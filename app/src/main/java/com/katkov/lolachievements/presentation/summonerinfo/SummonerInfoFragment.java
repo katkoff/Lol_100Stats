@@ -22,13 +22,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import toothpick.Scope;
 import toothpick.Toothpick;
-import toothpick.config.Module;
 
 public class SummonerInfoFragment extends BaseFragmentAndroidX implements SummonerInfoView {
-
-    private static final String ARG_SUMMONER_NAME = "arg_summoner_name";
 
     @BindView(R.id.textView_summonerName)
     TextView summonerNameTextView;
@@ -68,9 +64,8 @@ public class SummonerInfoFragment extends BaseFragmentAndroidX implements Summon
         ButterKnife.bind(this, view);
     }
 
-    public static SummonerInfoFragment newInstance(String summonerName) {
+    public static SummonerInfoFragment newInstance() {
         Bundle args = new Bundle();
-        args.putString(ARG_SUMMONER_NAME, summonerName);
         SummonerInfoFragment fragment = new SummonerInfoFragment();
         fragment.setArguments(args);
         return fragment;

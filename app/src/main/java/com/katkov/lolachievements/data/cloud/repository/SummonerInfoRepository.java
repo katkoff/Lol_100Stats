@@ -15,7 +15,7 @@ public class SummonerInfoRepository {
 
     private final ApiService apiService;
     private final SummonerDTOMapper mapper;
-    private final String apiKey = "RGAPI-6629a33f-bcc4-4dc8-8307-719d0cf1547b";
+    private final String apiKey = "RGAPI-16385ae8-817e-451b-9316-d97011d606f1";
 
     @Inject
     public SummonerInfoRepository(ApiService apiService, SummonerDTOMapper mapper) {

@@ -43,6 +43,6 @@ public class CheckEntryInfoPresenter extends MvpPresenter<CheckEntryInfoView> {
     }
 
     public void onSummonerInfoButtonClicked(String summonerName) {
-        router.navigateTo(new Screens.SummonerInfoScreen(summonerName));
+        router.navigateTo(new Screens.SummonerInfoScreen());
     }
 }
