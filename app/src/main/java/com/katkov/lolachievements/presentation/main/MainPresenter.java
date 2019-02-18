@@ -1,13 +1,10 @@
 package com.katkov.lolachievements.presentation.main;
 
-import android.content.SharedPreferences;
-
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 import com.katkov.lolachievements.Screens;
-import com.katkov.lolachievements.di.Scopes;
-import com.katkov.lolachievements.utils.CommonTextUtils;
-import com.katkov.lolachievements.utils.PreferenceKeysUtils;
+import com.katkov.lolachievements.domain.model.EntryInfoModel;
+import com.katkov.lolachievements.prefser.EntryInfoHolder;
 
 import javax.inject.Inject;
 
@@ -18,12 +15,12 @@ import ru.terrakok.cicerone.Screen;
 public class MainPresenter extends MvpPresenter<MainView> {
 
     private final Router router;
-    private final SharedPreferences sharedPreferences;
+    private final EntryInfoHolder entryInfoHolder;
 
     @Inject
-    MainPresenter(Router router, SharedPreferences sharedPreferences) {
+    MainPresenter(Router router, EntryInfoHolder entryInfoHolder) {
         this.router = router;
-        this.sharedPreferences = sharedPreferences;
+        this.entryInfoHolder = entryInfoHolder;
     }
 
     @Override
@@ -33,16 +30,14 @@ public class MainPresenter extends MvpPresenter<MainView> {
     }
 
     private void checkAlreadyLogged() {
-        String summonerName = sharedPreferences.getString(PreferenceKeysUtils.SUMMONER_NAME_PREF, CommonTextUtils.UNKNOWN_VALUE);
-        router.newRootScreen(getFirstScreen(summonerName));
+        EntryInfoModel entryInfoModel = entryInfoHolder.getEntryInfoModel();
+        router.newRootScreen(getFirstScreen(entryInfoModel));
     }
 
-    private Screen getFirstScreen(String summonerName) {
-        if (summonerName.isEmpty() || summonerName.equals(CommonTextUtils.UNKNOWN_VALUE)) {
+    private Screen getFirstScreen(EntryInfoModel entryInfoModel) {
+        if (entryInfoModel == null) {
             return new Screens.FirstEntryScreen();
         } else {
-            Scopes.openUserScope(summonerName);
-
             return new Screens.CheckFirstEntryInfoScreen();
         }
     }

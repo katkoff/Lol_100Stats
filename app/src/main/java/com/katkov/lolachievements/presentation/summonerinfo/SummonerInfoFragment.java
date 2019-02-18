@@ -13,7 +13,7 @@ import com.katkov.lolachievements.R;
 import com.katkov.lolachievements.di.Scopes;
 import com.katkov.lolachievements.domain.model.SummonerDTO;
 import com.katkov.lolachievements.presentation.base.BaseFragmentAndroidX;
-import com.katkov.lolachievements.utils.CommonTextUtils;
+import com.katkov.lolachievements.utils.CommonStringUtils;
 
 import javax.inject.Inject;
 import javax.inject.Provider;
@@ -46,7 +46,7 @@ public class SummonerInfoFragment extends BaseFragmentAndroidX implements Summon
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        Toothpick.inject(this, Toothpick.openScope(Scopes.USER_SCOPE));
+        Toothpick.inject(this, Toothpick.openScope(Scopes.APP_SCOPE));
         super.onCreate(savedInstanceState);
     }
 
@@ -76,7 +76,7 @@ public class SummonerInfoFragment extends BaseFragmentAndroidX implements Summon
         if (summonerDTO.getSummonerName() != null) {
             summonerNameTextView.setText(summonerDTO.getSummonerName());
         } else {
-            summonerNameTextView.setText(CommonTextUtils.UNKNOWN_VALUE);
+            summonerNameTextView.setText(CommonStringUtils.UNKNOWN_VALUE);
         }
 
         summonerLevelTextView.setText(String.valueOf(summonerDTO.getSummonerLevel()));

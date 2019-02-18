@@ -1,7 +1,6 @@
 package com.katkov.lolachievements.presentation.firstentry;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +12,7 @@ import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.google.android.material.textfield.TextInputLayout;
 import com.katkov.lolachievements.R;
 import com.katkov.lolachievements.di.Scopes;
+import com.katkov.lolachievements.domain.model.EntryInfoModel;
 import com.katkov.lolachievements.presentation.base.BaseFragmentAndroidX;
 import com.katkov.lolachievements.utils.TextInputUtils;
 
@@ -75,8 +75,7 @@ public class FirstEntryFragment extends BaseFragmentAndroidX implements FirstEnt
 
     @OnClick(R.id.inputEditText_serverName)
     void serverNameButtonClick() {
-//        presenter.onServerNameClicked();
-        showServerChoiceDialog();
+        presenter.onServerNameClicked();
     }
 
     @Override
@@ -84,24 +83,19 @@ public class FirstEntryFragment extends BaseFragmentAndroidX implements FirstEnt
         String[] itemsArray = getResources().getStringArray(R.array.server_names);
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getContext());
         dialogBuilder.setTitle("Choose server name")
-                .setSingleChoiceItems(itemsArray, 0, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        TextInputUtils.setText(serverNameInputLayout, itemsArray[i]);
-                    }
-                })
-                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-                    }
-                })
+                .setSingleChoiceItems(itemsArray, 0, (dialogInterface, i) ->
+                        TextInputUtils.setText(serverNameInputLayout, itemsArray[i]))
+                .setPositiveButton("Ok", (dialogInterface, i) ->
+                        dialogInterface.dismiss())
                 .create()
                 .show();
     }
 
     @OnClick(R.id.button_login)
     void loginButtonClick() {
-        presenter.onLoginButtonClicked(TextInputUtils.getText(summonerNameInputLayout));
+        EntryInfoModel entryInfoModel = new EntryInfoModel(
+                TextInputUtils.getText(summonerNameInputLayout),
+                TextInputUtils.getText(serverNameInputLayout));
+        presenter.onLoginButtonClicked(entryInfoModel);
     }
 }

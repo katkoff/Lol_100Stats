@@ -1,5 +1,6 @@
 package com.katkov.lolachievements.domain.usecase;
 
+import com.katkov.lolachievements.domain.model.EntryInfoModel;
 import com.katkov.lolachievements.domain.service.LoginService;
 
 import javax.inject.Inject;
@@ -15,11 +16,11 @@ public class LoginUseCase {
         this.loginService = loginService;
     }
 
-    public void saveSummonerNameToPref(String summonerName) {
-        loginService.saveSummonerNameToPref(summonerName);
+    public void saveEntryInfo(EntryInfoModel entryInfoModel) {
+        loginService.saveEntryInfo(entryInfoModel);
     }
 
-    public void removeSummonerNameFromPref() {
-        loginService.removeSummonerNameFromPref();
+    public void removeEntryInfo() {
+        loginService.removeEntryInfo();
     }
 }

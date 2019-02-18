@@ -11,6 +11,7 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.katkov.lolachievements.R;
 import com.katkov.lolachievements.di.Scopes;
+import com.katkov.lolachievements.domain.model.EntryInfoModel;
 import com.katkov.lolachievements.presentation.base.BaseFragmentAndroidX;
 import com.katkov.lolachievements.utils.TextInputUtils;
 
@@ -22,7 +23,6 @@ import androidx.annotation.Nullable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import toothpick.Scope;
 import toothpick.Toothpick;
 
 public class CheckEntryInfoFragment extends BaseFragmentAndroidX implements CheckEntryInfoView {
@@ -45,7 +45,7 @@ public class CheckEntryInfoFragment extends BaseFragmentAndroidX implements Chec
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        Toothpick.inject(this, Toothpick.openScope(Scopes.USER_SCOPE));
+        Toothpick.inject(this, Toothpick.openScope(Scopes.APP_SCOPE));
         super.onCreate(savedInstanceState);
     }
 
@@ -71,8 +71,8 @@ public class CheckEntryInfoFragment extends BaseFragmentAndroidX implements Chec
     }
 
     @Override
-    public void fillInfo(String summonerName) {
-        TextInputUtils.setText(summonerNameTextView, summonerName);
+    public void fillInfo(EntryInfoModel entryInfoModel) {
+        TextInputUtils.setText(summonerNameTextView, entryInfoModel.getSummonerName());
     }
 
     @OnClick(R.id.button_logout)
@@ -82,6 +82,6 @@ public class CheckEntryInfoFragment extends BaseFragmentAndroidX implements Chec
 
     @OnClick(R.id.button_summonerInfo)
     void onSummonerInfoButtonClick() {
-        presenter.onSummonerInfoButtonClicked(summonerNameTextView.getText().toString());
+        presenter.onSummonerInfoButtonClicked();
     }
 }

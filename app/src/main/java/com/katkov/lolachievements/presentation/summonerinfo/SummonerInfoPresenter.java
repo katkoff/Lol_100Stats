@@ -2,11 +2,10 @@ package com.katkov.lolachievements.presentation.summonerinfo;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
-import com.katkov.lolachievements.di.BindingNamesUtils;
 import com.katkov.lolachievements.domain.interactor.SummonerInfoInteractor;
+import com.katkov.lolachievements.prefser.EntryInfoHolder;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -17,19 +16,20 @@ public class SummonerInfoPresenter extends MvpPresenter<SummonerInfoView> {
 
     private final SummonerInfoInteractor summonerInfoInteractor;
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
-    private final String summonerName;
+    private final EntryInfoHolder entryInfoHolder;
 
     @Inject
     public SummonerInfoPresenter(
             SummonerInfoInteractor summonerInfoInteractor,
-            @Named(BindingNamesUtils.SUMMONER_NAME) String summonerName) {
+            EntryInfoHolder entryInfoHolder) {
         this.summonerInfoInteractor = summonerInfoInteractor;
-        this.summonerName = summonerName;
+        this.entryInfoHolder = entryInfoHolder;
     }
 
     @Override
     protected void onFirstViewAttach() {
         getViewState().showProgressBar();
+        String summonerName = entryInfoHolder.getEntryInfoModel().getSummonerName();
         Disposable disposable = summonerInfoInteractor.getSummonerDTO(summonerName)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(summonerDTO -> {

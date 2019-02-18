@@ -3,6 +3,7 @@ package com.katkov.lolachievements.di.common;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.github.pwittchen.prefser.library.rx2.Prefser;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.katkov.lolachievements.data.cloud.api.ApiService;
@@ -48,6 +49,29 @@ public class CommonModule extends Module {
         bind(ApiService.class)
                 .toProvider(LolApiServiceProvider.class)
                 .providesSingletonInScope();
+
+        bind(Prefser.class)
+                .toProvider(PrefserProvider.class)
+                .singletonInScope();
+    }
+
+    /**
+     * PREFSER
+     */
+
+    public static final class PrefserProvider implements Provider<Prefser> {
+
+        private final SharedPreferences sharedPreferences;
+
+        @Inject
+        public PrefserProvider(SharedPreferences sharedPreferences) {
+            this.sharedPreferences = sharedPreferences;
+        }
+
+        @Override
+        public Prefser get() {
+            return new Prefser(sharedPreferences);
+        }
     }
 
     /**

@@ -80,4 +80,7 @@ dependencies {
     implementation("com.github.bumptech.glide:okhttp3-integration:4.8.0") {
         exclude group: 'glide-parent'
     }
+
+    // PREFSER
+    compile 'com.github.pwittchen:prefser-rx2:2.2.2'
 }

@@ -1,25 +1,24 @@
 package com.katkov.lolachievements.domain.service;
 
-import android.content.SharedPreferences;
-
-import com.katkov.lolachievements.utils.PreferenceKeysUtils;
+import com.katkov.lolachievements.domain.model.EntryInfoModel;
+import com.katkov.lolachievements.prefser.EntryInfoHolder;
 
 import javax.inject.Inject;
 
 public class LoginService {
 
-    private final SharedPreferences sharedPreferences;
+    private final EntryInfoHolder entryInfoHolder;
 
     @Inject
-    public LoginService(SharedPreferences sharedPreferences) {
-        this.sharedPreferences = sharedPreferences;
+    public LoginService(EntryInfoHolder entryInfoHolder) {
+        this.entryInfoHolder = entryInfoHolder;
     }
 
-    public void saveSummonerNameToPref(String summonerName) {
-        sharedPreferences.edit().putString(PreferenceKeysUtils.SUMMONER_NAME_PREF, summonerName).apply();
+    public void saveEntryInfo(EntryInfoModel entryInfoModel) {
+        entryInfoHolder.putEntryInfo(entryInfoModel);
     }
 
-    public void removeSummonerNameFromPref() {
-        sharedPreferences.edit().remove(PreferenceKeysUtils.SUMMONER_NAME_PREF).apply();
+    public void removeEntryInfo() {
+        entryInfoHolder.removeEntryInfo();
     }
 }
