@@ -3,18 +3,18 @@ package com.katkov.lolachievements.domain.model;
 public class EntryInfoModel {
 
     private String summonerName;
-    private String serverName;
+    private String serverCode;
 
     public EntryInfoModel(String summonerName, String serverName) {
         this.summonerName = summonerName;
-        this.serverName = serverName;
+        this.serverCode = serverName;
     }
 
     public String getSummonerName() {
         return summonerName;
     }
 
-    public String getServerName() {
-        return serverName;
+    public String getServerCode() {
+        return serverCode;
     }
 }

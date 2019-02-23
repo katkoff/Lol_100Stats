@@ -13,6 +13,7 @@ import com.katkov.lolachievements.R;
 import com.katkov.lolachievements.di.Scopes;
 import com.katkov.lolachievements.domain.model.EntryInfoModel;
 import com.katkov.lolachievements.presentation.base.BaseFragmentAndroidX;
+import com.katkov.lolachievements.utils.ServerNamesHandler;
 import com.katkov.lolachievements.utils.TextInputUtils;
 
 import javax.inject.Inject;
@@ -29,6 +30,8 @@ public class CheckEntryInfoFragment extends BaseFragmentAndroidX implements Chec
 
     @BindView(R.id.textView_summonerName)
     TextView summonerNameTextView;
+    @BindView(R.id.textView_serverName)
+    TextView serverNameTextView;
     @BindView(R.id.button_logout)
     Button logoutButton;
     @BindView(R.id.button_summonerInfo)
@@ -73,6 +76,7 @@ public class CheckEntryInfoFragment extends BaseFragmentAndroidX implements Chec
     @Override
     public void fillInfo(EntryInfoModel entryInfoModel) {
         TextInputUtils.setText(summonerNameTextView, entryInfoModel.getSummonerName());
+        TextInputUtils.setText(serverNameTextView, ServerNamesHandler.getNameByCode(entryInfoModel.getServerCode()));
     }
 
     @OnClick(R.id.button_logout)

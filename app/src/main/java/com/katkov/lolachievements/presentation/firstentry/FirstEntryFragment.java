@@ -14,6 +14,7 @@ import com.katkov.lolachievements.R;
 import com.katkov.lolachievements.di.Scopes;
 import com.katkov.lolachievements.domain.model.EntryInfoModel;
 import com.katkov.lolachievements.presentation.base.BaseFragmentAndroidX;
+import com.katkov.lolachievements.utils.ServerNamesHandler;
 import com.katkov.lolachievements.utils.TextInputUtils;
 
 import javax.inject.Inject;
@@ -28,12 +29,16 @@ import toothpick.Toothpick;
 
 public class FirstEntryFragment extends BaseFragmentAndroidX implements FirstEntryView {
 
+    private static final int DEFAULT_SERVER_NAME_INDEX = 0;
+
     @BindView(R.id.inputLayout_summonerName)
     TextInputLayout summonerNameInputLayout;
     @BindView(R.id.inputLayout_serverName)
     TextInputLayout serverNameInputLayout;
     @BindView(R.id.button_login)
     Button loginButton;
+    
+    private int lastSelectedIndex;
 
     @Inject
     Provider<FirstEntryPresenter> presenterProvider;
@@ -80,22 +85,27 @@ public class FirstEntryFragment extends BaseFragmentAndroidX implements FirstEnt
 
     @Override
     public void showServerChoiceDialog() {
-        String[] itemsArray = getResources().getStringArray(R.array.server_names);
+        String[] serverNames = ServerNamesHandler.getServerNames();
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getContext());
         dialogBuilder.setTitle("Choose server name")
-                .setSingleChoiceItems(itemsArray, 0, (dialogInterface, i) ->
-                        TextInputUtils.setText(serverNameInputLayout, itemsArray[i]))
-                .setPositiveButton("Ok", (dialogInterface, i) ->
-                        dialogInterface.dismiss())
+                .setSingleChoiceItems(serverNames, DEFAULT_SERVER_NAME_INDEX, (dialogInterface, i) -> {
+                    this.lastSelectedIndex = i;
+                })
+                .setPositiveButton("Ok", (dialogInterface, selectedIndex) -> {
+                    TextInputUtils.setText(serverNameInputLayout, serverNames[lastSelectedIndex]);
+                    dialogInterface.dismiss();
+                })
                 .create()
                 .show();
     }
 
     @OnClick(R.id.button_login)
     void loginButtonClick() {
+        String serverCode = ServerNamesHandler.getCodeByIndex(lastSelectedIndex);
+
         EntryInfoModel entryInfoModel = new EntryInfoModel(
                 TextInputUtils.getText(summonerNameInputLayout),
-                TextInputUtils.getText(serverNameInputLayout));
+                serverCode);
         presenter.onLoginButtonClicked(entryInfoModel);
     }
 }

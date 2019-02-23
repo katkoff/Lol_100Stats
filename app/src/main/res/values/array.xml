@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="server_names">
+    <string-array name="server_name_codes">
         <item>EUN1</item>
         <item>EUW1</item>
         <item>JP1</item>
@@ -13,5 +13,20 @@
         <item>TR1</item>
         <item>RU</item>
         <item>PBE1</item>
+    </string-array>
+
+    <string-array name="server_names_translated">
+        <item>Еун1</item>
+        <item>Европа1</item>
+        <item>Япония</item>
+        <item>Корея</item>
+        <item>Лат америка1</item>
+        <item>Лат америка 2</item>
+        <item>Северная амер</item>
+        <item>Северная амер 1</item>
+        <item>Океания</item>
+        <item>Тр1</item>
+        <item>Россия</item>
+        <item>ПБЕ1</item>
     </string-array>
 </resources>
