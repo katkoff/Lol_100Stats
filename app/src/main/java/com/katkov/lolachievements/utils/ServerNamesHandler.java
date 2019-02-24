@@ -20,18 +20,18 @@ public class ServerNamesHandler {
     };
 
     private static String[] SERVER_NAMES = {
-            "Еун1",
-            "Европа1",
-            "Япония",
-            "Корея",
-            "Лат америка1",
-            "Лат америка 2",
+            "EU Nordic and East",
+            "EU West",
+            "Japan",
+            "Korea",
+            "Latin America North",
+            "Latin America South",
             "Северная амер",
             "Северная амер 1",
-            "Океания",
-            "Тр1",
-            "Россия",
-            "ПБЕ1",
+            "Oceania",
+            "Turkey",
+            "Russia",
+            "Public Beta",
     };
 
     public static String getCodeByName(String code) {

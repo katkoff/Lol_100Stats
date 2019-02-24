@@ -8,8 +8,11 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.katkov.lolachievements.data.cloud.api.ApiService;
 import com.katkov.lolachievements.data.cloud.utils.ApiUrlUtils;
+import com.katkov.lolachievements.data.intercepter.ServerNameInterceptor;
+import com.katkov.lolachievements.prefser.EntryInfoHolder;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.inject.Provider;
 
 import io.reactivex.schedulers.Schedulers;
@@ -43,8 +46,8 @@ public class CommonModule extends Module {
                 .toInstance(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()));
 
         bind(Interceptor.class)
-                .toProvider(LoggingInterceptorProvider.class)
-                .providesSingletonInScope();
+                .withName("logInterceptor")
+                .toProvider(LoggingInterceptorProvider.class);
 
         bind(ApiService.class)
                 .toProvider(LolApiServiceProvider.class)
@@ -53,6 +56,10 @@ public class CommonModule extends Module {
         bind(Prefser.class)
                 .toProvider(PrefserProvider.class)
                 .singletonInScope();
+
+        bind(Interceptor.class)
+                .withName("serverNameInterceptor")
+                .toProvider(ServerNameInterceptorProvider.class);
     }
 
     /**
@@ -80,18 +87,22 @@ public class CommonModule extends Module {
 
     public static final class OkHttpClientProvider implements Provider<OkHttpClient> {
 
-        private final Interceptor interceptor;
+        private final Interceptor loggingInterceptor;
+        private final Interceptor serverNameInterceptor;
 
         @Inject
-        public OkHttpClientProvider(Interceptor interceptor) {
-            this.interceptor = interceptor;
+        public OkHttpClientProvider(
+                @Named("logInterceptor") Interceptor loggingInterceptor,
+                @Named("serverNameInterceptor") Interceptor serverNameInterceptor) {
+            this.loggingInterceptor = loggingInterceptor;
+            this.serverNameInterceptor = serverNameInterceptor;
         }
-
 
         @Override
         public OkHttpClient get() {
             return new OkHttpClient.Builder()
-                    .addInterceptor(interceptor)
+                    .addInterceptor(loggingInterceptor)
+                    .addInterceptor(serverNameInterceptor)
                     .build();
         }
     }
@@ -125,7 +136,7 @@ public class CommonModule extends Module {
     }
 
     /**
-     * LOGGING INTERCEPTER
+     * LOGGING INTERCEPTOR
      */
 
     public static final class LoggingInterceptorProvider implements Provider<Interceptor> {
@@ -139,6 +150,24 @@ public class CommonModule extends Module {
             HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
             loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
             return loggingInterceptor;
+        }
+    }
+
+    /**
+     * SERVER NAME INTERCEPTOR
+     */
+    public static final class ServerNameInterceptorProvider implements Provider<Interceptor> {
+
+        private final EntryInfoHolder entryInfoHolder;
+
+        @Inject
+        ServerNameInterceptorProvider(EntryInfoHolder entryInfoHolder) {
+            this.entryInfoHolder = entryInfoHolder;
+        }
+
+        @Override
+        public Interceptor get() {
+            return new ServerNameInterceptor(entryInfoHolder);
         }
     }
 }

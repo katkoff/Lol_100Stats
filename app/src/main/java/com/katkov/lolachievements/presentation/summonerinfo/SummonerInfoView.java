@@ -1,17 +1,19 @@
 package com.katkov.lolachievements.presentation.summonerinfo;
 
 import com.arellomobile.mvp.MvpView;
-import com.arellomobile.mvp.viewstate.strategy.OneExecutionStateStrategy;
+import com.arellomobile.mvp.viewstate.strategy.AddToEndStrategy;
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;
 import com.katkov.lolachievements.domain.model.SummonerDTO;
 import com.katkov.lolachievements.presentation.base.ErrorView;
 
-@StateStrategyType(OneExecutionStateStrategy.class)
 public interface SummonerInfoView extends MvpView, ErrorView {
 
+    @StateStrategyType(AddToEndStrategy.class)
     void fillSummonerInfo(SummonerDTO summonerDTO);
 
+    @StateStrategyType(AddToEndStrategy.class)
     void showProgressBar();
 
+    @StateStrategyType(AddToEndStrategy.class)
     void hideProgressBar();
 }

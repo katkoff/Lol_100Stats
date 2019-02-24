@@ -1,7 +1,7 @@
 package com.katkov.lolachievements.data.cloud.repository;
 
 import com.katkov.lolachievements.data.cloud.api.ApiService;
-import com.katkov.lolachievements.data.mapper.SummonerDTOMapper;
+import com.katkov.lolachievements.data.mapper.SummonerDTOApiToDomainMapper;
 import com.katkov.lolachievements.domain.model.SummonerDTO;
 
 import javax.inject.Inject;
@@ -12,11 +12,11 @@ import io.reactivex.schedulers.Schedulers;
 public class SummonerInfoRepository {
 
     private final ApiService apiService;
-    private final SummonerDTOMapper mapper;
-    private final String apiKey = "RGAPI-22d31efb-1fce-475b-af5e-a5c26a517a9b";
+    private final SummonerDTOApiToDomainMapper mapper;
+    private final String apiKey = "RGAPI-70b77dc5-fc20-4051-b3cb-4ead302e5f9f";
 
     @Inject
-    public SummonerInfoRepository(ApiService apiService, SummonerDTOMapper mapper) {
+    public SummonerInfoRepository(ApiService apiService, SummonerDTOApiToDomainMapper mapper) {
         this.apiService = apiService;
         this.mapper = mapper;
     }

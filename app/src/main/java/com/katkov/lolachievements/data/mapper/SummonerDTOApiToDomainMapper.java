@@ -5,10 +5,10 @@ import com.katkov.lolachievements.domain.model.SummonerDTO;
 
 import javax.inject.Inject;
 
-public class SummonerDTOMapper {
+public class SummonerDTOApiToDomainMapper {
 
     @Inject
-    public SummonerDTOMapper() {
+    public SummonerDTOApiToDomainMapper() {
     }
 
     public SummonerDTO map(SummonerDTOApiModel apiModel) {
