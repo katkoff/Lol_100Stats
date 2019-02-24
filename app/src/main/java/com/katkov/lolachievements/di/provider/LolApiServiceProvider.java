@@ -1,7 +1,7 @@
 package com.katkov.lolachievements.di.provider;
 
 import com.katkov.lolachievements.data.cloud.api.ApiService;
-import com.katkov.lolachievements.data.cloud.utils.ApiUrlUtils;
+import com.katkov.lolachievements.data.cloud.utils.ApiUtils;
 
 import javax.inject.Inject;
 import javax.inject.Provider;
@@ -18,7 +18,10 @@ public final class LolApiServiceProvider implements Provider<ApiService> {
     private final GsonConverterFactory gsonConverterFactory;
 
     @Inject
-    public LolApiServiceProvider(OkHttpClient okHttpClient, RxJava2CallAdapterFactory rxJava2CallAdapterFactory, GsonConverterFactory gsonConverterFactory) {
+    public LolApiServiceProvider(
+            OkHttpClient okHttpClient,
+            RxJava2CallAdapterFactory rxJava2CallAdapterFactory,
+            GsonConverterFactory gsonConverterFactory) {
         this.okHttpClient = okHttpClient;
         this.rxJava2CallAdapterFactory = rxJava2CallAdapterFactory;
         this.gsonConverterFactory = gsonConverterFactory;
@@ -27,7 +30,7 @@ public final class LolApiServiceProvider implements Provider<ApiService> {
     @Override
     public ApiService get() {
         final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(ApiUrlUtils.BASE_URL)
+                .baseUrl(ApiUtils.BASE_URL)
                 .client(okHttpClient)
                 .addConverterFactory(gsonConverterFactory)
                 .addCallAdapterFactory(rxJava2CallAdapterFactory)

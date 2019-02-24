@@ -14,6 +14,7 @@ import com.katkov.lolachievements.di.Scopes;
 import com.katkov.lolachievements.domain.model.SummonerDTO;
 import com.katkov.lolachievements.application.base.BaseFragmentAndroidX;
 import com.katkov.lolachievements.utils.CommonStringUtils;
+import com.katkov.lolachievements.utils.TextInputUtils;
 
 import javax.inject.Inject;
 import javax.inject.Provider;
@@ -30,6 +31,8 @@ public class SummonerInfoFragment extends BaseFragmentAndroidX implements Summon
     TextView summonerNameTextView;
     @BindView(R.id.textView_summonerLevel)
     TextView summonerLevelTextView;
+    @BindView(R.id.textView_chestCount)
+    TextView chestCountTextView;
     @BindView(R.id.progressbar)
     ProgressBar progressBar;
 
@@ -80,6 +83,11 @@ public class SummonerInfoFragment extends BaseFragmentAndroidX implements Summon
         }
 
         summonerLevelTextView.setText(String.valueOf(summonerDTO.getSummonerLevel()));
+    }
+
+    @Override
+    public void fillChestCount(int chestCount) {
+        TextInputUtils.setText(chestCountTextView, String.valueOf(chestCount));
     }
 
     @Override

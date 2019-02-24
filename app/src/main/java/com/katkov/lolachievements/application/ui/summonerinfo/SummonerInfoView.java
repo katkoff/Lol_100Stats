@@ -16,4 +16,7 @@ public interface SummonerInfoView extends MvpView, ErrorView {
 
     @StateStrategyType(AddToEndStrategy.class)
     void hideProgressBar();
+
+    @StateStrategyType(AddToEndStrategy.class)
+    void fillChestCount(int chestCount);
 }

@@ -9,11 +9,12 @@ import javax.inject.Inject;
 import io.reactivex.Single;
 import io.reactivex.schedulers.Schedulers;
 
+import static com.katkov.lolachievements.data.cloud.utils.ApiUtils.API_KEY;
+
 public class SummonerInfoRepository {
 
     private final ApiService apiService;
     private final SummonerDTOApiToDomainMapper mapper;
-    private final String apiKey = "RGAPI-70b77dc5-fc20-4051-b3cb-4ead302e5f9f";
 
     @Inject
     public SummonerInfoRepository(ApiService apiService, SummonerDTOApiToDomainMapper mapper) {
@@ -22,8 +23,8 @@ public class SummonerInfoRepository {
     }
 
     public Single<SummonerDTO> getSummonerDTO(String summonerName) {
-        return apiService.getSummonerDTO(summonerName, apiKey)
-                .map(apiModel -> mapper.map(apiModel))
+        return apiService.getSummonerDTO(summonerName, API_KEY)
+                .map(mapper::map)
                 .subscribeOn(Schedulers.io());
     }
 }

@@ -5,13 +5,17 @@ import com.katkov.lolachievements.domain.model.SummonerDTO;
 
 import javax.inject.Inject;
 
-public class SummonerDTOApiToDomainMapper {
+public class SummonerDTOApiToDomainMapper extends Mapper<SummonerDTOApiModel, SummonerDTO> {
 
     @Inject
     public SummonerDTOApiToDomainMapper() {
     }
 
-    public SummonerDTO map(SummonerDTOApiModel apiModel) {
-        return new SummonerDTO(apiModel.getName(), apiModel.getSummonerLevel());
+    @Override
+    public SummonerDTO map(SummonerDTOApiModel source) {
+        return new SummonerDTO(
+                source.getName(),
+                source.getSummonerLevel(),
+                source.getId());
     }
 }
