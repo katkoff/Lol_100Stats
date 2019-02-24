@@ -1,4 +1,4 @@
-package com.katkov.lolachievements.presentation.summonerinfo;
+package com.katkov.lolachievements.application.ui.summonerinfo;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,7 +12,7 @@ import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.katkov.lolachievements.R;
 import com.katkov.lolachievements.di.Scopes;
 import com.katkov.lolachievements.domain.model.SummonerDTO;
-import com.katkov.lolachievements.presentation.base.BaseFragmentAndroidX;
+import com.katkov.lolachievements.application.base.BaseFragmentAndroidX;
 import com.katkov.lolachievements.utils.CommonStringUtils;
 
 import javax.inject.Inject;

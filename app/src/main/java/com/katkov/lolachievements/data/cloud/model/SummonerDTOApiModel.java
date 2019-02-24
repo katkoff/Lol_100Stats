@@ -1,4 +1,4 @@
-package com.katkov.lolachievements.data.cloud.api.model;
+package com.katkov.lolachievements.data.cloud.model;
 
 import com.google.gson.annotations.SerializedName;
 

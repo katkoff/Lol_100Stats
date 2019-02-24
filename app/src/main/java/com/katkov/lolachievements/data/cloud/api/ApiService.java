@@ -1,6 +1,6 @@
 package com.katkov.lolachievements.data.cloud.api;
 
-import com.katkov.lolachievements.data.cloud.api.model.SummonerDTOApiModel;
+import com.katkov.lolachievements.data.cloud.model.SummonerDTOApiModel;
 import com.katkov.lolachievements.data.cloud.utils.ApiUrlUtils;
 
 import io.reactivex.Single;

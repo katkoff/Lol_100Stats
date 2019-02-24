@@ -1,12 +1,11 @@
-package com.katkov.lolachievements.presentation.checkentryinfo;
+package com.katkov.lolachievements.application.ui.firstentry;
 
 import com.arellomobile.mvp.MvpView;
 import com.arellomobile.mvp.viewstate.strategy.OneExecutionStateStrategy;
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;
-import com.katkov.lolachievements.domain.model.EntryInfoModel;
 
-public interface CheckEntryInfoView extends MvpView {
+public interface FirstEntryView extends MvpView {
 
     @StateStrategyType(OneExecutionStateStrategy.class)
-    void fillInfo(EntryInfoModel entryInfoModel);
+    void showServerChoiceDialog();
 }

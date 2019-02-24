@@ -1,8 +1,8 @@
-package com.katkov.lolachievements.presentation.checkentryinfo;
+package com.katkov.lolachievements.application.ui.checkentryinfo;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
-import com.katkov.lolachievements.Screens;
+import com.katkov.lolachievements.application.navigation.Screens;
 import com.katkov.lolachievements.domain.usecase.LoginUseCase;
 import com.katkov.lolachievements.prefser.EntryInfoHolder;
 

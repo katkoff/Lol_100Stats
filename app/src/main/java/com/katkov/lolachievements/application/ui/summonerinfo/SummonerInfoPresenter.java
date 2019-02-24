@@ -1,4 +1,4 @@
-package com.katkov.lolachievements.presentation.summonerinfo;
+package com.katkov.lolachievements.application.ui.summonerinfo;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;

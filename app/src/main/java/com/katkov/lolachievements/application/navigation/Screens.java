@@ -1,14 +1,13 @@
-package com.katkov.lolachievements;
+package com.katkov.lolachievements.application.navigation;
 
-import com.katkov.lolachievements.presentation.checkentryinfo.CheckEntryInfoFragment;
-import com.katkov.lolachievements.presentation.firstentry.FirstEntryFragment;
-import com.katkov.lolachievements.presentation.summonerinfo.SummonerInfoFragment;
+import com.katkov.lolachievements.application.ui.checkentryinfo.CheckEntryInfoFragment;
+import com.katkov.lolachievements.application.ui.firstentry.FirstEntryFragment;
+import com.katkov.lolachievements.application.ui.summonerinfo.SummonerInfoFragment;
 
 import androidx.fragment.app.Fragment;
 import ru.terrakok.cicerone.android.support.SupportAppScreen;
 
 public class Screens {
-
 
     public static class FirstEntryScreen extends SupportAppScreen {
         @Override

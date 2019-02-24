@@ -1,4 +1,4 @@
-package com.katkov.lolachievements.presentation.firstentry;
+package com.katkov.lolachievements.application.ui.firstentry;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
@@ -13,7 +13,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.katkov.lolachievements.R;
 import com.katkov.lolachievements.di.Scopes;
 import com.katkov.lolachievements.domain.model.EntryInfoModel;
-import com.katkov.lolachievements.presentation.base.BaseFragmentAndroidX;
+import com.katkov.lolachievements.application.base.BaseFragmentAndroidX;
 import com.katkov.lolachievements.utils.ServerNamesHandler;
 import com.katkov.lolachievements.utils.TextInputUtils;
 

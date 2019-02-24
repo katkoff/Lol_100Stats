@@ -1,4 +1,4 @@
-package com.katkov.lolachievements.data.local.entity;
+package com.katkov.lolachievements.data.local.model;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;

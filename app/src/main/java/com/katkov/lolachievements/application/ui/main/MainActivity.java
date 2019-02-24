@@ -1,4 +1,4 @@
-package com.katkov.lolachievements.presentation.main;
+package com.katkov.lolachievements.application.ui.main;
 
 import android.os.Bundle;
 
@@ -6,7 +6,7 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.katkov.lolachievements.R;
 import com.katkov.lolachievements.di.Scopes;
-import com.katkov.lolachievements.presentation.base.BaseActivityAndroidX;
+import com.katkov.lolachievements.application.base.BaseActivityAndroidX;
 
 import javax.inject.Inject;
 import javax.inject.Provider;

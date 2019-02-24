@@ -1,4 +1,4 @@
-package com.katkov.lolachievements.presentation.base;
+package com.katkov.lolachievements.application.base;
 
 import android.os.Bundle;
 

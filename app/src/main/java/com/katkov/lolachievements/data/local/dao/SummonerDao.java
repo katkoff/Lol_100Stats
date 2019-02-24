@@ -6,7 +6,7 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.katkov.lolachievements.data.local.entity.Summoner;
+import com.katkov.lolachievements.data.local.model.Summoner;
 
 import io.reactivex.Single;
 

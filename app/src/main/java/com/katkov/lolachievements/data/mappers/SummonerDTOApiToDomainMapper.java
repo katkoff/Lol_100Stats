@@ -1,6 +1,6 @@
-package com.katkov.lolachievements.data.mapper;
+package com.katkov.lolachievements.data.mappers;
 
-import com.katkov.lolachievements.data.cloud.api.model.SummonerDTOApiModel;
+import com.katkov.lolachievements.data.cloud.model.SummonerDTOApiModel;
 import com.katkov.lolachievements.domain.model.SummonerDTO;
 
 import javax.inject.Inject;

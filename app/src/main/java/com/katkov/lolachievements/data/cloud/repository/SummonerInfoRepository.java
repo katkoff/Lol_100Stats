@@ -1,7 +1,7 @@
 package com.katkov.lolachievements.data.cloud.repository;
 
 import com.katkov.lolachievements.data.cloud.api.ApiService;
-import com.katkov.lolachievements.data.mapper.SummonerDTOApiToDomainMapper;
+import com.katkov.lolachievements.data.mappers.SummonerDTOApiToDomainMapper;
 import com.katkov.lolachievements.domain.model.SummonerDTO;
 
 import javax.inject.Inject;

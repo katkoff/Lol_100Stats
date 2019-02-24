@@ -1,8 +1,8 @@
-package com.katkov.lolachievements.presentation.firstentry;
+package com.katkov.lolachievements.application.ui.firstentry;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
-import com.katkov.lolachievements.Screens;
+import com.katkov.lolachievements.application.navigation.Screens;
 import com.katkov.lolachievements.domain.model.EntryInfoModel;
 import com.katkov.lolachievements.domain.usecase.LoginUseCase;
 

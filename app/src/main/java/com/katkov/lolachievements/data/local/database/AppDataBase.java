@@ -1,7 +1,7 @@
 package com.katkov.lolachievements.data.local.database;
 
 import com.katkov.lolachievements.data.local.dao.SummonerDao;
-import com.katkov.lolachievements.data.local.entity.Summoner;
+import com.katkov.lolachievements.data.local.model.Summoner;
 
 import androidx.room.Database;
 import androidx.room.RoomDatabase;
