@@ -1,4 +1,4 @@
-package com.katkov.lolachievements.di.cicerone;
+package com.katkov.lolachievements.di.module;
 
 import ru.terrakok.cicerone.Cicerone;
 import ru.terrakok.cicerone.NavigatorHolder;
