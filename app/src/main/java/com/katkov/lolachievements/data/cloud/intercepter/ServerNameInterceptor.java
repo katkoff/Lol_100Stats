@@ -1,6 +1,6 @@
-package com.katkov.lolachievements.data.intercepter;
+package com.katkov.lolachievements.data.cloud.intercepter;
 
-import com.katkov.lolachievements.prefser.EntryInfoHolder;
+import com.katkov.lolachievements.data.local.prefser.EntryInfoHolder;
 
 import java.io.IOException;
 

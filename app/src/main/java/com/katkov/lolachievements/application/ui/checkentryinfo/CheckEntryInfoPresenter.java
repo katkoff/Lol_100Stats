@@ -4,7 +4,7 @@ import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 import com.katkov.lolachievements.application.navigation.Screens;
 import com.katkov.lolachievements.domain.usecase.LoginUseCase;
-import com.katkov.lolachievements.prefser.EntryInfoHolder;
+import com.katkov.lolachievements.data.local.prefser.EntryInfoHolder;
 
 import javax.inject.Inject;
 

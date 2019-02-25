@@ -1,7 +1,7 @@
-package com.katkov.lolachievements.domain.service;
+package com.katkov.lolachievements.data.local.service;
 
 import com.katkov.lolachievements.domain.model.EntryInfoModel;
-import com.katkov.lolachievements.prefser.EntryInfoHolder;
+import com.katkov.lolachievements.data.local.prefser.EntryInfoHolder;
 
 import javax.inject.Inject;
 

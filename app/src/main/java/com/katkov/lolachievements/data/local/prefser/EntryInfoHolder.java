@@ -1,4 +1,4 @@
-package com.katkov.lolachievements.prefser;
+package com.katkov.lolachievements.data.local.prefser;
 
 import com.github.pwittchen.prefser.library.rx2.Prefser;
 import com.katkov.lolachievements.domain.model.EntryInfoModel;

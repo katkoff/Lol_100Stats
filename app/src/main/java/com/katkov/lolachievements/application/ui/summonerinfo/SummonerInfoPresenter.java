@@ -2,9 +2,9 @@ package com.katkov.lolachievements.application.ui.summonerinfo;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
+import com.katkov.lolachievements.data.local.prefser.EntryInfoHolder;
 import com.katkov.lolachievements.domain.interactor.SummonerInfoInteractor;
 import com.katkov.lolachievements.domain.model.ChampionMasteryDTO;
-import com.katkov.lolachievements.prefser.EntryInfoHolder;
 
 import java.util.List;
 
@@ -35,18 +35,17 @@ public class SummonerInfoPresenter extends MvpPresenter<SummonerInfoView> {
     }
 
     private void getSummonerInfo() {
-        getViewState().showProgressBar();
+        getViewState().setProgressEnable(true);
         String summonerName = entryInfoHolder.getEntryInfoModel().getSummonerName();
         Disposable disposable = summonerInfoInteractor.getSummonerDTO(summonerName)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(summonerDTO -> {
-                            getViewState().hideProgressBar();
                             getViewState().fillSummonerInfo(summonerDTO);
 
                             getChampionsMastery(summonerDTO.getId());
                         },
                         throwable -> {
-                            getViewState().hideProgressBar();
+                            getViewState().setProgressEnable(false);
                             getViewState().showError(new Error(throwable));
                             throwable.printStackTrace();
                         });
@@ -54,15 +53,14 @@ public class SummonerInfoPresenter extends MvpPresenter<SummonerInfoView> {
     }
 
     private void getChampionsMastery(String encryptedSummonerId) {
-        getViewState().showProgressBar();
         Disposable disposable = summonerInfoInteractor.getChampionsMastery(encryptedSummonerId)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(championsMasteryList -> {
-                            getViewState().hideProgressBar();
+                            getViewState().setProgressEnable(false);
                             getViewState().fillChestCount(getChestCount(championsMasteryList));
                         },
                         throwable -> {
-                            getViewState().hideProgressBar();
+                            getViewState().setProgressEnable(false);
                             getViewState().showError(new Error(throwable));
                             throwable.printStackTrace();
                         });

@@ -1,7 +1,7 @@
 package com.katkov.lolachievements.domain.usecase;
 
 import com.katkov.lolachievements.domain.model.EntryInfoModel;
-import com.katkov.lolachievements.domain.service.LoginService;
+import com.katkov.lolachievements.data.local.service.LoginService;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;

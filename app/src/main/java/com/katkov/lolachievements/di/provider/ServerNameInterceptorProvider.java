@@ -1,7 +1,7 @@
 package com.katkov.lolachievements.di.provider;
 
-import com.katkov.lolachievements.data.intercepter.ServerNameInterceptor;
-import com.katkov.lolachievements.prefser.EntryInfoHolder;
+import com.katkov.lolachievements.data.cloud.intercepter.ServerNameInterceptor;
+import com.katkov.lolachievements.data.local.prefser.EntryInfoHolder;
 
 import javax.inject.Inject;
 import javax.inject.Provider;

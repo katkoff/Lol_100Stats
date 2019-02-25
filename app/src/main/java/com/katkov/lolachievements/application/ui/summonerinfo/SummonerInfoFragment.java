@@ -10,9 +10,9 @@ import android.widget.TextView;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.katkov.lolachievements.R;
+import com.katkov.lolachievements.application.base.BaseFragmentAndroidX;
 import com.katkov.lolachievements.di.Scopes;
 import com.katkov.lolachievements.domain.model.SummonerDTO;
-import com.katkov.lolachievements.application.base.BaseFragmentAndroidX;
 import com.katkov.lolachievements.utils.CommonStringUtils;
 import com.katkov.lolachievements.utils.TextInputUtils;
 
@@ -89,14 +89,23 @@ public class SummonerInfoFragment extends BaseFragmentAndroidX implements Summon
     public void fillChestCount(int chestCount) {
         TextInputUtils.setText(chestCountTextView, String.valueOf(chestCount));
     }
+//
+//    @Override
+//    public void showProgressBar() {
+//        progressBar.setVisibility(View.VISIBLE);
+//    }
+//
+//    @Override
+//    public void hideProgressBar() {
+//        progressBar.setVisibility(View.GONE);
+//    }
 
     @Override
-    public void showProgressBar() {
-        progressBar.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void hideProgressBar() {
-        progressBar.setVisibility(View.GONE);
+    public void setProgressEnable(boolean isEnable) {
+        if (isEnable) {
+            progressBar.setVisibility(View.VISIBLE);
+        } else {
+            progressBar.setVisibility(View.GONE);
+        }
     }
 }

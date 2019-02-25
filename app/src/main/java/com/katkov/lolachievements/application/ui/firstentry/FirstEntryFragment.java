@@ -11,9 +11,8 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.google.android.material.textfield.TextInputLayout;
 import com.katkov.lolachievements.R;
-import com.katkov.lolachievements.di.Scopes;
-import com.katkov.lolachievements.domain.model.EntryInfoModel;
 import com.katkov.lolachievements.application.base.BaseFragmentAndroidX;
+import com.katkov.lolachievements.di.Scopes;
 import com.katkov.lolachievements.utils.ServerNamesHandler;
 import com.katkov.lolachievements.utils.TextInputUtils;
 
@@ -29,16 +28,12 @@ import toothpick.Toothpick;
 
 public class FirstEntryFragment extends BaseFragmentAndroidX implements FirstEntryView {
 
-    private static final int DEFAULT_SERVER_NAME_INDEX = 0;
-
     @BindView(R.id.inputLayout_summonerName)
     TextInputLayout summonerNameInputLayout;
     @BindView(R.id.inputLayout_serverName)
     TextInputLayout serverNameInputLayout;
     @BindView(R.id.button_login)
     Button loginButton;
-    
-    private int lastSelectedIndex;
 
     @Inject
     Provider<FirstEntryPresenter> presenterProvider;
@@ -87,25 +82,21 @@ public class FirstEntryFragment extends BaseFragmentAndroidX implements FirstEnt
     public void showServerChoiceDialog() {
         String[] serverNames = ServerNamesHandler.getServerNames();
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getContext());
-        dialogBuilder.setTitle("Choose server name")
-                .setSingleChoiceItems(serverNames, DEFAULT_SERVER_NAME_INDEX, (dialogInterface, i) -> {
-                    this.lastSelectedIndex = i;
-                })
-                .setPositiveButton("Ok", (dialogInterface, selectedIndex) -> {
-                    TextInputUtils.setText(serverNameInputLayout, serverNames[lastSelectedIndex]);
-                    dialogInterface.dismiss();
-                })
+        dialogBuilder.setTitle(getString(R.string.first_entry_choose_server_dialog_title))
+                .setItems(serverNames, ((dialogInterface, selectedIndex) ->
+                        presenter.onServerNameSelected(selectedIndex)))
                 .create()
                 .show();
     }
 
+    @Override
+    public void showSelectedName(String selectedName) {
+        TextInputUtils.setText(serverNameInputLayout, selectedName);
+    }
+
     @OnClick(R.id.button_login)
     void loginButtonClick() {
-        String serverCode = ServerNamesHandler.getCodeByIndex(lastSelectedIndex);
-
-        EntryInfoModel entryInfoModel = new EntryInfoModel(
-                TextInputUtils.getText(summonerNameInputLayout),
-                serverCode);
-        presenter.onLoginButtonClicked(entryInfoModel);
+        String summonerName = TextInputUtils.getText(summonerNameInputLayout);
+        presenter.onLoginButtonClicked(summonerName);
     }
 }
