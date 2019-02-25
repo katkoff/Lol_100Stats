@@ -34,13 +34,13 @@ public class ServerNamesHandler {
             "Public Beta",
     };
 
-    public static String getCodeByName(String code) {
-        int codeIndex = Arrays.asList(SERVER_NAMES).indexOf(code);
+    public static String getCodeByName(String name) {
+        int codeIndex = Arrays.asList(SERVER_NAMES).indexOf(name);
         return SERVER_CODES[codeIndex];
     }
 
-    public static String getNameByCode(String name) {
-        int nameIndex = Arrays.asList(SERVER_CODES).indexOf(name);
+    public static String getNameByCode(String code) {
+        int nameIndex = Arrays.asList(SERVER_CODES).indexOf(code);
         return SERVER_NAMES[nameIndex];
     }
 
