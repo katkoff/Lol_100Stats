@@ -53,7 +53,7 @@ class FirstEntryFragment : BaseFragmentAndroidX(), FirstEntryView {
     }
 
     override fun showServerChoiceDialog() {
-        val serverNames = ServerNamesHandler.getServerNames()
+        val serverNames = ServerNamesHandler.serverNames
         val dialogBuilder = AlertDialog.Builder(context)
         dialogBuilder.setTitle(getString(R.string.first_entry_choose_server_dialog_title))
                 .setItems(serverNames) { _, selectedIndex -> presenter.onServerNameSelected(selectedIndex) }
