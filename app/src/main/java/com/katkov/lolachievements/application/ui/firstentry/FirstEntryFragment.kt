@@ -67,7 +67,7 @@ class FirstEntryFragment : BaseFragmentAndroidX(), FirstEntryView {
 
     @OnClick(R.id.button_login)
     internal fun loginButtonClick() {
-        val summonerName = TextInputUtils.getText(inputLayout_serverName)
+        val summonerName = TextInputUtils.getText(inputLayout_summonerName)
         presenter.onLoginButtonClicked(summonerName)
     }
 

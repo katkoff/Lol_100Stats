@@ -33,7 +33,7 @@ internal constructor(
 
     fun onServerNameSelected(selectedIndex: Int) {
         this.selectedNameIndex = selectedIndex
-        val selectedName = ServerNamesHandler.getNameByIndex(selectedIndex)
-        viewState.showSelectedName(selectedName)
+        val selectedServerName = ServerNamesHandler.getNameByIndex(selectedIndex)
+        viewState.showSelectedName(selectedServerName)
     }
 }
