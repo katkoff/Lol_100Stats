@@ -22,7 +22,7 @@ internal constructor(
     }
 
     private fun checkAlreadyLogged() {
-        val entryInfoModel = entryInfoHolder.entryInfoModel
+        val entryInfoModel = entryInfoHolder.getEntryInfo()
         router.newRootScreen(getFirstScreen(entryInfoModel))
     }
 
@@ -30,7 +30,7 @@ internal constructor(
         return if (entryInfoModel == null) {
             Screens.FirstEntryScreen()
         } else {
-            Screens.CheckFirstEntryInfoScreen()
+            Screens.CommonActivityScreen()
         }
     }
 }

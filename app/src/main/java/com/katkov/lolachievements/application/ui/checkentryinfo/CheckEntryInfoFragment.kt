@@ -47,8 +47,8 @@ class CheckEntryInfoFragment : BaseFragmentAndroidX(), CheckEntryInfoView {
         ButterKnife.bind(this, view)
     }
 
-    override fun fillInfo(entryInfoModel: EntryInfoModel) {
-        TextInputUtils.setText(textView_summonerName, entryInfoModel.summonerName)
+    override fun fillInfo(entryInfoModel: EntryInfoModel?) {
+        TextInputUtils.setText(textView_summonerName, entryInfoModel!!.summonerName)
         TextInputUtils.setText(textView_serverName, ServerNamesHandler.getNameByCode(entryInfoModel.serverCode))
     }
 

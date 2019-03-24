@@ -24,7 +24,7 @@ internal constructor(
                 ServerNamesHandler.getCodeByIndex(selectedNameIndex))
 
         loginUseCase.saveEntryInfo(entryInfoModel)
-        router.navigateTo(Screens.CheckFirstEntryInfoScreen())
+        router.navigateTo(Screens.CommonActivityScreen())
     }
 
     fun onServerNameClicked() {

@@ -23,12 +23,12 @@ class MainActivity : BaseActivityAndroidX(), MainView {
     @InjectPresenter
     lateinit var presenter: MainPresenter
 
-    private val navigator = SupportAppNavigator(this, R.id.fragmentContainer)
-
     @ProvidePresenter
     fun presenterProvide(): MainPresenter {
         return presenterProvider.get()
     }
+
+    private val navigator = SupportAppNavigator(this, R.id.fragmentContainer)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Toothpick.inject(this, Toothpick.openScope(Scopes.APP_SCOPE))

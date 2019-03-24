@@ -9,8 +9,9 @@ class EntryInfoHolder
 @Inject
 constructor(private val prefser: Prefser) {
 
-    val entryInfoModel: EntryInfoModel
-        get() = prefser.get(ENTRY_INFO_KEY, EntryInfoModel::class.java, null)
+    fun getEntryInfo(): EntryInfoModel? {
+        return prefser.get(ENTRY_INFO_KEY, EntryInfoModel::class.java, null)
+    }
 
     fun putEntryInfo(entryInfoModel: EntryInfoModel) {
         prefser.put(ENTRY_INFO_KEY, entryInfoModel)

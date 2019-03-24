@@ -16,7 +16,7 @@ constructor(private val entryInfoHolder: EntryInfoHolder) : Interceptor {
 
         val originalUrl = request.url()
 
-        val serverCode = entryInfoHolder.entryInfoModel.serverCode
+        val serverCode = entryInfoHolder.getEntryInfo()!!.serverCode
         val newHost = serverCode + "." + originalUrl.host()
         val newUrl = request.url().newBuilder()
                 .host(newHost)

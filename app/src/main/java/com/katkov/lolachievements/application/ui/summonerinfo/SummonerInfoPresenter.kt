@@ -23,7 +23,7 @@ constructor(
 
     private fun getSummonerInfo() {
         viewState.setProgressEnable(true)
-        val summonerName = entryInfoHolder.entryInfoModel.summonerName
+        val summonerName = entryInfoHolder.getEntryInfo()!!.summonerName
         val disposable = summonerInfoInteractor.getSummonerDTO(summonerName)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ summonerDTO ->

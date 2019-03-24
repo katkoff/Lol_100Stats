@@ -9,7 +9,8 @@ import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
 @InjectViewState
-class CheckEntryInfoPresenter @Inject
+class CheckEntryInfoPresenter
+@Inject
 constructor(
         private val router: Router,
         private val loginUseCase: LoginUseCase,
@@ -17,7 +18,7 @@ constructor(
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-        viewState.fillInfo(entryInfoHolder.entryInfoModel)
+        viewState.fillInfo(entryInfoHolder.getEntryInfo())
     }
 
     fun onLogoutButtonClicked() {

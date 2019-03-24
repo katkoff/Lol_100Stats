@@ -8,5 +8,5 @@ import com.katkov.lolachievements.domain.model.EntryInfoModel
 interface CheckEntryInfoView : MvpView {
 
     @StateStrategyType(AddToEndSingleStrategy::class)
-    fun fillInfo(entryInfoModel: EntryInfoModel)
+    fun fillInfo(entryInfoModel: EntryInfoModel?)
 }
