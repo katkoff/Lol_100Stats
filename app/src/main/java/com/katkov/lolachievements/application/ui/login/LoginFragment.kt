@@ -6,8 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
-import butterknife.ButterKnife
-import butterknife.OnClick
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.katkov.lolachievements.R
@@ -48,12 +46,15 @@ class LoginFragment : BaseFragmentAndroidX(), LoginView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        ButterKnife.bind(this, view)
+        initListeners()
     }
 
-    @OnClick(R.id.inputEditText_serverName)
-    internal fun serverNameButtonClick() {
-        presenter.onServerNameClicked()
+    private fun initListeners() {
+        inputEditText_serverName.setOnClickListener { presenter.onServerNameClicked() }
+        button_login.setOnClickListener {
+            val summonerName = TextInputUtils.getText(inputLayout_summonerName)
+            presenter.onLoginButtonClicked(summonerName)
+        }
     }
 
     override fun showServerChoiceDialog() {
@@ -70,12 +71,6 @@ class LoginFragment : BaseFragmentAndroidX(), LoginView {
 
     override fun showSelectedName(selectedName: String) {
         TextInputUtils.setText(inputLayout_serverName, selectedName)
-    }
-
-    @OnClick(R.id.button_login)
-    internal fun loginButtonClick() {
-        val summonerName = TextInputUtils.getText(inputLayout_summonerName)
-        presenter.onLoginButtonClicked(summonerName)
     }
 
     companion object {

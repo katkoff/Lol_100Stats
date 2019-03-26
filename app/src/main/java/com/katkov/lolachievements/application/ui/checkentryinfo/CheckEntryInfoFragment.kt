@@ -5,8 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
-import butterknife.ButterKnife
-import butterknife.OnClick
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.katkov.lolachievements.R
@@ -34,7 +32,9 @@ class CheckEntryInfoFragment : BaseFragmentAndroidX(), CheckEntryInfoView {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Toothpick.inject(this, Toothpick.openScopes(Scopes.APP_SCOPE, Scopes.BOTTOM_NAVIGATION_SCOPE))
+        Toothpick.inject(
+            this,
+            Toothpick.openScopes(Scopes.APP_SCOPE, Scopes.BOTTOM_NAVIGATION_SCOPE))
         super.onCreate(savedInstanceState)
     }
 
@@ -46,7 +46,12 @@ class CheckEntryInfoFragment : BaseFragmentAndroidX(), CheckEntryInfoView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        ButterKnife.bind(this, view)
+        initListeners()
+    }
+
+    private fun initListeners() {
+        button_logout.setOnClickListener { presenter.onLogoutButtonClicked() }
+        button_summonerInfo.setOnClickListener { presenter.onSummonerInfoButtonClicked() }
     }
 
     override fun fillInfo(loginModel: LoginModel?) {
@@ -54,16 +59,6 @@ class CheckEntryInfoFragment : BaseFragmentAndroidX(), CheckEntryInfoView {
         TextInputUtils.setText(
             textView_serverName,
             ServerNamesHandler.getNameByCode(loginModel.serverCode))
-    }
-
-    @OnClick(R.id.button_logout)
-    internal fun logoutButtonClicked() {
-        presenter.onLogoutButtonClicked()
-    }
-
-    @OnClick(R.id.button_summonerInfo)
-    internal fun onSummonerInfoButtonClick() {
-        presenter.onSummonerInfoButtonClicked()
     }
 
     companion object {
