@@ -9,9 +9,9 @@ import com.arellomobile.mvp.MvpDelegate
  * This class will exist until introduced support AndroidX
  */
 
-open class BaseFragmentAndroidX : Fragment(), ErrorView {
+open class BaseFragment : Fragment(), ErrorView {
     private var mIsStateSaved: Boolean = false
-    private var mMvpDelegate: MvpDelegate<out BaseFragmentAndroidX>? = null
+    private var mMvpDelegate: MvpDelegate<out BaseFragment>? = null
 
     val mvpDelegate: MvpDelegate<*>
         get() {
@@ -72,6 +72,7 @@ open class BaseFragmentAndroidX : Fragment(), ErrorView {
 
         if (activity!!.isFinishing) {
             mvpDelegate.onDestroy()
+            closeScope()
             return
         }
 
@@ -89,10 +90,13 @@ open class BaseFragmentAndroidX : Fragment(), ErrorView {
 
         if (isRemoving || anyParentIsRemoving) {
             mvpDelegate.onDestroy()
+            closeScope()
         }
     }
 
     override fun showError(error: Error) {
         Toast.makeText(context, error.toString(), Toast.LENGTH_LONG).show()
     }
+
+    open protected fun closeScope() {}
 }

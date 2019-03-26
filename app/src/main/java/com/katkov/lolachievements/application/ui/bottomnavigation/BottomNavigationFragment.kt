@@ -8,7 +8,7 @@ import androidx.core.os.bundleOf
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.katkov.lolachievements.R
-import com.katkov.lolachievements.application.base.BaseFragmentAndroidX
+import com.katkov.lolachievements.application.base.BaseFragment
 import com.katkov.lolachievements.di.Scopes
 import com.katkov.lolachievements.di.annotations.BottomNavigationHolder
 import com.katkov.lolachievements.di.module.BottomNavigationCiceroneModule
@@ -19,7 +19,7 @@ import toothpick.Toothpick
 import javax.inject.Inject
 import javax.inject.Provider
 
-class BottomNavigationFragment : BaseFragmentAndroidX(), BottomNavigationView {
+class BottomNavigationFragment : BaseFragment(), BottomNavigationView {
 
     @Inject
     @field:BottomNavigationHolder
@@ -86,9 +86,13 @@ class BottomNavigationFragment : BaseFragmentAndroidX(), BottomNavigationView {
             }
         }
     }
+    
+    override fun closeScope() {
+        super.closeScope()
+        Toothpick.closeScope(Scopes.BOTTOM_NAVIGATION_SCOPE)
+    }
 
     companion object {
-
         fun newInstance() = BottomNavigationFragment().apply { arguments = bundleOf() }
     }
 }

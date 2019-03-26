@@ -9,7 +9,7 @@ import androidx.core.os.bundleOf
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.katkov.lolachievements.R
-import com.katkov.lolachievements.application.base.BaseFragmentAndroidX
+import com.katkov.lolachievements.application.base.BaseFragment
 import com.katkov.lolachievements.di.Scopes
 import com.katkov.lolachievements.utils.ServerNamesHandler
 import com.katkov.lolachievements.utils.TextInputUtils
@@ -18,7 +18,7 @@ import toothpick.Toothpick
 import javax.inject.Inject
 import javax.inject.Provider
 
-class LoginFragment : BaseFragmentAndroidX(), LoginView {
+class LoginFragment : BaseFragment(), LoginView {
 
     @Inject
     lateinit var presenterProvider: Provider<LoginPresenter>
@@ -74,7 +74,6 @@ class LoginFragment : BaseFragmentAndroidX(), LoginView {
     }
 
     companion object {
-
         fun newInstance() = LoginFragment().apply { arguments = bundleOf() }
     }
 }

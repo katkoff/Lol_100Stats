@@ -8,7 +8,7 @@ import androidx.core.os.bundleOf
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.katkov.lolachievements.R
-import com.katkov.lolachievements.application.base.BaseFragmentAndroidX
+import com.katkov.lolachievements.application.base.BaseFragment
 import com.katkov.lolachievements.di.Scopes
 import com.katkov.lolachievements.domain.model.LoginModel
 import com.katkov.lolachievements.utils.ServerNamesHandler
@@ -18,7 +18,7 @@ import toothpick.Toothpick
 import javax.inject.Inject
 import javax.inject.Provider
 
-class CheckEntryInfoFragment : BaseFragmentAndroidX(), CheckEntryInfoView {
+class CheckEntryInfoFragment : BaseFragment(), CheckEntryInfoView {
 
     @Inject
     lateinit var presenterProvider: Provider<CheckEntryInfoPresenter>
@@ -62,7 +62,6 @@ class CheckEntryInfoFragment : BaseFragmentAndroidX(), CheckEntryInfoView {
     }
 
     companion object {
-
         fun newInstance() = CheckEntryInfoFragment().apply { arguments = bundleOf() }
     }
 }

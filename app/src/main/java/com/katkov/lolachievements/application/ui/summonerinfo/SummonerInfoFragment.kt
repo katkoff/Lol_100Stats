@@ -8,7 +8,7 @@ import androidx.core.os.bundleOf
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.katkov.lolachievements.R
-import com.katkov.lolachievements.application.base.BaseFragmentAndroidX
+import com.katkov.lolachievements.application.base.BaseFragment
 import com.katkov.lolachievements.di.Scopes
 import com.katkov.lolachievements.domain.model.SummonerDTO
 import com.katkov.lolachievements.utils.CommonStringUtils
@@ -18,7 +18,7 @@ import toothpick.Toothpick
 import javax.inject.Inject
 import javax.inject.Provider
 
-class SummonerInfoFragment : BaseFragmentAndroidX(), SummonerInfoView {
+class SummonerInfoFragment : BaseFragment(), SummonerInfoView {
 
     @Inject
     lateinit var presenterProvider: Provider<SummonerInfoPresenter>
@@ -66,7 +66,6 @@ class SummonerInfoFragment : BaseFragmentAndroidX(), SummonerInfoView {
     }
 
     companion object {
-
         fun newInstance() = SummonerInfoFragment().apply { arguments = bundleOf() }
     }
 }

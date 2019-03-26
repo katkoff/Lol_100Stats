@@ -4,7 +4,7 @@ import android.os.Bundle
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.katkov.lolachievements.R
-import com.katkov.lolachievements.application.base.BaseActivityAndroidX
+import com.katkov.lolachievements.application.base.BaseActivity
 import com.katkov.lolachievements.di.Scopes
 import com.katkov.lolachievements.di.annotations.GlobalNavigationHolder
 import ru.terrakok.cicerone.NavigatorHolder
@@ -13,7 +13,7 @@ import toothpick.Toothpick
 import javax.inject.Inject
 import javax.inject.Provider
 
-class MainActivity : BaseActivityAndroidX(), MainView {
+class MainActivity : BaseActivity(), MainView {
 
     @Inject
     @field:GlobalNavigationHolder

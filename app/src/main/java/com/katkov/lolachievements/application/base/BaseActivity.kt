@@ -8,8 +8,8 @@ import com.arellomobile.mvp.MvpDelegate
  * This class will exist until introduced support AndroidX
  */
 
-open class BaseActivityAndroidX : AppCompatActivity() {
-    private var mMvpDelegate: MvpDelegate<out BaseActivityAndroidX>? = null
+open class BaseActivity : AppCompatActivity() {
+    private var mMvpDelegate: MvpDelegate<out BaseActivity>? = null
 
     val mvpDelegate: MvpDelegate<*>
         get() {
@@ -57,6 +57,9 @@ open class BaseActivityAndroidX : AppCompatActivity() {
 
         if (isFinishing) {
             mvpDelegate.onDestroy()
+            closeScope()
         }
     }
+
+    protected fun closeScope() {}
 }

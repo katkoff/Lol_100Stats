@@ -8,13 +8,13 @@ import androidx.core.os.bundleOf
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.katkov.lolachievements.R
-import com.katkov.lolachievements.application.base.BaseFragmentAndroidX
+import com.katkov.lolachievements.application.base.BaseFragment
 import com.katkov.lolachievements.di.Scopes
 import toothpick.Toothpick
 import javax.inject.Inject
 import javax.inject.Provider
 
-class AchievementsFragment : BaseFragmentAndroidX(), AchievementsView {
+class AchievementsFragment : BaseFragment(), AchievementsView {
 
     @Inject
     lateinit var presenterProvider: Provider<AchievementsPresenter>
@@ -41,7 +41,6 @@ class AchievementsFragment : BaseFragmentAndroidX(), AchievementsView {
     }
 
     companion object {
-
         fun newInstance() = AchievementsFragment().apply { arguments = bundleOf() }
     }
 }
