@@ -5,7 +5,7 @@ import com.arellomobile.mvp.MvpPresenter
 import com.katkov.lolachievements.application.navigation.Screens
 import com.katkov.lolachievements.data.local.prefser.LoginModelHolder
 import com.katkov.lolachievements.di.Scopes
-import com.katkov.lolachievements.di.annotations.BottomNavigationRouter
+import com.katkov.lolachievements.di.annotations.AfterLoggingRouter
 import com.katkov.lolachievements.di.annotations.GlobalRouter
 import com.katkov.lolachievements.domain.usecase.LoginUseCase
 import ru.terrakok.cicerone.Router
@@ -17,7 +17,7 @@ class CheckEntryInfoPresenter
 @Inject
 constructor(
     @GlobalRouter private val globalRouter: Router,
-    @BottomNavigationRouter private val bottomNavigationRouter: Router,
+    @AfterLoggingRouter private val bottomNavigationRouter: Router,
     private val loginUseCase: LoginUseCase,
     private val loginModelHolder: LoginModelHolder
 ) : MvpPresenter<CheckEntryInfoView>() {
@@ -30,7 +30,7 @@ constructor(
     fun onLogoutButtonClicked() {
         globalRouter.replaceScreen(Screens.LoginScreen())
         loginUseCase.removeLoginModel()
-        Toothpick.closeScope(Scopes.BOTTOM_NAVIGATION_SCOPE)
+        Toothpick.closeScope(Scopes.AFTER_LOGGING_SCOPE)
     }
 
     fun onSummonerInfoButtonClicked() {

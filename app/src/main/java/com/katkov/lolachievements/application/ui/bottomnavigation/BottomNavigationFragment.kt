@@ -10,8 +10,8 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.katkov.lolachievements.R
 import com.katkov.lolachievements.application.base.BaseFragment
 import com.katkov.lolachievements.di.Scopes
-import com.katkov.lolachievements.di.annotations.BottomNavigationHolder
-import com.katkov.lolachievements.di.module.BottomNavigationCiceroneModule
+import com.katkov.lolachievements.di.annotations.AfterLoggingHolder
+import com.katkov.lolachievements.di.module.AfterLoggingCiceroneModule
 import kotlinx.android.synthetic.main.fragment_bottom_navigation.*
 import ru.terrakok.cicerone.NavigatorHolder
 import ru.terrakok.cicerone.android.support.SupportAppNavigator
@@ -22,7 +22,7 @@ import javax.inject.Provider
 class BottomNavigationFragment : BaseFragment(), BottomNavigationView {
 
     @Inject
-    @field:BottomNavigationHolder
+    @field:AfterLoggingHolder
     lateinit var navigatorHolder: NavigatorHolder
 
     @Inject
@@ -40,7 +40,7 @@ class BottomNavigationFragment : BaseFragment(), BottomNavigationView {
         Toothpick.inject(this,
             Toothpick.openScopes(
                 Scopes.APP_SCOPE,
-                Scopes.BOTTOM_NAVIGATION_SCOPE).apply { installModules(BottomNavigationCiceroneModule()) })
+                Scopes.AFTER_LOGGING_SCOPE).apply { installModules(AfterLoggingCiceroneModule()) })
         super.onCreate(savedInstanceState)
     }
 
@@ -86,10 +86,10 @@ class BottomNavigationFragment : BaseFragment(), BottomNavigationView {
             }
         }
     }
-    
+
     override fun closeScope() {
         super.closeScope()
-        Toothpick.closeScope(Scopes.BOTTOM_NAVIGATION_SCOPE)
+        Toothpick.closeScope(Scopes.AFTER_LOGGING_SCOPE)
     }
 
     companion object {

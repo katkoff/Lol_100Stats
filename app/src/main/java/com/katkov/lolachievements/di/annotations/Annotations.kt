@@ -9,7 +9,7 @@ annotation class GlobalRouter
 annotation class GlobalNavigationHolder
 
 @Qualifier
-annotation class BottomNavigationRouter
+annotation class AfterLoggingRouter
 
 @Qualifier
-annotation class BottomNavigationHolder
+annotation class AfterLoggingHolder

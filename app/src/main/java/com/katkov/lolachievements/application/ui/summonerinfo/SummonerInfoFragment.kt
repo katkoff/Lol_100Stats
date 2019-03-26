@@ -34,7 +34,7 @@ class SummonerInfoFragment : BaseFragment(), SummonerInfoView {
     override fun onCreate(savedInstanceState: Bundle?) {
         Toothpick.inject(
             this,
-            Toothpick.openScopes(Scopes.APP_SCOPE, Scopes.BOTTOM_NAVIGATION_SCOPE))
+            Toothpick.openScopes(Scopes.APP_SCOPE, Scopes.AFTER_LOGGING_SCOPE))
         super.onCreate(savedInstanceState)
     }
 

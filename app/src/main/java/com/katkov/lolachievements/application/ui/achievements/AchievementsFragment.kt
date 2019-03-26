@@ -28,7 +28,7 @@ class AchievementsFragment : BaseFragment(), AchievementsView {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Toothpick.inject(this, Toothpick.openScopes(Scopes.APP_SCOPE, Scopes.BOTTOM_NAVIGATION_SCOPE))
+        Toothpick.inject(this, Toothpick.openScopes(Scopes.APP_SCOPE, Scopes.AFTER_LOGGING_SCOPE))
         super.onCreate(savedInstanceState)
     }
 
