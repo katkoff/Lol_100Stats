@@ -1,10 +1,11 @@
-package com.katkov.lolachievements.application.ui.firstentry
+package com.katkov.lolachievements.application.ui.login
 
 import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import butterknife.ButterKnife
 import butterknife.OnClick
 import com.arellomobile.mvp.presenter.InjectPresenter
@@ -14,32 +15,35 @@ import com.katkov.lolachievements.application.base.BaseFragmentAndroidX
 import com.katkov.lolachievements.di.Scopes
 import com.katkov.lolachievements.utils.ServerNamesHandler
 import com.katkov.lolachievements.utils.TextInputUtils
-import kotlinx.android.synthetic.main.fragment_first_entry.*
+import kotlinx.android.synthetic.main.fragment_login.*
 import toothpick.Toothpick
 import javax.inject.Inject
 import javax.inject.Provider
 
-class FirstEntryFragment : BaseFragmentAndroidX(), FirstEntryView {
+class LoginFragment : BaseFragmentAndroidX(), LoginView {
 
     @Inject
-    lateinit var presenterProvider: Provider<FirstEntryPresenter>
+    lateinit var presenterProvider: Provider<LoginPresenter>
 
     @InjectPresenter
-    lateinit var presenter: FirstEntryPresenter
+    lateinit var presenter: LoginPresenter
 
     @ProvidePresenter
-    internal fun providePresenter(): FirstEntryPresenter {
+    internal fun providePresenter(): LoginPresenter {
         return presenterProvider.get()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Toothpick.inject(this, Toothpick.openScope(Scopes.APP_SCOPE))
+        Toothpick.inject(
+            this,
+            Toothpick.openScopes(Scopes.APP_SCOPE, Scopes.BOTTOM_NAVIGATION_SCOPE))
         super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_first_entry, container, false)
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_login, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -56,9 +60,12 @@ class FirstEntryFragment : BaseFragmentAndroidX(), FirstEntryView {
         val serverNames = ServerNamesHandler.serverNames
         val dialogBuilder = AlertDialog.Builder(context)
         dialogBuilder.setTitle(getString(R.string.first_entry_choose_server_dialog_title))
-                .setItems(serverNames) { _, selectedIndex -> presenter.onServerNameSelected(selectedIndex) }
-                .create()
-                .show()
+            .setItems(serverNames) { _, selectedIndex ->
+                presenter.onServerNameSelected(
+                    selectedIndex)
+            }
+            .create()
+            .show()
     }
 
     override fun showSelectedName(selectedName: String) {
@@ -73,11 +80,6 @@ class FirstEntryFragment : BaseFragmentAndroidX(), FirstEntryView {
 
     companion object {
 
-        fun newInstance(): FirstEntryFragment {
-            val args = Bundle()
-            val fragment = FirstEntryFragment()
-            fragment.arguments = args
-            return fragment
-        }
+        fun newInstance() = LoginFragment().apply { arguments = bundleOf() }
     }
 }

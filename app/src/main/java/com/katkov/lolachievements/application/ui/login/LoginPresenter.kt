@@ -1,30 +1,32 @@
-package com.katkov.lolachievements.application.ui.firstentry
+package com.katkov.lolachievements.application.ui.login
 
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import com.katkov.lolachievements.application.navigation.Screens
-import com.katkov.lolachievements.domain.model.EntryInfoModel
+import com.katkov.lolachievements.di.annotations.GlobalRouter
+import com.katkov.lolachievements.domain.model.LoginModel
 import com.katkov.lolachievements.domain.usecase.LoginUseCase
 import com.katkov.lolachievements.utils.ServerNamesHandler
 import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
 @InjectViewState
-class FirstEntryPresenter
+class LoginPresenter
 @Inject
 internal constructor(
-        private val loginUseCase: LoginUseCase,
-        private val router: Router) : MvpPresenter<FirstEntryView>() {
+    private val loginUseCase: LoginUseCase,
+    @GlobalRouter private val router: Router
+) : MvpPresenter<LoginView>() {
 
     private var selectedNameIndex: Int = 0
 
     fun onLoginButtonClicked(summonerName: String) {
-        val entryInfoModel = EntryInfoModel(
-                summonerName,
-                ServerNamesHandler.getCodeByIndex(selectedNameIndex))
+        val loginModel = LoginModel(
+            summonerName,
+            ServerNamesHandler.getCodeByIndex(selectedNameIndex))
 
-        loginUseCase.saveEntryInfo(entryInfoModel)
-        router.navigateTo(Screens.CommonActivityScreen())
+        loginUseCase.saveLoginModel(loginModel)
+        router.replaceScreen(Screens.BottomNavigationFragmentScreen())
     }
 
     fun onServerNameClicked() {

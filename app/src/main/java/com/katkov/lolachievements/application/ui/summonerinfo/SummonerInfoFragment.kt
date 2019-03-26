@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import butterknife.ButterKnife
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
@@ -32,12 +33,13 @@ class SummonerInfoFragment : BaseFragmentAndroidX(), SummonerInfoView {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Toothpick.inject(this, Toothpick.openScope(Scopes.APP_SCOPE))
+        Toothpick.inject(this, Toothpick.openScopes(Scopes.APP_SCOPE, Scopes.BOTTOM_NAVIGATION_SCOPE))
         super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_summoner_info, container, false)
     }
 
@@ -69,11 +71,6 @@ class SummonerInfoFragment : BaseFragmentAndroidX(), SummonerInfoView {
 
     companion object {
 
-        fun newInstance(): SummonerInfoFragment {
-            val args = Bundle()
-            val fragment = SummonerInfoFragment()
-            fragment.arguments = args
-            return fragment
-        }
+        fun newInstance() = SummonerInfoFragment().apply { arguments = bundleOf() }
     }
 }

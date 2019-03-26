@@ -7,5 +7,5 @@ import javax.inject.Inject
 @InjectViewState
 class AchievementsPresenter
 @Inject
-internal constructor(): MvpPresenter<AchievementsView>() {
+internal constructor() : MvpPresenter<AchievementsView>() {
 }

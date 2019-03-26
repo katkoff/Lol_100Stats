@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.katkov.lolachievements.R
@@ -27,21 +28,20 @@ class AchievementsFragment : BaseFragmentAndroidX(), AchievementsView {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Toothpick.inject(this, Toothpick.openScope(Scopes.APP_SCOPE))
+        Toothpick.inject(this, Toothpick.openScopes(Scopes.APP_SCOPE, Scopes.BOTTOM_NAVIGATION_SCOPE))
         super.onCreate(savedInstanceState)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_achievements, container, false)
     }
 
     companion object {
 
-        fun newInstance(): AchievementsFragment {
-            val args = Bundle()
-            val fragment = AchievementsFragment()
-            fragment.arguments = args
-            return fragment
-        }
+        fun newInstance() = AchievementsFragment().apply { arguments = bundleOf() }
     }
 }

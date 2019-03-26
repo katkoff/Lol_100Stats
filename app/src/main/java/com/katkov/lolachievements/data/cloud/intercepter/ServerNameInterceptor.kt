@@ -1,6 +1,6 @@
 package com.katkov.lolachievements.data.cloud.intercepter
 
-import com.katkov.lolachievements.data.local.prefser.EntryInfoHolder
+import com.katkov.lolachievements.data.local.prefser.LoginModelHolder
 import okhttp3.Interceptor
 import okhttp3.Response
 import java.io.IOException
@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 class ServerNameInterceptor
 @Inject
-constructor(private val entryInfoHolder: EntryInfoHolder) : Interceptor {
+constructor(private val loginModelHolder: LoginModelHolder) : Interceptor {
 
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response {
@@ -16,7 +16,7 @@ constructor(private val entryInfoHolder: EntryInfoHolder) : Interceptor {
 
         val originalUrl = request.url()
 
-        val serverCode = entryInfoHolder.getEntryInfo()!!.serverCode
+        val serverCode = loginModelHolder.getLoginModel()!!.serverCode
         val newHost = serverCode + "." + originalUrl.host()
         val newUrl = request.url().newBuilder()
                 .host(newHost)

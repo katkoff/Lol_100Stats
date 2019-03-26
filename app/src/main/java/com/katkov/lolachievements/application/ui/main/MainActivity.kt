@@ -6,6 +6,7 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.katkov.lolachievements.R
 import com.katkov.lolachievements.application.base.BaseActivityAndroidX
 import com.katkov.lolachievements.di.Scopes
+import com.katkov.lolachievements.di.annotations.GlobalNavigationHolder
 import ru.terrakok.cicerone.NavigatorHolder
 import ru.terrakok.cicerone.android.support.SupportAppNavigator
 import toothpick.Toothpick
@@ -15,6 +16,7 @@ import javax.inject.Provider
 class MainActivity : BaseActivityAndroidX(), MainView {
 
     @Inject
+    @field:GlobalNavigationHolder
     lateinit var navigatorHolder: NavigatorHolder
 
     @Inject

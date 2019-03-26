@@ -3,8 +3,9 @@ package com.katkov.lolachievements.application.ui.main
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import com.katkov.lolachievements.application.navigation.Screens
-import com.katkov.lolachievements.data.local.prefser.EntryInfoHolder
-import com.katkov.lolachievements.domain.model.EntryInfoModel
+import com.katkov.lolachievements.data.local.prefser.LoginModelHolder
+import com.katkov.lolachievements.di.annotations.GlobalRouter
+import com.katkov.lolachievements.domain.model.LoginModel
 import ru.terrakok.cicerone.Router
 import ru.terrakok.cicerone.Screen
 import javax.inject.Inject
@@ -13,8 +14,9 @@ import javax.inject.Inject
 class MainPresenter
 @Inject
 internal constructor(
-        private val router: Router,
-        private val entryInfoHolder: EntryInfoHolder) : MvpPresenter<MainView>() {
+    @GlobalRouter val router: Router,
+    private val loginModelHolder: LoginModelHolder
+) : MvpPresenter<MainView>() {
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
@@ -22,15 +24,15 @@ internal constructor(
     }
 
     private fun checkAlreadyLogged() {
-        val entryInfoModel = entryInfoHolder.getEntryInfo()
+        val entryInfoModel = loginModelHolder.getLoginModel()
         router.newRootScreen(getFirstScreen(entryInfoModel))
     }
 
-    private fun getFirstScreen(entryInfoModel: EntryInfoModel?): Screen {
-        return if (entryInfoModel == null) {
-            Screens.FirstEntryScreen()
+    private fun getFirstScreen(loginModel: LoginModel?): Screen {
+        return if (loginModel == null) {
+            Screens.LoginScreen()
         } else {
-            Screens.CommonActivityScreen()
+            Screens.BottomNavigationFragmentScreen()
         }
     }
 }
