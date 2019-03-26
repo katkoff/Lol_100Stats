@@ -12,12 +12,6 @@ interface SummonerInfoView : MvpView, ErrorView, ProgressView {
     @StateStrategyType(AddToEndStrategy::class)
     fun fillSummonerInfo(summonerDTO: SummonerDTO)
 
-    //    @StateStrategyType(AddToEndStrategy.class)
-    //    void showProgressBar();
-    //
-    //    @StateStrategyType(AddToEndStrategy.class)
-    //    void hideProgressBar();
-
     @StateStrategyType(AddToEndStrategy::class)
     fun fillChestCount(chestCount: Int)
 }

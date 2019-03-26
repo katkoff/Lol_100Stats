@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/achievements_menu_item"
+        android:icon="@drawable/ic_achievements"
+        android:title="Achiev" />
+    <item
+        android:id="@+id/profile_menu_item"
+        android:icon="@drawable/ic_profile"
+        android:title="Profile" />
+</menu>

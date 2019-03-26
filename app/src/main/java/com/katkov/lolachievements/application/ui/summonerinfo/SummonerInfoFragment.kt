@@ -4,11 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import butterknife.ButterKnife
+import androidx.core.os.bundleOf
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.katkov.lolachievements.R
-import com.katkov.lolachievements.application.base.BaseFragmentAndroidX
+import com.katkov.lolachievements.application.base.BaseFragment
 import com.katkov.lolachievements.di.Scopes
 import com.katkov.lolachievements.domain.model.SummonerDTO
 import com.katkov.lolachievements.utils.CommonStringUtils
@@ -18,7 +18,7 @@ import toothpick.Toothpick
 import javax.inject.Inject
 import javax.inject.Provider
 
-class SummonerInfoFragment : BaseFragmentAndroidX(), SummonerInfoView {
+class SummonerInfoFragment : BaseFragment(), SummonerInfoView {
 
     @Inject
     lateinit var presenterProvider: Provider<SummonerInfoPresenter>
@@ -32,18 +32,16 @@ class SummonerInfoFragment : BaseFragmentAndroidX(), SummonerInfoView {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Toothpick.inject(this, Toothpick.openScope(Scopes.APP_SCOPE))
+        Toothpick.inject(
+            this,
+            Toothpick.openScopes(Scopes.APP_SCOPE, Scopes.AFTER_LOGGING_SCOPE))
         super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_summoner_info, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        ButterKnife.bind(this, view)
     }
 
     override fun fillSummonerInfo(summonerDTO: SummonerDTO) {
@@ -68,12 +66,6 @@ class SummonerInfoFragment : BaseFragmentAndroidX(), SummonerInfoView {
     }
 
     companion object {
-
-        fun newInstance(): SummonerInfoFragment {
-            val args = Bundle()
-            val fragment = SummonerInfoFragment()
-            fragment.arguments = args
-            return fragment
-        }
+        fun newInstance() = SummonerInfoFragment().apply { arguments = bundleOf() }
     }
 }

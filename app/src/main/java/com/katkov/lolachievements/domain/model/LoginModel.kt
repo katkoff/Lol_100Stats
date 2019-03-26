@@ -1,5 +1,5 @@
 package com.katkov.lolachievements.domain.model
 
-data class EntryInfoModel(
+data class LoginModel(
         val summonerName: String,
         val serverCode: String)
