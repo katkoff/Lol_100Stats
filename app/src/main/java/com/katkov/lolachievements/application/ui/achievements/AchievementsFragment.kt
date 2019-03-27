@@ -60,6 +60,14 @@ class AchievementsFragment : BaseFragment(), AchievementsView {
         achievementsRecyclerAdapter.setData(achievements)
     }
 
+    override fun setProgressEnable(isEnable: Boolean) {
+        if (isEnable) {
+            progressbar_achievements.visibility = View.VISIBLE
+        } else {
+            progressbar_achievements.visibility = View.GONE
+        }
+    }
+
     companion object {
         fun newInstance() = AchievementsFragment().apply { arguments = bundleOf() }
     }

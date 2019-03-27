@@ -1,6 +1,6 @@
 package com.katkov.lolachievements.domain.model
 
-data class ChampionMasteryDTO(
+data class ChampionMasteryDto(
         val isChestGranted: Boolean,
         val championLevel: Int,
         val championPoints: Int,
