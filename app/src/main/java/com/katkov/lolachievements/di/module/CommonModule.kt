@@ -18,6 +18,7 @@ class CommonModule(context: Context) : Module() {
 
     init {
         bind(Context::class.java).toInstance(context)
+
         bind(SharedPreferences::class.java)
                 .toInstance(context.getSharedPreferences(LOL_PREFERENCE, Context.MODE_PRIVATE))
 
