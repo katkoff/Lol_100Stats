@@ -16,17 +16,25 @@ internal constructor() : MvpPresenter<AchievementsView>() {
         //In future replace to Repository
         val achievements = mutableListOf<AchievementModel>()
         achievements.add(AchievementModel(
-            "http://www.clandlan.net/foros/uploads/profile/photo-thumb-42218.png?_r=1547587404",
-            "Test title 1",
-            "Test description 1"))
+            "http://ddragon.leagueoflegends.com/cdn/9.3.1/img/spell/SummonerBarrier.png",
+            "Готов к бою",
+            "Прошел обучение"))
         achievements.add(AchievementModel(
             "http://www.clandlan.net/foros/uploads/profile/photo-thumb-42218.png?_r=1547587404",
             "Test title 2",
-            "Test description 2"))
+            "Сыграть 5 матчей"))
         achievements.add(AchievementModel(
             "http://www.clandlan.net/foros/uploads/profile/photo-thumb-42218.png?_r=1547587404",
-            "Test title 3",
-            "Test description 3"))
+            "Бывалый",
+            "Сыграть 25 матчей"))
+        achievements.add(AchievementModel(
+            "http://www.clandlan.net/foros/uploads/profile/photo-thumb-42218.png?_r=1547587404",
+            "Ветеран",
+            "Сыграть 100 матчей"))
+        achievements.add(AchievementModel(
+            "http://www.clandlan.net/foros/uploads/profile/photo-thumb-42218.png?_r=1547587404",
+            "Верховный",
+            "Сыграть 500 матчей"))
 
         viewState.fillAchievements(achievements)
     }
