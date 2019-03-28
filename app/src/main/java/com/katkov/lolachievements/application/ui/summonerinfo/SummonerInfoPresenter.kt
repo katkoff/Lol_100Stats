@@ -2,9 +2,8 @@ package com.katkov.lolachievements.application.ui.summonerinfo
 
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
-import com.katkov.lolachievements.data.local.prefser.LoginModelHolder
 import com.katkov.lolachievements.domain.interactor.SummonerInfoInteractor
-import com.katkov.lolachievements.domain.model.ChampionMasteryDTO
+import com.katkov.lolachievements.domain.model.ChampionMasteryDto
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
@@ -13,8 +12,7 @@ import javax.inject.Inject
 class SummonerInfoPresenter
 @Inject
 constructor(
-    private val summonerInfoInteractor: SummonerInfoInteractor,
-    private val loginModelHolder: LoginModelHolder
+    private val summonerInfoInteractor: SummonerInfoInteractor
 ) : MvpPresenter<SummonerInfoView>() {
 
     private val compositeDisposable = CompositeDisposable()
@@ -25,8 +23,7 @@ constructor(
 
     private fun getSummonerInfo() {
         viewState.setProgressEnable(true)
-        val summonerName = loginModelHolder.getLoginModel()!!.summonerName
-        val disposable = summonerInfoInteractor.getSummonerDTO(summonerName)
+        val disposable = summonerInfoInteractor.getSummonerDTO()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ summonerDTO ->
                 viewState.fillSummonerInfo(summonerDTO)
@@ -56,9 +53,9 @@ constructor(
         compositeDisposable.add(disposable)
     }
 
-    private fun getChestCount(masteryDTOS: List<ChampionMasteryDTO>): Int {
+    private fun getChestCount(masteryDtos: List<ChampionMasteryDto>): Int {
         var count = 0
-        for (item in masteryDTOS) {
+        for (item in masteryDtos) {
             if (item.isChestGranted) {
                 count++
             }

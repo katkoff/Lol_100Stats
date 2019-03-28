@@ -1,16 +1,16 @@
 package com.katkov.lolachievements.data.mappers
 
-import com.katkov.lolachievements.data.cloud.model.ChampionMasteryDTOApiModel
-import com.katkov.lolachievements.domain.model.ChampionMasteryDTO
+import com.katkov.lolachievements.data.cloud.model.ChampionMasteryApiDto
+import com.katkov.lolachievements.domain.model.ChampionMasteryDto
 
 import javax.inject.Inject
 
-class ChampionMasteryDTOApiToDomainMapper
+class ChampionMasteryApiDtoToDomainMapper
 @Inject
-constructor() : Mapper<ChampionMasteryDTOApiModel, ChampionMasteryDTO>() {
+constructor() : Mapper<ChampionMasteryApiDto, ChampionMasteryDto>() {
 
-    override fun map(source: ChampionMasteryDTOApiModel): ChampionMasteryDTO {
-        return ChampionMasteryDTO(
+    override fun map(source: ChampionMasteryApiDto): ChampionMasteryDto {
+        return ChampionMasteryDto(
                 source.isChestGranted,
                 source.championLevel,
                 source.championPoints,

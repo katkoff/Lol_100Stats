@@ -10,7 +10,7 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.katkov.lolachievements.R
 import com.katkov.lolachievements.application.base.BaseFragment
 import com.katkov.lolachievements.di.Scopes
-import com.katkov.lolachievements.domain.model.SummonerDTO
+import com.katkov.lolachievements.domain.model.SummonerDto
 import com.katkov.lolachievements.utils.CommonStringUtils
 import com.katkov.lolachievements.utils.TextInputUtils
 import kotlinx.android.synthetic.main.fragment_summoner_info.*
@@ -44,13 +44,13 @@ class SummonerInfoFragment : BaseFragment(), SummonerInfoView {
         return inflater.inflate(R.layout.fragment_summoner_info, container, false)
     }
 
-    override fun fillSummonerInfo(summonerDTO: SummonerDTO) {
-        if (summonerDTO.summonerName != null) {
-            TextInputUtils.setText(textView_summonerName, summonerDTO.summonerName)
+    override fun fillSummonerInfo(summonerDto: SummonerDto) {
+        if (summonerDto.summonerName != null) {
+            TextInputUtils.setText(textView_summonerName, summonerDto.summonerName)
         } else {
             TextInputUtils.setText(textView_summonerName, CommonStringUtils.UNKNOWN_VALUE)
         }
-        TextInputUtils.setText(textView_summonerLevel, summonerDTO.summonerLevel.toString())
+        TextInputUtils.setText(textView_summonerLevel, summonerDto.summonerLevel.toString())
     }
 
     override fun fillChestCount(chestCount: Int) {
@@ -59,9 +59,9 @@ class SummonerInfoFragment : BaseFragment(), SummonerInfoView {
 
     override fun setProgressEnable(isEnable: Boolean) {
         if (isEnable) {
-            progressbar.visibility = View.VISIBLE
+            progressbar_summoner_info.visibility = View.VISIBLE
         } else {
-            progressbar.visibility = View.GONE
+            progressbar_summoner_info.visibility = View.GONE
         }
     }
 

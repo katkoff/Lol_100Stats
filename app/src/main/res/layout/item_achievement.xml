@@ -50,8 +50,8 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView_achievementTitle"
                 tools:text="Description Description Description" />
 
-            <ProgressBar
-                android:id="@+id/progressbar_achievement"
+            <androidx.appcompat.widget.AppCompatSeekBar
+                android:id="@+id/seekBar_achievement"
                 style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
