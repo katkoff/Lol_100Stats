@@ -24,7 +24,7 @@ interface ApiService {
             @Query("api_key") apiKey: String
     ): Single<List<ChampionMasteryApiDto>>
 
-    @GET(ApiUtils.BASE_URL + "lol/match/v4/matchlists/by-account/{encryptedAccountId}")
+    @GET(ApiUtils.BASE_URL + "match/v4/matchlists/by-account/{encryptedAccountId}")
     fun getMatchlistApiDto(
         @Path("encryptedAccountId") encryptedAccountId: String,
         @Query("api_key") apiKey: String
