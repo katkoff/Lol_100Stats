@@ -1,20 +1,19 @@
 package com.katkov.lolachievements.data.local.prefser
 
 import com.github.pwittchen.prefser.library.rx2.Prefser
-import com.katkov.lolachievements.domain.model.LoginModel
-
+import com.katkov.lolachievements.data.local.model.LoginPrefModel
 import javax.inject.Inject
 
 class LoginModelHolder
 @Inject
 constructor(private val prefser: Prefser) {
 
-    fun getLoginModel(): LoginModel? {
-        return prefser.get(LOGIN_MODEL_KEY, LoginModel::class.java, null)
+    fun getLoginModel(): LoginPrefModel? {
+        return prefser.get(LOGIN_MODEL_KEY, LoginPrefModel::class.java, null)
     }
 
-    fun putLoginModel(loginModel: LoginModel) {
-        prefser.put(LOGIN_MODEL_KEY, loginModel)
+    fun putLoginModel(loginPrefModel: LoginPrefModel) {
+        prefser.put(LOGIN_MODEL_KEY, loginPrefModel)
     }
 
     fun removeLoginModel() {

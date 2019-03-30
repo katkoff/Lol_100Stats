@@ -11,7 +11,8 @@ import javax.inject.Inject
 class BottomNavigationPresenter
 @Inject
 internal constructor(
-    @AfterLoggingRouter private val router: Router) : MvpPresenter<BottomNavigationView>() {
+    @AfterLoggingRouter private val router: Router
+) : MvpPresenter<BottomNavigationView>() {
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()

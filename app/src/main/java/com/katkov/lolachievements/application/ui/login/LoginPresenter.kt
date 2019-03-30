@@ -4,8 +4,8 @@ import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import com.katkov.lolachievements.application.navigation.Screens
 import com.katkov.lolachievements.di.annotations.GlobalRouter
+import com.katkov.lolachievements.domain.interactor.LoginInteractor
 import com.katkov.lolachievements.domain.model.LoginModel
-import com.katkov.lolachievements.domain.usecase.LoginUseCase
 import com.katkov.lolachievements.utils.ServerNamesHandler
 import ru.terrakok.cicerone.Router
 import javax.inject.Inject
@@ -14,7 +14,7 @@ import javax.inject.Inject
 class LoginPresenter
 @Inject
 internal constructor(
-    private val loginUseCase: LoginUseCase,
+    private val loginInteractor: LoginInteractor,
     @GlobalRouter private val router: Router
 ) : MvpPresenter<LoginView>() {
 
@@ -25,7 +25,7 @@ internal constructor(
             summonerName,
             ServerNamesHandler.getCodeByIndex(selectedNameIndex))
 
-        loginUseCase.saveLoginModel(loginModel)
+        loginInteractor.saveLoginModel(loginModel)
         router.replaceScreen(Screens.BottomNavigationFragmentScreen())
     }
 

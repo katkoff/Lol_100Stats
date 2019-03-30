@@ -11,13 +11,13 @@ constructor() : Mapper<ChampionMasteryApiDto, ChampionMasteryDto>() {
 
     override fun map(source: ChampionMasteryApiDto): ChampionMasteryDto {
         return ChampionMasteryDto(
-                source.isChestGranted,
-                source.championLevel,
-                source.championPoints,
-                source.championId,
-                source.championPointsUntilNextLevel,
-                source.tokensEarned,
-                source.championPointsSinceLastLevel,
-                source.summonerId)
+            source.isChestGranted,
+            source.championLevel,
+            source.championPoints,
+            source.championId,
+            source.championPointsUntilNextLevel,
+            source.tokensEarned,
+            source.championPointsSinceLastLevel,
+            source.summonerId)
     }
 }

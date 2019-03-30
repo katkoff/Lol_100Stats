@@ -9,15 +9,16 @@ import javax.inject.Provider
 class OkHttpClientProvider
 @Inject
 constructor(
-        @param:Named("logInterceptor")
-        private val loggingInterceptor: Interceptor,
-        @param:Named("serverNameInterceptor")
-        private val serverNameInterceptor: Interceptor) : Provider<OkHttpClient> {
+    @param:Named("logInterceptor")
+    private val loggingInterceptor: Interceptor,
+    @param:Named("serverNameInterceptor")
+    private val serverNameInterceptor: Interceptor
+) : Provider<OkHttpClient> {
 
     override fun get(): OkHttpClient {
         return OkHttpClient.Builder()
-                .addInterceptor(loggingInterceptor)
-                .addInterceptor(serverNameInterceptor)
-                .build()
+            .addInterceptor(loggingInterceptor)
+            .addInterceptor(serverNameInterceptor)
+            .build()
     }
 }
