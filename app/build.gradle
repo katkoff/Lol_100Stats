@@ -50,9 +50,9 @@ dependencies {
     kapt "com.arello-mobile:moxy-compiler:1.5.6"
 
     // ROOM
-    implementation "android.arch.persistence.room:runtime:1.1.1"
-    kapt "android.arch.persistence.room:compiler:1.1.1"
-    implementation "android.arch.persistence.room:rxjava2:1.1.1"
+    implementation "android.arch.persistence.room:runtime:2.1.0-alpha06"
+    kapt "android.arch.persistence.room:compiler:2.1.0-alpha06"
+    implementation "android.arch.persistence.room:rxjava2:2.1.0-alpha06"
 
     // DI - TOOTHPICK
     implementation "com.github.stephanenicolas.toothpick:toothpick-runtime:2.1.0"
