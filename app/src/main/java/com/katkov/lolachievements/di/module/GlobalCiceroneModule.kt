@@ -8,6 +8,7 @@ import ru.terrakok.cicerone.Router
 import toothpick.config.Module
 
 class GlobalCiceroneModule : Module() {
+
     init {
         val cicerone = Cicerone.create()
         bind(Router::class.java)
