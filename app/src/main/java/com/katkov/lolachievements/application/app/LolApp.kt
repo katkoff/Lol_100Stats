@@ -1,6 +1,7 @@
 package com.katkov.lolachievements.application.app
 
 import android.app.Application
+import com.facebook.stetho.Stetho
 import com.katkov.lolachievements.data.local.database.AppDataBase
 import com.katkov.lolachievements.di.Scopes
 import com.katkov.lolachievements.di.module.AppDataBaseModule
@@ -16,6 +17,7 @@ class LolApp : Application() {
         super.onCreate()
 
         initDi()
+        Stetho.initializeWithDefaults(this)
     }
 
     private fun initDi() {

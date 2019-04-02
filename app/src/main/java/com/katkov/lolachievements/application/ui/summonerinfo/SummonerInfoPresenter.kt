@@ -23,12 +23,12 @@ constructor(
 
     private fun getSummonerInfo() {
         viewState.setProgressEnable(true)
-        val disposable = summonerInfoInteractor.getSummonerDTO()
+        val disposable = summonerInfoInteractor.getSummonerRomDB()
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ summonerDTO ->
-                viewState.fillSummonerInfo(summonerDTO)
+            .subscribe({
+                viewState.fillSummonerInfo(it)
 
-                getChampionsMastery(summonerDTO.id)
+                getChampionsMastery(it.encryptedId)
             },
                 { throwable ->
                     viewState.setProgressEnable(false)

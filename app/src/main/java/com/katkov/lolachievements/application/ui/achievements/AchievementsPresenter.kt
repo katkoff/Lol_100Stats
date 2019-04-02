@@ -2,8 +2,8 @@ package com.katkov.lolachievements.application.ui.achievements
 
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
-import com.katkov.lolachievements.domain.interactor.MatchInteractor
-import com.katkov.lolachievements.domain.interactor.SummonerInfoInteractor
+import com.katkov.lolachievements.data.cloud.repository.MatchRepository
+import com.katkov.lolachievements.data.commonrepository.SummonerRepository
 import com.katkov.lolachievements.domain.model.AchievementModel
 import com.katkov.lolachievements.domain.model.MatchlistDto
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -14,8 +14,10 @@ import javax.inject.Inject
 class AchievementsPresenter
 @Inject
 internal constructor(
-    private val matchInteractor: MatchInteractor,
-    private val summonerInfoInteractor: SummonerInfoInteractor
+    //TODO реализовать всю логику в AchievementInteractor - resolved
+//    private val achievementInteractor: AchievementInteractor
+    private val summonerRepository: SummonerRepository,
+    private val matchRepository: MatchRepository//TODO репозитории на каждый презентер или на логику? LOGIC! resolved
 ) : MvpPresenter<AchievementsView>() {
 
     private val compositeDisposable = CompositeDisposable()
@@ -23,25 +25,36 @@ internal constructor(
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
 
-        getSummonerInfo()
+        loadSummonerInfo()
+//        fillAchievements()
     }
 
+    private fun loadSummonerInfo() {
+        summonerRepository.load().subscribe({
+            getSummonerInfo()
+        }, {
+            viewState.showError(Error(it))
+            it.printStackTrace()
+        }).also { compositeDisposable.add(it) }
+    }
+
+    //DB
     private fun getSummonerInfo() {
         viewState.setProgressEnable(true)
-        val disposable = summonerInfoInteractor.getSummonerDTO()
+        summonerRepository.getSummoner() //TODO Как более красиво написать? also or base pres
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                getMatchlist(it.accountId)
+                getMatchlist(it.encryptedAccountId)
             }, {
                 viewState.setProgressEnable(false)
                 viewState.showError(Error(it))
                 it.printStackTrace()
-            })
-        compositeDisposable.addAll(disposable)
+            }).also { compositeDisposable.addAll(it) }
     }
 
+    // Api
     private fun getMatchlist(encryptedAccountId: String) {
-        val disposable = matchInteractor.getMatchlist(encryptedAccountId)
+        val disposable = matchRepository.getMatchlist(encryptedAccountId)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
 
@@ -57,6 +70,7 @@ internal constructor(
         compositeDisposable.addAll(disposable)
     }
 
+    // TODO вынести в другой слой
     private fun getMatchAchievements(matchlistDto: MatchlistDto): MutableList<AchievementModel> {
         val achievements = mutableListOf<AchievementModel>()
 

@@ -2,15 +2,21 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "d2399bdf4523b9bf440e14c37d66b353",
+    "identityHash": "3e2186cf09aca9ec40713484f564fe81",
     "entities": [
       {
-        "tableName": "Summoner",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `name` TEXT, `level` INTEGER NOT NULL, `isAvailable` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "tableName": "SummonerDbModel",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `profileIconId` INTEGER NOT NULL, `name` TEXT NOT NULL, `puuid` TEXT NOT NULL, `summonerLevel` INTEGER NOT NULL, `revisionDate` INTEGER NOT NULL, `encryptedId` TEXT NOT NULL, `encryptedAccountId` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
             "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "profileIconId",
+            "columnName": "profileIconId",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -18,18 +24,36 @@
             "fieldPath": "name",
             "columnName": "name",
             "affinity": "TEXT",
-            "notNull": false
+            "notNull": true
           },
           {
-            "fieldPath": "level",
-            "columnName": "level",
+            "fieldPath": "puuid",
+            "columnName": "puuid",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "summonerLevel",
+            "columnName": "summonerLevel",
             "affinity": "INTEGER",
             "notNull": true
           },
           {
-            "fieldPath": "isAvailable",
-            "columnName": "isAvailable",
+            "fieldPath": "revisionDate",
+            "columnName": "revisionDate",
             "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "encryptedId",
+            "columnName": "encryptedId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "encryptedAccountId",
+            "columnName": "encryptedAccountId",
+            "affinity": "TEXT",
             "notNull": true
           }
         ],
@@ -37,16 +61,15 @@
           "columnNames": [
             "id"
           ],
-          "autoGenerate": false
+          "autoGenerate": true
         },
         "indices": [],
         "foreignKeys": []
       }
     ],
-    "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"d2399bdf4523b9bf440e14c37d66b353\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"3e2186cf09aca9ec40713484f564fe81\")"
     ]
   }
 }

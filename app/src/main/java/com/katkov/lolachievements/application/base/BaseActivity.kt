@@ -1,6 +1,7 @@
 package com.katkov.lolachievements.application.base
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.arellomobile.mvp.MvpDelegate
 
@@ -8,7 +9,7 @@ import com.arellomobile.mvp.MvpDelegate
  * This class will exist until introduced support AndroidX
  */
 
-open class BaseActivity : AppCompatActivity() {
+open class BaseActivity : AppCompatActivity(), ErrorView {
     private var mMvpDelegate: MvpDelegate<out BaseActivity>? = null
 
     val mvpDelegate: MvpDelegate<*>
@@ -59,6 +60,10 @@ open class BaseActivity : AppCompatActivity() {
             mvpDelegate.onDestroy()
             closeScope()
         }
+    }
+
+    override fun showError(error: Error) {
+        Toast.makeText(this, error.toString(), Toast.LENGTH_LONG).show()
     }
 
     protected fun closeScope() {}

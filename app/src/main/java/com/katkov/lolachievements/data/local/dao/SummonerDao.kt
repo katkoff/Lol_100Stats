@@ -1,21 +1,21 @@
 package com.katkov.lolachievements.data.local.dao
 
 import androidx.room.*
-import com.katkov.lolachievements.data.local.model.Summoner
+import com.katkov.lolachievements.data.local.model.SummonerDbModel
 import io.reactivex.Single
 
 @Dao
 interface SummonerDao {
 
-    @get:Query("SELECT * from summoner")
-    val all: Single<Summoner>
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insert(summonerDbModel: SummonerDbModel)
 
-    @Insert
-    fun insert(summoner: Summoner)
+    @Query("SELECT * FROM SummonerDbModel")
+    fun getAll(): Single<SummonerDbModel>
 
     @Update
-    fun update(summoner: Summoner)
+    fun update(summonerDbModel: SummonerDbModel)
 
     @Delete
-    fun delete(summoner: Summoner)
+    fun delete(summonerDbModel: SummonerDbModel)
 }

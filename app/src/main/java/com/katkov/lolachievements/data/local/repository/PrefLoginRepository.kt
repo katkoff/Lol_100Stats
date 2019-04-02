@@ -5,7 +5,7 @@ import com.katkov.lolachievements.data.mappers.LoginModelMapper
 import com.katkov.lolachievements.domain.model.LoginModel
 import javax.inject.Inject
 
-class LoginRepository
+class PrefLoginRepository
 @Inject
 constructor(
     private val loginModelHolder: LoginModelHolder,

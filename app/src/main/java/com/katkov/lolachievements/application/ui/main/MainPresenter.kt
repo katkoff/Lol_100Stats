@@ -15,7 +15,7 @@ class MainPresenter
 @Inject
 internal constructor(
     @GlobalRouter val router: Router,
-    private val loginInteractor: LoginInteractor
+    private val loginInteractor: LoginInteractor,
 ) : MvpPresenter<MainView>() {
 
     override fun onFirstViewAttach() {
@@ -24,6 +24,9 @@ internal constructor(
     }
 
     private fun checkAlreadyLogged() {
+        // try to get Summoner from DB
+
+
         val loginModel = loginInteractor.getLoginModel()
         router.newRootScreen(getFirstScreen(loginModel))
     }

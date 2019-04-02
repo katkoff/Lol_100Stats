@@ -14,7 +14,7 @@ data class SummonerApiDto(
     @SerializedName("revisionDate")
     val revisionDate: Long,
     @SerializedName("id")
-    val id: String,
+    val encryptedId: String,
     @SerializedName("accountId")
     val accountId: String
 )
