@@ -2,17 +2,17 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "3e2186cf09aca9ec40713484f564fe81",
+    "identityHash": "d43f8d9c3a9f7377ef00ae0a46f89a1b",
     "entities": [
       {
         "tableName": "SummonerDbModel",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `profileIconId` INTEGER NOT NULL, `name` TEXT NOT NULL, `puuid` TEXT NOT NULL, `summonerLevel` INTEGER NOT NULL, `revisionDate` INTEGER NOT NULL, `encryptedId` TEXT NOT NULL, `encryptedAccountId` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `profileIconId` INTEGER NOT NULL, `name` TEXT NOT NULL, `puuid` TEXT NOT NULL, `summonerLevel` INTEGER NOT NULL, `revisionDate` INTEGER NOT NULL, `encryptedId` TEXT NOT NULL, `encryptedAccountId` TEXT NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
             "columnName": "id",
             "affinity": "INTEGER",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "profileIconId",
@@ -61,7 +61,7 @@
           "columnNames": [
             "id"
           ],
-          "autoGenerate": true
+          "autoGenerate": false
         },
         "indices": [],
         "foreignKeys": []
@@ -69,7 +69,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"3e2186cf09aca9ec40713484f564fe81\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"d43f8d9c3a9f7377ef00ae0a46f89a1b\")"
     ]
   }
 }

@@ -1,5 +1,6 @@
 package com.katkov.lolachievements.data.local.repository
 
+import com.katkov.lolachievements.data.local.dao.SummonerDao
 import com.katkov.lolachievements.data.local.database.AppDataBase
 import com.katkov.lolachievements.data.local.model.SummonerDbModel
 import io.reactivex.Completable
@@ -11,20 +12,27 @@ import javax.inject.Inject
 class SummonerDbRepository
 @Inject
 constructor(
-    private val appDataBase: AppDataBase
+    private val appDataBase: AppDataBase //TODO Почему val серый?
 ) {
 
-    fun saveSummonerDbModel(summonerDbModel: SummonerDbModel): Observable<Unit> =
-        Observable.fromCallable { appDataBase.summonerDao().insert(summonerDbModel) }
+    private var summonerDao: SummonerDao = appDataBase.summonerDao()
 
-    fun getSummonerDbModel(): Single<SummonerDbModel> {
-        return appDataBase.summonerDao().getAll()
+    fun saveSummonerDbModel(summonerDbModel: SummonerDbModel): Observable<Unit> =
+        Observable.fromCallable { summonerDao.insert(summonerDbModel) }
             .subscribeOn(Schedulers.io())
-    }
+
+    fun getSummonerDbModel(): Single<SummonerDbModel> = summonerDao.getAll()
+        .subscribeOn(Schedulers.io())
+
+    // for checking that table rows exist when we starting app
+    fun getRowsCount(): Single<Int> = summonerDao.getRowsCount()
+        .subscribeOn(Schedulers.io())
 
     fun updateSummonerDbModel(summonerDbModel: SummonerDbModel): Completable =
-        Completable.fromAction { appDataBase.summonerDao().update(summonerDbModel) }
+        Completable.fromAction { summonerDao.update(summonerDbModel) }
+            .subscribeOn(Schedulers.io())
 
     fun deleteSummonerDbModel(summonerDbModel: SummonerDbModel): Observable<Unit> =
-        Observable.fromCallable { appDataBase.summonerDao().delete(summonerDbModel) }
+        Observable.fromCallable { summonerDao.delete(summonerDbModel) }
+            .subscribeOn(Schedulers.io())
 }

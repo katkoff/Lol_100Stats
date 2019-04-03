@@ -13,6 +13,9 @@ interface SummonerDao {
     @Query("SELECT * FROM SummonerDbModel")
     fun getAll(): Single<SummonerDbModel>
 
+    @Query("SELECT COUNT(*) FROM SummonerDbModel")
+    fun getRowsCount(): Single<Int>
+
     @Update
     fun update(summonerDbModel: SummonerDbModel)
 

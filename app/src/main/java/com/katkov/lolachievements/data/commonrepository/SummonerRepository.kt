@@ -16,6 +16,9 @@ constructor(
     private val summonerDbRepository: SummonerDbRepository
 ) {
 
+    fun getRowsCount(): Single<Int> =
+        summonerDbRepository.getRowsCount()
+
     fun getSummoner(): Single<SummonerModel> {
         return summonerDbRepository.getSummonerDbModel()
             .map { mapper.mapDbToDomainModel(it) }
@@ -26,6 +29,14 @@ constructor(
             .map { mapper.mapApiToDbModel(it) }
             .flatMapCompletable {
                 Completable.fromObservable(summonerDbRepository.saveSummonerDbModel(it))
+            }
+    }
+
+    fun updateSummoner(): Completable {
+        return summonerApiRepository.getSummonerApiDto()
+            .map { mapper.mapApiToDbModel(it) }
+            .flatMapCompletable {
+                summonerDbRepository.updateSummonerDbModel(it)
             }
     }
 }

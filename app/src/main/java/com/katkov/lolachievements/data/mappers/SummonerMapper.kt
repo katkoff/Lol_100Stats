@@ -22,9 +22,10 @@ constructor() {
         )
     }
 
+    //TODO почему в БД два поля id
+
     fun mapApiToDbModel(summonerApiDto: SummonerApiDto): SummonerDbModel {
         return SummonerDbModel(
-            id = null,
             profileIconId = summonerApiDto.profileIconId,
             name = summonerApiDto.name,
             puuid = summonerApiDto.puuid,
@@ -35,21 +36,25 @@ constructor() {
         )
     }
 
-    fun mapDbToDomainModel(summonerDbModel: SummonerDbModel): SummonerModel {
-        return SummonerModel(
-            profileIconId = summonerDbModel.profileIconId,
-            name = summonerDbModel.name,
-            puuid = summonerDbModel.puuid,
-            summonerLevel = summonerDbModel.summonerLevel,
-            revisionDate = summonerDbModel.revisionDate,
-            encryptedId = summonerDbModel.encryptedId,
-            encryptedAccountId = summonerDbModel.encryptedAccountId
-        )
+    fun mapDbToDomainModel(summonerDbModel: SummonerDbModel?): SummonerModel? {
+        if (summonerDbModel == null) { //TODO переписать с сахарком
+            return null
+        } else {
+            return SummonerModel(
+                profileIconId = summonerDbModel.profileIconId,
+                name = summonerDbModel.name,
+                puuid = summonerDbModel.puuid,
+                summonerLevel = summonerDbModel.summonerLevel,
+                revisionDate = summonerDbModel.revisionDate,
+                encryptedId = summonerDbModel.encryptedId,
+                encryptedAccountId = summonerDbModel.encryptedAccountId
+            )
+        }
     }
 
     fun mapDomainToDbModel(summonerModel: SummonerModel): SummonerDbModel {
         return SummonerDbModel(
-            null,
+            1,
             summonerModel.profileIconId,
             summonerModel.name,
             summonerModel.puuid,

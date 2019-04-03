@@ -14,8 +14,6 @@ import javax.inject.Inject
 class AchievementsPresenter
 @Inject
 internal constructor(
-    //TODO реализовать всю логику в AchievementInteractor - resolved
-//    private val achievementInteractor: AchievementInteractor
     private val summonerRepository: SummonerRepository,
     private val matchRepository: MatchRepository//TODO репозитории на каждый презентер или на логику? LOGIC! resolved
 ) : MvpPresenter<AchievementsView>() {
@@ -25,17 +23,11 @@ internal constructor(
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
 
-        loadSummonerInfo()
-//        fillAchievements()
+        fillAchievements()
     }
 
-    private fun loadSummonerInfo() {
-        summonerRepository.load().subscribe({
-            getSummonerInfo()
-        }, {
-            viewState.showError(Error(it))
-            it.printStackTrace()
-        }).also { compositeDisposable.add(it) }
+    private fun fillAchievements() {
+        getSummonerInfo()
     }
 
     //DB

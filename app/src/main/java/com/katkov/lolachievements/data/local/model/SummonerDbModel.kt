@@ -5,8 +5,8 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class SummonerDbModel(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int? = null,
+    @PrimaryKey(autoGenerate = false)
+    val id: Int = 1,
     val profileIconId: Int,
     val name: String,
     val puuid: String,
