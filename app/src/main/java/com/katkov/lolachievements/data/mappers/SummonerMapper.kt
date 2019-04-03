@@ -22,8 +22,6 @@ constructor() {
         )
     }
 
-    //TODO почему в БД два поля id
-
     fun mapApiToDbModel(summonerApiDto: SummonerApiDto): SummonerDbModel {
         return SummonerDbModel(
             profileIconId = summonerApiDto.profileIconId,

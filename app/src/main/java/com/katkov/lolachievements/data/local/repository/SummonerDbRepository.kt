@@ -11,9 +11,7 @@ import javax.inject.Inject
 
 class SummonerDbRepository
 @Inject
-constructor(
-    private val appDataBase: AppDataBase //TODO Почему val серый?
-) {
+constructor(appDataBase: AppDataBase) {
 
     private var summonerDao: SummonerDao = appDataBase.summonerDao()
 

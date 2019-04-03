@@ -2,7 +2,6 @@ package com.katkov.lolachievements.application.app
 
 import android.app.Application
 import com.facebook.stetho.Stetho
-import com.katkov.lolachievements.data.local.database.AppDataBase
 import com.katkov.lolachievements.di.Scopes
 import com.katkov.lolachievements.di.module.AppDataBaseModule
 import com.katkov.lolachievements.di.module.CommonModule
@@ -11,13 +10,11 @@ import toothpick.Toothpick
 
 class LolApp : Application() {
 
-    private var appDataBase: AppDataBase? = null
-
     override fun onCreate() {
         super.onCreate()
 
         initDi()
-        Stetho.initializeWithDefaults(this)
+        initStetho()
     }
 
     private fun initDi() {
@@ -26,5 +23,9 @@ class LolApp : Application() {
             installModules(AppDataBaseModule(this@LolApp))
             installModules(GlobalCiceroneModule())
         })
+    }
+
+    private fun initStetho() {
+        Stetho.initializeWithDefaults(this)
     }
 }

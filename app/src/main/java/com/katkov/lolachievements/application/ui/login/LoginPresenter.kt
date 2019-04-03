@@ -35,23 +35,24 @@ internal constructor(
         // try to get Summoner from DB
         summonerInteractor.getRowsCount()
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                if (it > 0) {
+            .subscribe({ rowsCount ->
+                if (rowsCount > 0) {
                     summonerInteractor.updateSummoner()
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe({
                             router.replaceScreen(Screens.BottomNavigationFragmentScreen())
-                        }, {
-                            viewState.showError(Error(it)) //TODO почему почеркивает?
+                        }, { throwable ->
+                            throwable.printStackTrace()
+                            viewState.showError(Error(throwable))
                         }).also { compositeDisposable.add(it) }
                 } else {
                     summonerInteractor.loadSummoner()
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe({
                             router.replaceScreen(Screens.BottomNavigationFragmentScreen())
-                        }, {
-                            it.printStackTrace()
-                            viewState.showError(Error(it))
+                        }, { throwable ->
+                            throwable.printStackTrace()
+                            viewState.showError(Error(throwable))
                         }).also { compositeDisposable.add(it) }
                 }
             }, {

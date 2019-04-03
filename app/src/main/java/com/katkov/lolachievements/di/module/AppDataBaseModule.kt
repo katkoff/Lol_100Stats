@@ -2,6 +2,7 @@ package com.katkov.lolachievements.di.module
 
 import android.content.Context
 import androidx.room.Room
+import com.facebook.stetho.Stetho
 import com.katkov.lolachievements.data.local.database.AppDataBase
 import toothpick.config.Module
 

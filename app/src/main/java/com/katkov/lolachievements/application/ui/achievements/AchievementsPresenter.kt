@@ -15,7 +15,7 @@ class AchievementsPresenter
 @Inject
 internal constructor(
     private val summonerRepository: SummonerRepository,
-    private val matchRepository: MatchRepository//TODO репозитории на каждый презентер или на логику? LOGIC! resolved
+    private val matchRepository: MatchRepository
 ) : MvpPresenter<AchievementsView>() {
 
     private val compositeDisposable = CompositeDisposable()
@@ -33,7 +33,7 @@ internal constructor(
     //DB
     private fun getSummonerInfo() {
         viewState.setProgressEnable(true)
-        summonerRepository.getSummoner() //TODO Как более красиво написать? also or base pres
+        summonerRepository.getSummoner()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 getMatchlist(it.encryptedAccountId)
