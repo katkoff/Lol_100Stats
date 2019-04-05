@@ -49,11 +49,9 @@ internal constructor(
         val disposable = matchRepository.getMatchlist(encryptedAccountId)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-
                 val achievements = getMatchAchievements(it)
                 viewState.fillAchievements(achievements)
                 viewState.setProgressEnable(false)
-
             }, {
                 viewState.setProgressEnable(false)
                 viewState.showError(Error(it))

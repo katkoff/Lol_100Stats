@@ -11,7 +11,6 @@ import com.katkov.lolachievements.R
 import com.katkov.lolachievements.application.base.BaseFragment
 import com.katkov.lolachievements.di.Scopes
 import com.katkov.lolachievements.domain.model.SummonerModel
-import com.katkov.lolachievements.utils.CommonStringUtils
 import com.katkov.lolachievements.utils.TextInputUtils
 import kotlinx.android.synthetic.main.fragment_summoner_info.*
 import toothpick.Toothpick
@@ -45,11 +44,7 @@ class SummonerInfoFragment : BaseFragment(), SummonerInfoView {
     }
 
     override fun fillSummonerInfo(summonerModel: SummonerModel) {
-        if (summonerModel.name != null) {
-            TextInputUtils.setText(textView_summonerName, summonerModel.name)
-        } else {
-            TextInputUtils.setText(textView_summonerName, CommonStringUtils.UNKNOWN_VALUE)
-        }
+        TextInputUtils.setText(textView_summonerName, summonerModel.name)
         TextInputUtils.setText(textView_summonerLevel, summonerModel.summonerLevel.toString())
     }
 

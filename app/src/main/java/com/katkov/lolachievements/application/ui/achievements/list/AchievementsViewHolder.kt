@@ -18,7 +18,6 @@ class AchievementsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
         itemView.textView_achievementTitle.text = achievement.title
         itemView.textView_achievementDescription.text = achievement.description
 
-//        itemView.seekBar_achievement.min = achievement.progressMin
         itemView.seekBar_achievement.progress = achievement.progress
         itemView.seekBar_achievement.max = achievement.progressMax
     }

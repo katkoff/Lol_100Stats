@@ -35,10 +35,8 @@ constructor() {
     }
 
     fun mapDbToDomainModel(summonerDbModel: SummonerDbModel?): SummonerModel? {
-        if (summonerDbModel == null) { //TODO переписать с сахарком
-            return null
-        } else {
-            return SummonerModel(
+        return summonerDbModel?.let {
+            SummonerModel(
                 profileIconId = summonerDbModel.profileIconId,
                 name = summonerDbModel.name,
                 puuid = summonerDbModel.puuid,
@@ -60,7 +58,6 @@ constructor() {
             summonerModel.revisionDate,
             summonerModel.encryptedId,
             summonerModel.encryptedAccountId
-
         )
     }
 }

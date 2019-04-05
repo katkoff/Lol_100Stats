@@ -32,10 +32,11 @@ internal constructor(
 
         loginInteractor.saveLoginModel(loginModel)
 
-        // try to get Summoner from DB
+        // Try to get Summoner from DB
         summonerInteractor.getRowsCount()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ rowsCount ->
+                // If Summoner exist in DB update it
                 if (rowsCount > 0) {
                     summonerInteractor.updateSummoner()
                         .observeOn(AndroidSchedulers.mainThread())
@@ -45,6 +46,7 @@ internal constructor(
                             throwable.printStackTrace()
                             viewState.showError(Error(throwable))
                         }).also { compositeDisposable.add(it) }
+                    // Else load Summoner from api
                 } else {
                     summonerInteractor.loadSummoner()
                         .observeOn(AndroidSchedulers.mainThread())

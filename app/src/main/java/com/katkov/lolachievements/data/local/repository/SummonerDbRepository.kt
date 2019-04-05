@@ -22,7 +22,7 @@ constructor(appDataBase: AppDataBase) {
     fun getSummonerDbModel(): Single<SummonerDbModel> = summonerDao.getAll()
         .subscribeOn(Schedulers.io())
 
-    // for checking that table rows exist when we starting app
+    // For checking that table rows exist when we starting app
     fun getRowsCount(): Single<Int> = summonerDao.getRowsCount()
         .subscribeOn(Schedulers.io())
 
@@ -30,7 +30,7 @@ constructor(appDataBase: AppDataBase) {
         Completable.fromAction { summonerDao.update(summonerDbModel) }
             .subscribeOn(Schedulers.io())
 
-    fun deleteSummonerDbModel(summonerDbModel: SummonerDbModel): Observable<Unit> =
-        Observable.fromCallable { summonerDao.delete(summonerDbModel) }
+    fun deleteSummonerDbModel(summonerDbModel: SummonerDbModel): Completable =
+        Completable.fromAction { summonerDao.delete(summonerDbModel) }
             .subscribeOn(Schedulers.io())
 }

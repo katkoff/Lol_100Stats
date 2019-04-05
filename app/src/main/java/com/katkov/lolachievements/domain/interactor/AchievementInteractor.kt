@@ -13,7 +13,7 @@ constructor(
 
     //flatMAp
 //    fun getMatchList(): Single<MatchlistDto> {
-//        summonerRepository.getSummonerRomDB()
+//        summonerRepository.getSummonerRomDb()
 //            .subscribe({
 //                matchRepository.getMatchlist(it.encryptedAccountId)
 //            }, {

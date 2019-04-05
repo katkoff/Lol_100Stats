@@ -23,7 +23,7 @@ constructor(
 
     private fun getSummonerInfo() {
         viewState.setProgressEnable(true)
-        val disposable = summonerInfoInteractor.getSummonerRomDB()
+        summonerInfoInteractor.getSummonerRomDb()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 viewState.fillSummonerInfo(it)
@@ -34,12 +34,11 @@ constructor(
                     viewState.setProgressEnable(false)
                     viewState.showError(Error(throwable))
                     throwable.printStackTrace()
-                })
-        compositeDisposable.add(disposable)
+                }).also { compositeDisposable.add(it) }
     }
 
     private fun getChampionsMastery(encryptedSummonerId: String) {
-        val disposable = summonerInfoInteractor.getChampionsMastery(encryptedSummonerId)
+        summonerInfoInteractor.getChampionsMastery(encryptedSummonerId)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ championsMasteryList ->
                 viewState.setProgressEnable(false)
@@ -49,8 +48,7 @@ constructor(
                     viewState.setProgressEnable(false)
                     viewState.showError(Error(throwable))
                     throwable.printStackTrace()
-                })
-        compositeDisposable.add(disposable)
+                }).also { compositeDisposable.add(it) }
     }
 
     private fun getChestCount(masteryDtos: List<ChampionMasteryDto>): Int {

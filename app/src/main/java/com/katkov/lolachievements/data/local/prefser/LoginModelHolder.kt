@@ -21,7 +21,6 @@ constructor(private val prefser: Prefser) {
     }
 
     companion object {
-
         private const val LOGIN_MODEL_KEY = "login_model_key"
     }
 }
