@@ -1,7 +1,7 @@
 package com.katkov.lolachievements.application.ui.checkentryinfo
 
 import com.arellomobile.mvp.InjectViewState
-import com.arellomobile.mvp.MvpPresenter
+import com.katkov.lolachievements.application.base.BasePresenter
 import com.katkov.lolachievements.application.navigation.Screens
 import com.katkov.lolachievements.di.Scopes
 import com.katkov.lolachievements.di.annotations.AfterLoggingRouter
@@ -18,7 +18,7 @@ constructor(
     @GlobalRouter private val globalRouter: Router,
     @AfterLoggingRouter private val bottomNavigationRouter: Router,
     private val loginInteractor: LoginInteractor
-) : MvpPresenter<CheckEntryInfoView>() {
+) : BasePresenter<CheckEntryInfoView>() {
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()

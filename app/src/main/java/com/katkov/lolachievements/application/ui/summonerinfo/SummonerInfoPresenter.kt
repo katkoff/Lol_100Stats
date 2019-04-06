@@ -1,11 +1,10 @@
 package com.katkov.lolachievements.application.ui.summonerinfo
 
 import com.arellomobile.mvp.InjectViewState
-import com.arellomobile.mvp.MvpPresenter
+import com.katkov.lolachievements.application.base.BasePresenter
 import com.katkov.lolachievements.domain.interactor.SummonerInfoInteractor
 import com.katkov.lolachievements.domain.model.ChampionMasteryDto
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
 @InjectViewState
@@ -13,9 +12,7 @@ class SummonerInfoPresenter
 @Inject
 constructor(
     private val summonerInfoInteractor: SummonerInfoInteractor
-) : MvpPresenter<SummonerInfoView>() {
-
-    private val compositeDisposable = CompositeDisposable()
+) : BasePresenter<SummonerInfoView>() {
 
     override fun onFirstViewAttach() {
         getSummonerInfo()
@@ -59,10 +56,5 @@ constructor(
             }
         }
         return count
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        compositeDisposable.dispose()
     }
 }

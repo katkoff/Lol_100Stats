@@ -1,7 +1,7 @@
 package com.katkov.lolachievements.application.ui.main
 
 import com.arellomobile.mvp.InjectViewState
-import com.arellomobile.mvp.MvpPresenter
+import com.katkov.lolachievements.application.base.BasePresenter
 import com.katkov.lolachievements.application.navigation.Screens
 import com.katkov.lolachievements.di.annotations.GlobalRouter
 import com.katkov.lolachievements.domain.interactor.LoginInteractor
@@ -16,7 +16,7 @@ class MainPresenter
 internal constructor(
     @GlobalRouter val router: Router,
     private val loginInteractor: LoginInteractor
-) : MvpPresenter<MainView>() {
+) : BasePresenter<MainView>() {
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()

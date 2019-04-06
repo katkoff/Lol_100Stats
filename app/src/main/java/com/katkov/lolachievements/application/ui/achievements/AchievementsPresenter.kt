@@ -1,13 +1,12 @@
 package com.katkov.lolachievements.application.ui.achievements
 
 import com.arellomobile.mvp.InjectViewState
-import com.arellomobile.mvp.MvpPresenter
+import com.katkov.lolachievements.application.base.BasePresenter
 import com.katkov.lolachievements.data.cloud.repository.MatchRepository
 import com.katkov.lolachievements.data.commonrepository.SummonerRepository
 import com.katkov.lolachievements.domain.model.AchievementModel
 import com.katkov.lolachievements.domain.model.MatchlistDto
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
 @InjectViewState
@@ -16,9 +15,7 @@ class AchievementsPresenter
 internal constructor(
     private val summonerRepository: SummonerRepository,
     private val matchRepository: MatchRepository
-) : MvpPresenter<AchievementsView>() {
-
-    private val compositeDisposable = CompositeDisposable()
+) : BasePresenter<AchievementsView>() {
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
@@ -104,10 +101,5 @@ internal constructor(
                 fiveHundredMatchesProgress))
 
         return achievements
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        compositeDisposable.dispose()
     }
 }
