@@ -7,14 +7,14 @@ import io.reactivex.Single
 @Dao
 interface SummonerDao {
 
+    @Query("SELECT COUNT(*) FROM SummonerDbModel")
+    fun getRowsCount(): Single<Int>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(summonerDbModel: SummonerDbModel)
 
     @Query("SELECT * FROM SummonerDbModel")
     fun getAll(): Single<SummonerDbModel>
-
-    @Query("SELECT COUNT(*) FROM SummonerDbModel")
-    fun getRowsCount(): Single<Int>
 
     @Update
     fun update(summonerDbModel: SummonerDbModel)

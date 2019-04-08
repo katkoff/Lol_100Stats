@@ -1,6 +1,5 @@
 package com.katkov.lolachievements.data.local.repository
 
-import com.katkov.lolachievements.data.local.dao.SummonerDao
 import com.katkov.lolachievements.data.local.database.AppDataBase
 import com.katkov.lolachievements.data.local.model.SummonerDbModel
 import io.reactivex.Completable
@@ -13,7 +12,7 @@ class SummonerDbRepository
 @Inject
 constructor(appDataBase: AppDataBase) {
 
-    private var summonerDao: SummonerDao = appDataBase.summonerDao()
+    private var summonerDao = appDataBase.summonerDao()
 
     fun saveSummonerDbModel(summonerDbModel: SummonerDbModel): Observable<Unit> =
         Observable.fromCallable { summonerDao.insert(summonerDbModel) }
@@ -22,7 +21,7 @@ constructor(appDataBase: AppDataBase) {
     fun getSummonerDbModel(): Single<SummonerDbModel> = summonerDao.getAll()
         .subscribeOn(Schedulers.io())
 
-    // For checking that table rows exist when we starting app
+    // For checking that table rows exist before starting download from API
     fun getRowsCount(): Single<Int> = summonerDao.getRowsCount()
         .subscribeOn(Schedulers.io())
 

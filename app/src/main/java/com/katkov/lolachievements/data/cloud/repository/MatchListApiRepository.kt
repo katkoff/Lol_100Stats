@@ -8,14 +8,14 @@ import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class MatchRepository
+class MatchListApiRepository
 @Inject
 constructor(
     private val apiService: ApiService,
     private val mapper: MathlistApiDtoToDomainMapper
 ) {
-    fun getMatchlist(encryptedAccountId: String): Single<MatchlistDto> {
-        return apiService.getMatchlistApiDto(encryptedAccountId, ApiUtils.API_KEY)
+    fun getApiMatchList(encryptedAccountId: String): Single<MatchlistDto> {
+        return apiService.getMatchListApiDto(encryptedAccountId, ApiUtils.API_KEY)
             .map { mapper.map(it) }
             .subscribeOn(Schedulers.io())
     }

@@ -2,7 +2,7 @@ package com.katkov.lolachievements.application.ui.achievements
 
 import com.arellomobile.mvp.InjectViewState
 import com.katkov.lolachievements.application.base.BasePresenter
-import com.katkov.lolachievements.data.cloud.repository.MatchRepository
+import com.katkov.lolachievements.data.cloud.repository.MatchListApiRepository
 import com.katkov.lolachievements.data.commonrepository.SummonerRepository
 import com.katkov.lolachievements.domain.model.AchievementModel
 import com.katkov.lolachievements.domain.model.MatchlistDto
@@ -14,7 +14,7 @@ class AchievementsPresenter
 @Inject
 internal constructor(
     private val summonerRepository: SummonerRepository,
-    private val matchRepository: MatchRepository
+    private val matchListApiRepository: MatchListApiRepository
 ) : BasePresenter<AchievementsView>() {
 
     override fun onFirstViewAttach() {
@@ -41,9 +41,10 @@ internal constructor(
             }).also { compositeDisposable.addAll(it) }
     }
 
+    //TODO Нужно сначала сохранить матчи в БД, а затем оттуда запрашивать. Не из api
     // Api
     private fun getMatchlist(encryptedAccountId: String) {
-        val disposable = matchRepository.getMatchlist(encryptedAccountId)
+        val disposable = matchListApiRepository.getApiMatchList(encryptedAccountId)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 val achievements = getMatchAchievements(it)

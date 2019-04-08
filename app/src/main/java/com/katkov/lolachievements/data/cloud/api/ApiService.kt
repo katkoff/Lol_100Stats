@@ -1,6 +1,6 @@
 package com.katkov.lolachievements.data.cloud.api
 
-import com.katkov.lolachievements.data.cloud.model.ChampionMasteryApiDto
+import com.katkov.lolachievements.data.cloud.model.MasteryApiDto
 import com.katkov.lolachievements.data.cloud.model.MatchlistApiDto
 import com.katkov.lolachievements.data.cloud.model.SummonerApiDto
 import com.katkov.lolachievements.data.cloud.utils.ApiUtils
@@ -19,13 +19,13 @@ interface ApiService {
     ): Single<SummonerApiDto>
 
     @GET(ApiUtils.BASE_URL + "champion-mastery/v4/champion-masteries/by-summoner/{encryptedSummonerId}")
-    fun getChampionsMasteryApiDto(
+    fun getMasteryApiDto(
         @Path("encryptedSummonerId") encryptedSummonerId: String,
         @Query("api_key") apiKey: String
-    ): Single<List<ChampionMasteryApiDto>>
+    ): Single<List<MasteryApiDto>>
 
     @GET(ApiUtils.BASE_URL + "match/v4/matchlists/by-account/{encryptedAccountId}")
-    fun getMatchlistApiDto(
+    fun getMatchListApiDto(
         @Path("encryptedAccountId") encryptedAccountId: String,
         @Query("api_key") apiKey: String
     ): Single<MatchlistApiDto>

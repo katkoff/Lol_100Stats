@@ -18,6 +18,7 @@ import toothpick.Toothpick
 import javax.inject.Inject
 import javax.inject.Provider
 
+//TODO extract hardcode strings from all layouts to R.string
 class LoginFragment : BaseFragment(), LoginView {
 
     @Inject
@@ -71,6 +72,14 @@ class LoginFragment : BaseFragment(), LoginView {
 
     override fun showSelectedName(selectedName: String) {
         TextInputUtils.setText(inputLayout_serverName, selectedName)
+    }
+
+    override fun setProgressEnable(isEnable: Boolean) {
+        if (isEnable) {
+            progressbar_login.visibility = View.VISIBLE
+        } else {
+            progressbar_login.visibility = View.GONE
+        }
     }
 
     companion object {

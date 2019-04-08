@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "d43f8d9c3a9f7377ef00ae0a46f89a1b",
+    "identityHash": "4d1896b9a1687932fc591452550eecf6",
     "entities": [
       {
         "tableName": "SummonerDbModel",
@@ -65,11 +65,79 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "MasteryDbModel",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `isChestGranted` INTEGER NOT NULL, `championLevel` INTEGER NOT NULL, `championPoints` INTEGER NOT NULL, `championId` INTEGER NOT NULL, `championPointsUntilNextLevel` INTEGER NOT NULL, `tokensEarned` INTEGER NOT NULL, `championPointsSinceLastLevel` INTEGER NOT NULL, `summonerId` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "isChestGranted",
+            "columnName": "isChestGranted",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "championLevel",
+            "columnName": "championLevel",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "championPoints",
+            "columnName": "championPoints",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "championId",
+            "columnName": "championId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "championPointsUntilNextLevel",
+            "columnName": "championPointsUntilNextLevel",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tokensEarned",
+            "columnName": "tokensEarned",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "championPointsSinceLastLevel",
+            "columnName": "championPointsSinceLastLevel",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "summonerId",
+            "columnName": "summonerId",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
       }
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"d43f8d9c3a9f7377ef00ae0a46f89a1b\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"4d1896b9a1687932fc591452550eecf6\")"
     ]
   }
 }
