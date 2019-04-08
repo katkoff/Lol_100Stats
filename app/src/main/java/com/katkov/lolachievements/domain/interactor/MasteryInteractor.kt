@@ -18,4 +18,8 @@ constructor(
     fun loadMastery(): Completable {
         return masteryRepository.load()
     }
+
+    fun updateMastery(): Completable {
+        return masteryRepository.updateMastery()
+    }
 }

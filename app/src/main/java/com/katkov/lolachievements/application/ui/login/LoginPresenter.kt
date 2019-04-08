@@ -87,7 +87,16 @@ internal constructor(
                             viewState.showError(Error(throwable))
                         })
                 } else {
-
+                    masteryInteractor.updateMastery()
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe({
+                            viewState.setProgressEnable(false)
+                            
+                        }, { throwable ->
+                            throwable.printStackTrace()
+                            viewState.setProgressEnable(false)
+                            viewState.showError(Error(throwable))
+                        })
                 }
             }, { throwable ->
                 throwable.printStackTrace()

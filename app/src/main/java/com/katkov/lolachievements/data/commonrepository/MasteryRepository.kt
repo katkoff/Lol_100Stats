@@ -31,16 +31,19 @@ constructor(
 
     fun getRowsCount(): Single<Int> = masteryDbRepository.getRowsCount()
 
-//    fun getMastery(): Single<MasteryModel> {
+    //    fun getMastery(): Single<MasteryModel> {
 //        return summonerDbRepository.getSummonerDbModel()
 //            .map { mapper.mapDbToDomainModel(it) }
 //    }
 //
-//    fun updateSummoner(): Completable {
-//        return summonerApiRepository.getSummonerApiDto()
-//            .map { mapper.mapApiToDbModel(it) }
-//            .flatMapCompletable {
-//                summonerDbRepository.updateSummonerDbModel(it)
-//            }
-//    }
+    fun updateMastery(): Completable {
+        return summonerRepository.getSummoner()
+            .flatMapCompletable { summonerModel ->
+                masteryApiRepository.getApiMastery(summonerModel.encryptedId)
+                    .map { mapper.mapApiToDbList(it) }
+                    .flatMapCompletable { masteryDbList ->
+                        masteryDbRepository.updateMasteryDbModel(masteryDbList)
+                    }
+            }
+    }
 }
