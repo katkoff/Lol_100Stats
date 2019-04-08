@@ -8,13 +8,11 @@ class LoginModelMapper
 @Inject
 constructor() {
 
-    fun loginModelToPrefModel(loginModel: LoginModel): LoginPrefModel {
-        return LoginPrefModel(loginModel.summonerName, loginModel.serverCode)
-    }
+    fun loginModelToPrefModel(loginModel: LoginModel): LoginPrefModel =
+        LoginPrefModel(loginModel.summonerName, loginModel.serverCode)
 
-    fun loginPrefModelToDomainModel(loginPrefModel: LoginPrefModel?): LoginModel? {
-        return loginPrefModel?.let {
+    fun loginPrefModelToDomainModel(loginPrefModel: LoginPrefModel?): LoginModel? =
+        loginPrefModel?.let {
             LoginModel(it.summonerName, it.serverCode)
         }
-    }
 }

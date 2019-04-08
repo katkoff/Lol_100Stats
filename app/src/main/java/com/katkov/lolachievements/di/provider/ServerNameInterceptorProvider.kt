@@ -10,7 +10,5 @@ class ServerNameInterceptorProvider
 @Inject
 internal constructor(private val loginModelHolder: LoginModelHolder) : Provider<Interceptor> {
 
-    override fun get(): Interceptor {
-        return ServerNameInterceptor(loginModelHolder)
-    }
+    override fun get(): Interceptor = ServerNameInterceptor(loginModelHolder)
 }

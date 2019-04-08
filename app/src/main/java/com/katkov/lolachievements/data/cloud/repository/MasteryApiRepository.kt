@@ -13,8 +13,7 @@ constructor(
     private val apiService: ApiService
 ) {
 
-    fun getApiMastery(encryptedSummonerId: String): Single<List<MasteryApiDto>> {
-        return apiService.getMasteryApiDto(encryptedSummonerId, ApiUtils.API_KEY)
+    fun getApiMastery(encryptedSummonerId: String): Single<List<MasteryApiDto>> =
+        apiService.getMasteryApiDto(encryptedSummonerId, ApiUtils.API_KEY)
             .subscribeOn(Schedulers.io())
-    }
 }

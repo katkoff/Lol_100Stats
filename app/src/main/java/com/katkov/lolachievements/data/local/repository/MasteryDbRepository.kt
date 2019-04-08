@@ -26,10 +26,10 @@ constructor(appDataBase: AppDataBase) {
         }
             .subscribeOn(Schedulers.io())
 
-    //    fun getMasteryDbModel(): Single<MasteryDbModel> = masteryDao.getMastery()
-//        .subscribeOn(Schedulers.io())
+    fun getMasteryDbList(): Single<List<MasteryDbModel>> = masteryDao.getMastery()
+        .subscribeOn(Schedulers.io())
 
-    fun updateMasteryDbModel(masteryDbList: List<MasteryDbModel>): Completable =
+    fun updateMasteryDbList(masteryDbList: List<MasteryDbModel>): Completable =
         Completable.fromAction {
             for (masteryDbModel in masteryDbList) {
                 masteryDao.update(masteryDbModel)

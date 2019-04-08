@@ -62,9 +62,8 @@ open class BaseActivity : AppCompatActivity(), ErrorView {
         }
     }
 
-    override fun showError(error: Error) {
+    override fun showError(error: Error) =
         Toast.makeText(this, error.toString(), Toast.LENGTH_LONG).show()
-    }
 
     protected fun closeScope() {}
 }

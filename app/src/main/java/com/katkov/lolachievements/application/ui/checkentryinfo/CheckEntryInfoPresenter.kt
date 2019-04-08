@@ -31,7 +31,6 @@ constructor(
         Toothpick.closeScope(Scopes.AFTER_LOGGING_SCOPE)
     }
 
-    fun onSummonerInfoButtonClicked() {
+    fun onSummonerInfoButtonClicked() =
         bottomNavigationRouter.replaceScreen(Screens.SummonerInfoScreen())
-    }
 }

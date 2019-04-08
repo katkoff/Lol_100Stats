@@ -94,9 +94,8 @@ open class BaseFragment : Fragment(), ErrorView {
         }
     }
 
-    override fun showError(error: Error) {
+    override fun showError(error: Error) =
         Toast.makeText(context, error.toString(), Toast.LENGTH_LONG).show()
-    }
 
     open protected fun closeScope() {}
 }

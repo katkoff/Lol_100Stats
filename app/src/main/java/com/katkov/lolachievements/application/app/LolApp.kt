@@ -25,7 +25,5 @@ class LolApp : Application() {
         })
     }
 
-    private fun initStetho() {
-        Stetho.initializeWithDefaults(this)
-    }
+    private fun initStetho() = Stetho.initializeWithDefaults(this)
 }

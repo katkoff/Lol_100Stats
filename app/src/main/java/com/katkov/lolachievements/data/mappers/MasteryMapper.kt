@@ -17,31 +17,33 @@ constructor() {
         return result
     }
 
-    fun mapApiToDbModel(masteryApiDto: MasteryApiDto): MasteryDbModel {
-        return MasteryDbModel(
-            isChestGranted = masteryApiDto.isChestGranted,
-            championLevel = masteryApiDto.championLevel,
-            championPoints = masteryApiDto.championPoints,
-            championId = masteryApiDto.championId,
-            championPointsUntilNextLevel = masteryApiDto.championPointsUntilNextLevel,
-            tokensEarned = masteryApiDto.tokensEarned,
-            championPointsSinceLastLevel = masteryApiDto.championPointsSinceLastLevel,
-            summonerId = masteryApiDto.summonerId
-        )
+    fun mapDbToDomainList(masteryDbList: List<MasteryDbModel>): List<MasteryModel> {
+        val result = mutableListOf<MasteryModel>()
+        for (masteryDbModel in masteryDbList) {
+            result.add(mapDbToDomainModel(masteryDbModel))
+        }
+        return result
     }
 
-    fun mapDbToDomainModel(masteryDbModel: MasteryDbModel?): MasteryModel? {
-        return masteryDbModel?.let {
-            MasteryModel(
-                isChestGranted = masteryDbModel.isChestGranted,
-                championLevel = masteryDbModel.championLevel,
-                championPoints = masteryDbModel.championPoints,
-                championId = masteryDbModel.championId,
-                championPointsUntilNextLevel = masteryDbModel.championPointsUntilNextLevel,
-                tokensEarned = masteryDbModel.tokensEarned,
-                championPointsSinceLastLevel = masteryDbModel.championPointsSinceLastLevel,
-                summonerId = masteryDbModel.summonerId
-            )
-        }
-    }
+    fun mapApiToDbModel(masteryApiDto: MasteryApiDto): MasteryDbModel = MasteryDbModel(
+        isChestGranted = masteryApiDto.isChestGranted,
+        championLevel = masteryApiDto.championLevel,
+        championPoints = masteryApiDto.championPoints,
+        championId = masteryApiDto.championId,
+        championPointsUntilNextLevel = masteryApiDto.championPointsUntilNextLevel,
+        tokensEarned = masteryApiDto.tokensEarned,
+        championPointsSinceLastLevel = masteryApiDto.championPointsSinceLastLevel,
+        summonerId = masteryApiDto.summonerId
+    )
+
+    fun mapDbToDomainModel(masteryDbModel: MasteryDbModel): MasteryModel = MasteryModel(
+        isChestGranted = masteryDbModel.isChestGranted,
+        championLevel = masteryDbModel.championLevel,
+        championPoints = masteryDbModel.championPoints,
+        championId = masteryDbModel.championId,
+        championPointsUntilNextLevel = masteryDbModel.championPointsUntilNextLevel,
+        tokensEarned = masteryDbModel.tokensEarned,
+        championPointsSinceLastLevel = masteryDbModel.championPointsSinceLastLevel,
+        summonerId = masteryDbModel.summonerId
+    )
 }

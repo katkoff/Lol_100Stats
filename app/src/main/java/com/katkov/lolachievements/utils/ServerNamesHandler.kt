@@ -41,11 +41,7 @@ object ServerNamesHandler {
         return serverNames[nameIndex]
     }
 
-    fun getNameByIndex(index: Int): String {
-        return serverNames[index]
-    }
+    fun getNameByIndex(index: Int): String = serverNames[index]
 
-    fun getCodeByIndex(index: Int): String {
-        return serverCodes[index]
-    }
+    fun getCodeByIndex(index: Int): String = serverCodes[index]
 }

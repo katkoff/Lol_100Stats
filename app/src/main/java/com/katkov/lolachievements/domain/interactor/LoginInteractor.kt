@@ -8,15 +8,9 @@ class LoginInteractor
 @Inject constructor(
     private val prefLoginRepository: PrefLoginRepository
 ) {
-    fun saveLoginModel(loginModel: LoginModel) {
-        prefLoginRepository.saveLoginModel(loginModel)
-    }
+    fun saveLoginModel(loginModel: LoginModel) = prefLoginRepository.saveLoginModel(loginModel)
 
-    fun getLoginModel(): LoginModel? {
-        return prefLoginRepository.getLoginModel()
-    }
+    fun getLoginModel(): LoginModel? = prefLoginRepository.getLoginModel()
 
-    fun removeLoginModel() {
-        prefLoginRepository.removeLoginModel()
-    }
+    fun removeLoginModel() = prefLoginRepository.removeLoginModel()
 }

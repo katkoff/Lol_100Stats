@@ -13,9 +13,9 @@ interface MasteryDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(masteryDbModel: MasteryDbModel)
 
-//    @Query("SELECT * FROM MasteryDbModel")
-//    fun getMastery(): Single<MasteryDbModel>
-//
+    @Query("SELECT * FROM MasteryDbModel")
+    fun getMastery(): Single<List<MasteryDbModel>>
+
     @Update
     fun update(masteryDbModel: MasteryDbModel)
 //

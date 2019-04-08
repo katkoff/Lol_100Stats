@@ -11,7 +11,5 @@ class PrefserProvider
 @Inject
 constructor(private val sharedPreferences: SharedPreferences) : Provider<Prefser> {
 
-    override fun get(): Prefser {
-        return Prefser(sharedPreferences)
-    }
+    override fun get(): Prefser = Prefser(sharedPreferences)
 }

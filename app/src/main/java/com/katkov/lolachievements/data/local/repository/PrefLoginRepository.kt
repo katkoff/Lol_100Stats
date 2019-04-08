@@ -12,15 +12,11 @@ constructor(
     private val mapper: LoginModelMapper
 ) {
 
-    fun saveLoginModel(loginModel: LoginModel) {
+    fun saveLoginModel(loginModel: LoginModel) =
         loginModelHolder.putLoginModel(mapper.loginModelToPrefModel(loginModel))
-    }
 
-    fun getLoginModel(): LoginModel? {
-        return mapper.loginPrefModelToDomainModel(loginModelHolder.getLoginModel())
-    }
+    fun getLoginModel(): LoginModel? =
+        mapper.loginPrefModelToDomainModel(loginModelHolder.getLoginModel())
 
-    fun removeLoginModel() {
-        loginModelHolder.removeLoginModel()
-    }
+    fun removeLoginModel() = loginModelHolder.removeLoginModel()
 }

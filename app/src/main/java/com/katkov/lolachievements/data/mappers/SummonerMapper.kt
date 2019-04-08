@@ -10,32 +10,28 @@ class SummonerMapper
 @Inject
 constructor() {
 
-    fun mapApiToDomainModel(summonerApiDto: SummonerApiDto): SummonerModel {
-        return SummonerModel(
-            profileIconId = summonerApiDto.profileIconId,
-            name = summonerApiDto.name,
-            puuid = summonerApiDto.puuid,
-            summonerLevel = summonerApiDto.summonerLevel,
-            revisionDate = summonerApiDto.revisionDate,
-            encryptedId = summonerApiDto.encryptedId,
-            encryptedAccountId = summonerApiDto.accountId
-        )
-    }
+    fun mapApiToDomainModel(summonerApiDto: SummonerApiDto): SummonerModel = SummonerModel(
+        profileIconId = summonerApiDto.profileIconId,
+        name = summonerApiDto.name,
+        puuid = summonerApiDto.puuid,
+        summonerLevel = summonerApiDto.summonerLevel,
+        revisionDate = summonerApiDto.revisionDate,
+        encryptedId = summonerApiDto.encryptedId,
+        encryptedAccountId = summonerApiDto.accountId
+    )
 
-    fun mapApiToDbModel(summonerApiDto: SummonerApiDto): SummonerDbModel {
-        return SummonerDbModel(
-            profileIconId = summonerApiDto.profileIconId,
-            name = summonerApiDto.name,
-            puuid = summonerApiDto.puuid,
-            summonerLevel = summonerApiDto.summonerLevel,
-            revisionDate = summonerApiDto.revisionDate,
-            encryptedId = summonerApiDto.encryptedId,
-            encryptedAccountId = summonerApiDto.accountId
-        )
-    }
+    fun mapApiToDbModel(summonerApiDto: SummonerApiDto): SummonerDbModel = SummonerDbModel(
+        profileIconId = summonerApiDto.profileIconId,
+        name = summonerApiDto.name,
+        puuid = summonerApiDto.puuid,
+        summonerLevel = summonerApiDto.summonerLevel,
+        revisionDate = summonerApiDto.revisionDate,
+        encryptedId = summonerApiDto.encryptedId,
+        encryptedAccountId = summonerApiDto.accountId
+    )
 
-    fun mapDbToDomainModel(summonerDbModel: SummonerDbModel?): SummonerModel? {
-        return summonerDbModel?.let {
+    fun mapDbToDomainModel(summonerDbModel: SummonerDbModel?): SummonerModel? =
+        summonerDbModel?.let {
             SummonerModel(
                 profileIconId = summonerDbModel.profileIconId,
                 name = summonerDbModel.name,
@@ -46,18 +42,15 @@ constructor() {
                 encryptedAccountId = summonerDbModel.encryptedAccountId
             )
         }
-    }
 
-    fun mapDomainToDbModel(summonerModel: SummonerModel): SummonerDbModel {
-        return SummonerDbModel(
-            1,
-            summonerModel.profileIconId,
-            summonerModel.name,
-            summonerModel.puuid,
-            summonerModel.summonerLevel,
-            summonerModel.revisionDate,
-            summonerModel.encryptedId,
-            summonerModel.encryptedAccountId
-        )
-    }
+    fun mapDomainToDbModel(summonerModel: SummonerModel): SummonerDbModel = SummonerDbModel(
+        1,
+        summonerModel.profileIconId,
+        summonerModel.name,
+        summonerModel.puuid,
+        summonerModel.summonerLevel,
+        summonerModel.revisionDate,
+        summonerModel.encryptedId,
+        summonerModel.encryptedAccountId
+    )
 }
