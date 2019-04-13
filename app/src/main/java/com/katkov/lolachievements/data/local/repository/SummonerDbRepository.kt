@@ -32,4 +32,7 @@ constructor(appDataBase: AppDataBase) {
     fun deleteSummonerDbModel(summonerDbModel: SummonerDbModel): Completable =
         Completable.fromAction { summonerDao.delete(summonerDbModel) }
             .subscribeOn(Schedulers.io())
+
+    fun removeTable(): Completable = Completable.fromAction { summonerDao.removeTable() }
+        .subscribeOn(Schedulers.io())
 }

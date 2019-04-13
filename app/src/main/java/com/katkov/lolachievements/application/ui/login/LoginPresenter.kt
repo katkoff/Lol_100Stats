@@ -2,10 +2,10 @@ package com.katkov.lolachievements.application.ui.login
 
 import com.arellomobile.mvp.InjectViewState
 import com.katkov.lolachievements.application.base.BasePresenter
-import com.katkov.lolachievements.application.navigation.Screens
 import com.katkov.lolachievements.di.annotations.GlobalRouter
+import com.katkov.lolachievements.domain.interactor.ChampionInteractor
 import com.katkov.lolachievements.domain.interactor.LoginInteractor
-import com.katkov.lolachievements.domain.interactor.MasteryInteractor
+import com.katkov.lolachievements.domain.interactor.MatchesInteractor
 import com.katkov.lolachievements.domain.interactor.SummonerInteractor
 import com.katkov.lolachievements.domain.model.LoginModel
 import com.katkov.lolachievements.utils.ServerNamesHandler
@@ -19,7 +19,8 @@ class LoginPresenter
 internal constructor(
     private val loginInteractor: LoginInteractor,
     private val summonerInteractor: SummonerInteractor,
-    private val masteryInteractor: MasteryInteractor,
+    private val championInteractor: ChampionInteractor,
+    private val matchesInteractor: MatchesInteractor,
     @GlobalRouter private val router: Router
 ) : BasePresenter<LoginView>() {
 
@@ -36,6 +37,8 @@ internal constructor(
         loadSummonerInfo()
     }
 
+    //TODO разбить сложные методы на простые
+    //TODO изменить логику прогрессбара
     private fun loadSummonerInfo() {
         // Check that BD doesn't empty
         summonerInteractor.getRowsCount()
@@ -46,7 +49,8 @@ internal constructor(
                     summonerInteractor.loadSummoner()
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe({
-                            loadMastery()
+                            loadChampions()
+                            loadMatches()
                         }, { throwable ->
                             throwable.printStackTrace()
                             viewState.setProgressEnable(false)
@@ -55,15 +59,16 @@ internal constructor(
 
                 } else {
                     // Summoner exist in DB. Update it
-                    summonerInteractor.updateSummoner()
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe({
-
-                        }, { throwable ->
-                            throwable.printStackTrace()
-                            viewState.setProgressEnable(false)
-                            viewState.showError(Error(throwable))
-                        }).also { compositeDisposable.add(it) }
+//                    summonerInteractor.updateSummoner()
+//                        .observeOn(AndroidSchedulers.mainThread())
+//                        .subscribe({
+//                            loadChampions()
+//                            loadMatches()
+//                        }, { throwable ->
+//                            throwable.printStackTrace()
+//                            viewState.setProgressEnable(false)
+//                            viewState.showError(Error(throwable))
+//                        }).also { compositeDisposable.add(it) }
                 }
             }, { throwable ->
                 throwable.printStackTrace()
@@ -72,27 +77,27 @@ internal constructor(
             }).also { compositeDisposable.add(it) }
     }
 
-    private fun loadMastery() {
-        masteryInteractor.getRowsCount()
+    private fun loadChampions() {
+        championInteractor.getRowsCount()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ rowsCount ->
                 if (rowsCount == 0) {
-                    masteryInteractor.loadMastery()
+                    championInteractor.loadChampion()
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe({
-                            viewState.setProgressEnable(false)
-                            router.replaceScreen(Screens.BottomNavigationFragmentScreen())
+//                                                        viewState.setProgressEnable(false)
+//                            router.replaceScreen(Screens.BottomNavigationFragmentScreen())
                         }, { throwable ->
                             throwable.printStackTrace()
                             viewState.setProgressEnable(false)
                             viewState.showError(Error(throwable))
                         })
                 } else {
-                    masteryInteractor.updateMastery()
+                    championInteractor.updateChampion()
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe({
-                            viewState.setProgressEnable(false)
-                            router.replaceScreen(Screens.BottomNavigationFragmentScreen())
+//                            viewState.setProgressEnable(false)
+//                            router.replaceScreen(Screens.BottomNavigationFragmentScreen())
                         }, { throwable ->
                             throwable.printStackTrace()
                             viewState.setProgressEnable(false)
@@ -106,6 +111,39 @@ internal constructor(
             }).also { compositeDisposable.add(it) }
     }
 
+    private fun loadMatches() {
+        matchesInteractor.getRowsCount()
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ rowsCount ->
+                if (rowsCount == 0) {
+                    matchesInteractor.loadMatches()
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe({
+                            viewState.setProgressEnable(false)
+//                            router.replaceScreen(Screens.BottomNavigationFragmentScreen())
+                        }, { throwable ->
+                            throwable.printStackTrace()
+                            viewState.setProgressEnable(false)
+                            viewState.showError(Error(throwable))
+                        })
+                } else {
+                    matchesInteractor.updateMatches()
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe({
+                            viewState.setProgressEnable(false)
+//                            router.replaceScreen(Screens.BottomNavigationFragmentScreen())
+                        }, { throwable ->
+                            throwable.printStackTrace()
+                            viewState.setProgressEnable(false)
+                            viewState.showError(Error(throwable))
+                        })
+                }
+            }, { throwable ->
+                throwable.printStackTrace()
+                viewState.setProgressEnable(false)
+                viewState.showError(Error(throwable))
+            }).also { compositeDisposable.add(it) }
+    }
 
     fun onServerNameClicked() {
         viewState.showServerChoiceDialog()

@@ -14,9 +14,11 @@ constructor(
 
     fun getRowsCount(): Single<Int> = summonerRepository.getRowsCount()
 
-    fun getSummoner(): Single<SummonerModel> = summonerRepository.getSummoner()
-
     fun loadSummoner(): Completable = summonerRepository.load()
 
+    fun getSummoner(): Single<SummonerModel> = summonerRepository.getSummoner()
+
     fun updateSummoner(): Completable = summonerRepository.updateSummoner()
+
+    fun removeTable(): Completable = summonerRepository.removeTable()
 }

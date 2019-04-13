@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class MasteryDbModel(
+data class ChampionDbModel(
     @PrimaryKey(autoGenerate = true)
     val id: Int? = null,
     val isChestGranted: Boolean,

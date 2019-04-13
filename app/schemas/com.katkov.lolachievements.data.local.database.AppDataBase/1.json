@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "4d1896b9a1687932fc591452550eecf6",
+    "identityHash": "2b0117a253523bdf5fba2ce3de7fdb0b",
     "entities": [
       {
         "tableName": "SummonerDbModel",
@@ -67,7 +67,7 @@
         "foreignKeys": []
       },
       {
-        "tableName": "MasteryDbModel",
+        "tableName": "ChampionDbModel",
         "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `isChestGranted` INTEGER NOT NULL, `championLevel` INTEGER NOT NULL, `championPoints` INTEGER NOT NULL, `championId` INTEGER NOT NULL, `championPointsUntilNextLevel` INTEGER NOT NULL, `tokensEarned` INTEGER NOT NULL, `championPointsSinceLastLevel` INTEGER NOT NULL, `summonerId` TEXT NOT NULL)",
         "fields": [
           {
@@ -133,11 +133,55 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "MatchlistDbModel",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `matches` TEXT NOT NULL, `totalGames` INTEGER NOT NULL, `startIndex` INTEGER NOT NULL, `endIndex` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "matches",
+            "columnName": "matches",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "totalGames",
+            "columnName": "totalGames",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "startIndex",
+            "columnName": "startIndex",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "endIndex",
+            "columnName": "endIndex",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
       }
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"4d1896b9a1687932fc591452550eecf6\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"2b0117a253523bdf5fba2ce3de7fdb0b\")"
     ]
   }
 }

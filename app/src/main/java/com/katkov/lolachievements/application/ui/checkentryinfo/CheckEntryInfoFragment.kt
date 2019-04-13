@@ -61,6 +61,14 @@ class CheckEntryInfoFragment : BaseFragment(), CheckEntryInfoView {
             ServerNamesHandler.getNameByCode(loginModel.serverCode))
     }
 
+    override fun setProgressEnable(isEnable: Boolean) {
+        if (isEnable) {
+            progressbar_check_entry_info.visibility = View.VISIBLE
+        } else {
+            progressbar_check_entry_info.visibility = View.GONE
+        }
+    }
+
     companion object {
         fun newInstance() = CheckEntryInfoFragment().apply { arguments = bundleOf() }
     }

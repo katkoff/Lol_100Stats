@@ -21,4 +21,7 @@ interface SummonerDao {
 
     @Delete
     fun delete(summonerDbModel: SummonerDbModel)
+
+    @Query("DELETE FROM SummonerDbModel")
+    fun removeTable()
 }

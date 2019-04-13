@@ -2,7 +2,7 @@ package com.katkov.lolachievements.data.cloud.model
 
 import com.google.gson.annotations.SerializedName
 
-data class MasteryApiDto(
+data class ChampionApiDto(
     @SerializedName("chestGranted")
     val isChestGranted: Boolean,
     @SerializedName("championLevel")

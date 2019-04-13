@@ -2,9 +2,9 @@ package com.katkov.lolachievements.application.ui.summonerinfo
 
 import com.arellomobile.mvp.InjectViewState
 import com.katkov.lolachievements.application.base.BasePresenter
-import com.katkov.lolachievements.domain.interactor.MasteryInteractor
+import com.katkov.lolachievements.domain.interactor.ChampionInteractor
 import com.katkov.lolachievements.domain.interactor.SummonerInteractor
-import com.katkov.lolachievements.domain.model.MasteryModel
+import com.katkov.lolachievements.domain.model.ChampionModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import javax.inject.Inject
 
@@ -13,7 +13,7 @@ class SummonerInfoPresenter
 @Inject
 constructor(
     private val summonerInteractor: SummonerInteractor,
-    private val masteryInteractor: MasteryInteractor
+    private val championInteractor: ChampionInteractor
 ) : BasePresenter<SummonerInfoView>() {
 
     override fun onFirstViewAttach() {
@@ -35,7 +35,7 @@ constructor(
     }
 
     private fun getChampionsMastery() {
-        masteryInteractor.getMasteryList()
+        championInteractor.getChampionList()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ championsMasteryList ->
                 viewState.setProgressEnable(false)
@@ -48,9 +48,9 @@ constructor(
                 }).also { compositeDisposable.add(it) }
     }
 
-    private fun getChestCount(masteryModels: List<MasteryModel>): Int {
+    private fun getChestCount(championModels: List<ChampionModel>): Int {
         var count = 0
-        for (item in masteryModels) {
+        for (item in championModels) {
             if (item.isChestGranted) {
                 count++
             }
