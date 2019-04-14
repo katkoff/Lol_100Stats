@@ -5,7 +5,7 @@ import com.katkov.lolachievements.data.local.model.ChampionDbModel
 import io.reactivex.Single
 
 @Dao
-abstract class ChampionDao {
+abstract class ChampionsDao {
 
     @Query("SELECT COUNT(*) FROM ChampionDbModel")
     abstract fun getRowsCount(): Single<Int>

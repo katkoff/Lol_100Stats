@@ -12,31 +12,31 @@ class ChampionDbRepository
 @Inject
 constructor(appDataBase: AppDataBase) {
 
-    private var championDao = appDataBase.ChampionDao()
+    private var championsDao = appDataBase.championsDao()
 
     // For checking that table rows exist before starting download from API
-    fun getRowsCount(): Single<Int> = championDao.getRowsCount()
+    fun getRowsCount(): Single<Int> = championsDao.getRowsCount()
         .subscribeOn(Schedulers.io())
 
     fun saveChampionDbList(championDbList: List<ChampionDbModel>): Observable<Unit> =
         Observable.fromCallable {
             for (masteryDbModel in championDbList) {
-                championDao.insert(masteryDbModel)
+                championsDao.insert(masteryDbModel)
             }
         }
             .subscribeOn(Schedulers.io())
 
-    fun getChmpionDbList(): Single<List<ChampionDbModel>> = championDao.getChampion()
+    fun getChmpionDbList(): Single<List<ChampionDbModel>> = championsDao.getChampion()
         .subscribeOn(Schedulers.io())
 
     fun updateChampionDbList(championDbList: List<ChampionDbModel>): Completable =
         Completable.fromAction {
             for (masteryDbModel in championDbList) {
-                championDao.insertOrUpdate(masteryDbModel)
+                championsDao.insertOrUpdate(masteryDbModel)
             }
         }
             .subscribeOn(Schedulers.io())
 
-    fun removeTable(): Completable = Completable.fromAction { championDao.removeTable() }
+    fun removeTable(): Completable = Completable.fromAction { championsDao.removeTable() }
         .subscribeOn(Schedulers.io())
 }

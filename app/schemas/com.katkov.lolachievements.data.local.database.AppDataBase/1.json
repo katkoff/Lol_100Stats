@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "865ef7a4f3e023f55ea8e4d497f35700",
+    "identityHash": "838041955d2c2fbba48f8555d1a14cec",
     "entities": [
       {
         "tableName": "SummonerDbModel",
@@ -135,8 +135,8 @@
         "foreignKeys": []
       },
       {
-        "tableName": "MatchlistDbModel",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `matches` TEXT NOT NULL, `totalGames` INTEGER NOT NULL, `startIndex` INTEGER NOT NULL, `endIndex` INTEGER NOT NULL)",
+        "tableName": "MatchReferenceDbModel",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `lane` TEXT NOT NULL, `gameId` INTEGER NOT NULL, `champion` INTEGER NOT NULL, `platformId` TEXT NOT NULL, `season` INTEGER NOT NULL, `queue` INTEGER NOT NULL, `role` TEXT NOT NULL, `timestamp` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -145,26 +145,50 @@
             "notNull": false
           },
           {
-            "fieldPath": "matches",
-            "columnName": "matches",
+            "fieldPath": "lane",
+            "columnName": "lane",
             "affinity": "TEXT",
             "notNull": true
           },
           {
-            "fieldPath": "totalGames",
-            "columnName": "totalGames",
+            "fieldPath": "gameId",
+            "columnName": "gameId",
             "affinity": "INTEGER",
             "notNull": true
           },
           {
-            "fieldPath": "startIndex",
-            "columnName": "startIndex",
+            "fieldPath": "champion",
+            "columnName": "champion",
             "affinity": "INTEGER",
             "notNull": true
           },
           {
-            "fieldPath": "endIndex",
-            "columnName": "endIndex",
+            "fieldPath": "platformId",
+            "columnName": "platformId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "season",
+            "columnName": "season",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "queue",
+            "columnName": "queue",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "role",
+            "columnName": "role",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "timestamp",
+            "columnName": "timestamp",
             "affinity": "INTEGER",
             "notNull": true
           }
@@ -181,7 +205,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"865ef7a4f3e023f55ea8e4d497f35700\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"838041955d2c2fbba48f8555d1a14cec\")"
     ]
   }
 }

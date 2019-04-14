@@ -1,24 +1,24 @@
 package com.katkov.lolachievements.data.local.dao
 
-import androidx.room.*
-import com.katkov.lolachievements.data.local.model.MatchlistDbModel
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
+import com.katkov.lolachievements.data.local.model.MatchReferenceDbModel
 import io.reactivex.Single
 
 @Dao
 interface MatchesDao {
 
-    @Query("SELECT COUNT(*) FROM MatchlistDbModel")
+    @Query("SELECT COUNT(*) FROM MatchReferenceDbModel")
     fun getRowsCount(): Single<Int>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(matchlistDbModel: MatchlistDbModel)
+    fun insert(matchReferenceDbModel: MatchReferenceDbModel)
 
-    @Query("SELECT * FROM MatchlistDbModel")
-    fun getMatches(): Single<MatchlistDbModel>
+    @Query("SELECT * FROM MatchReferenceDbModel")
+    fun getMatches(): Single<List<MatchReferenceDbModel>>
 
-    @Update
-    fun update(matchlistDbModel: MatchlistDbModel)
-
-    @Query("DELETE FROM MatchlistDbModel")
+    @Query("DELETE FROM MatchReferenceDbModel")
     fun removeTable()
 }

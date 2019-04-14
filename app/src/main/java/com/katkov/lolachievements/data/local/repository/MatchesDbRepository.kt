@@ -1,7 +1,7 @@
 package com.katkov.lolachievements.data.local.repository
 
 import com.katkov.lolachievements.data.local.database.AppDataBase
-import com.katkov.lolachievements.data.local.model.MatchlistDbModel
+import com.katkov.lolachievements.data.local.model.MatchReferenceDbModel
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single
@@ -18,20 +18,16 @@ constructor(appDataBase: AppDataBase) {
     fun getRowsCount(): Single<Int> = matchesDao.getRowsCount()
         .subscribeOn(Schedulers.io())
 
-    fun saveMatchlistDbModel(matchlistDbModel: MatchlistDbModel): Observable<Unit> =
+    fun saveMatchReferenceDbList(matchReferenceDbList: List<MatchReferenceDbModel>): Observable<Unit> =
         Observable.fromCallable {
-            matchesDao.insert(matchlistDbModel)
+            for (matchReferenceDbModel in matchReferenceDbList) {
+                matchesDao.insert(matchReferenceDbModel)
+            }
         }
             .subscribeOn(Schedulers.io())
 
-    fun getMatchlistDbModel(): Single<MatchlistDbModel> = matchesDao.getMatches()
+    fun getMatchReferenceDbList(): Single<List<MatchReferenceDbModel>> = matchesDao.getMatches()
         .subscribeOn(Schedulers.io())
-
-    fun updateMatchlistDbModel(matchlistDbModel: MatchlistDbModel): Completable =
-        Completable.fromAction {
-            matchesDao.update(matchlistDbModel)
-        }
-            .subscribeOn(Schedulers.io())
 
     fun removeTable(): Completable = Completable.fromAction { matchesDao.removeTable() }
         .subscribeOn(Schedulers.io())

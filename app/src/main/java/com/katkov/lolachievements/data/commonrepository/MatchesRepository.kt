@@ -3,7 +3,7 @@ package com.katkov.lolachievements.data.commonrepository
 import com.katkov.lolachievements.data.cloud.repository.MatchesApiRepository
 import com.katkov.lolachievements.data.local.repository.MatchesDbRepository
 import com.katkov.lolachievements.data.mappers.MatchesMapper
-import com.katkov.lolachievements.domain.model.MatchlistModel
+import com.katkov.lolachievements.domain.model.MatchReferenceModel
 import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.internal.operators.completable.CompletableFromAction
@@ -23,24 +23,15 @@ constructor(
     fun load(): Completable = summonerRepository.getSummoner()
         .flatMapCompletable { summonerModel ->
             matchesApiRepository.getApiMatchList(summonerModel.encryptedAccountId)
-                .map { matchlistApiDto -> mapper.matchlistApiToDbModel(matchlistApiDto) }
-                .flatMapCompletable { matchlistDbModel ->
+                .map { matchlistApiModel -> mapper.mapApiToDbList(matchlistApiModel.matches) }
+                .flatMapCompletable { matchReferenceDbModel ->
                     CompletableFromAction.fromObservable(
-                        matchesDbRepository.saveMatchlistDbModel(matchlistDbModel))
+                        matchesDbRepository.saveMatchReferenceDbList(matchReferenceDbModel))
                 }
         }
 
-    fun getMatches(): Single<MatchlistModel> = matchesDbRepository.getMatchlistDbModel()
-        .map { mapper.matchlistDbToDomainModel(it) }
-
-    fun updateMatches(): Completable = summonerRepository.getSummoner()
-        .flatMapCompletable { summonerModel ->
-            matchesApiRepository.getApiMatchList(summonerModel.encryptedAccountId)
-                .map { mapper.matchlistApiToDbModel(it) }
-                .flatMapCompletable { matchlistDbModel ->
-                    matchesDbRepository.updateMatchlistDbModel(matchlistDbModel)
-                }
-        }
+    fun getMatches(): Single<List<MatchReferenceModel>> = matchesDbRepository.getMatchReferenceDbList()
+        .map { mapper.mapDbToDomainList(it) }
 
     fun removeTable(): Completable = matchesDbRepository.removeTable()
 }
