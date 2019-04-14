@@ -1,7 +1,7 @@
 package com.katkov.lolachievements.data.cloud.repository
 
 import com.katkov.lolachievements.data.cloud.api.ApiService
-import com.katkov.lolachievements.data.cloud.model.SummonerApiDto
+import com.katkov.lolachievements.data.cloud.model.SummonerApiModel
 import com.katkov.lolachievements.data.cloud.utils.ApiUtils.API_KEY
 import com.katkov.lolachievements.data.local.prefser.LoginModelHolder
 import io.reactivex.Single
@@ -15,7 +15,7 @@ constructor(
     private val loginModelHolder: LoginModelHolder
 ) {
 
-    fun getSummonerApiDto(): Single<SummonerApiDto> {
+    fun getSummonerApiDto(): Single<SummonerApiModel> {
         val summonerName = loginModelHolder.getLoginModel()!!.summonerName
 
         return apiService.getSummonerApiDto(summonerName, API_KEY)

@@ -2,7 +2,7 @@ package com.katkov.lolachievements.data.cloud.model
 
 import com.google.gson.annotations.SerializedName
 
-data class SummonerApiDto(
+data class SummonerApiModel(
     @SerializedName("profileIconId")
     val profileIconId: Int,
     @SerializedName("name")

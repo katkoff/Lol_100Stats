@@ -1,6 +1,6 @@
 package com.katkov.lolachievements.data.mappers
 
-import com.katkov.lolachievements.data.cloud.model.ChampionApiDto
+import com.katkov.lolachievements.data.cloud.model.ChampionApiModel
 import com.katkov.lolachievements.data.local.model.ChampionDbModel
 import com.katkov.lolachievements.domain.model.ChampionModel
 import javax.inject.Inject
@@ -9,7 +9,7 @@ class ChampionMapper
 @Inject
 constructor() {
 
-    fun mapApiToDbList(championApiList: List<ChampionApiDto>): List<ChampionDbModel> {
+    fun mapApiToDbList(championApiList: List<ChampionApiModel>): List<ChampionDbModel> {
         val result = mutableListOf<ChampionDbModel>()
         for (masteryApiDto in championApiList) {
             result.add(mapApiToDbModel(masteryApiDto))
@@ -17,15 +17,15 @@ constructor() {
         return result
     }
 
-    private fun mapApiToDbModel(championApiDto: ChampionApiDto): ChampionDbModel = ChampionDbModel(
-        isChestGranted = championApiDto.isChestGranted,
-        championLevel = championApiDto.championLevel,
-        championPoints = championApiDto.championPoints,
-        championId = championApiDto.championId,
-        championPointsUntilNextLevel = championApiDto.championPointsUntilNextLevel,
-        tokensEarned = championApiDto.tokensEarned,
-        championPointsSinceLastLevel = championApiDto.championPointsSinceLastLevel,
-        summonerId = championApiDto.summonerId
+    private fun mapApiToDbModel(championApiModel: ChampionApiModel): ChampionDbModel = ChampionDbModel(
+        isChestGranted = championApiModel.isChestGranted,
+        championLevel = championApiModel.championLevel,
+        championPoints = championApiModel.championPoints,
+        championId = championApiModel.championId,
+        championPointsUntilNextLevel = championApiModel.championPointsUntilNextLevel,
+        tokensEarned = championApiModel.tokensEarned,
+        championPointsSinceLastLevel = championApiModel.championPointsSinceLastLevel,
+        summonerId = championApiModel.summonerId
     )
 
     fun mapDbToDomainList(championDbList: List<ChampionDbModel>): List<ChampionModel> {

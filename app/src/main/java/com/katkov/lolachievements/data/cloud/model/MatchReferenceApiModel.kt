@@ -2,7 +2,7 @@ package com.katkov.lolachievements.data.cloud.model
 
 import com.google.gson.annotations.SerializedName
 
-data class MatchReferenceApiDto(
+data class MatchReferenceApiModel(
     @SerializedName("lane")
     val lane: String,
     @SerializedName("gameId")

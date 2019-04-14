@@ -1,7 +1,7 @@
 package com.katkov.lolachievements.data.mappers
 
-import com.katkov.lolachievements.data.cloud.model.MatchReferenceApiDto
-import com.katkov.lolachievements.data.cloud.model.MatchlistApiDto
+import com.katkov.lolachievements.data.cloud.model.MatchReferenceApiModel
+import com.katkov.lolachievements.data.cloud.model.MatchlistApiModel
 import com.katkov.lolachievements.data.local.model.MatchlistDbModel
 import com.katkov.lolachievements.domain.model.MatchReferenceModel
 import com.katkov.lolachievements.domain.model.MatchlistModel
@@ -14,15 +14,15 @@ constructor() {
     /**
      * API to DB
      */
-    fun matchlistApiToDbModel(matchlistApiDto: MatchlistApiDto): MatchlistDbModel =
+    fun matchlistApiToDbModel(matchlistApiModel: MatchlistApiModel): MatchlistDbModel =
         MatchlistDbModel(
-            matches = matchesApiToDomain(matchlistApiDto.matches),
-            totalGames = matchlistApiDto.totalGames,
-            startIndex = matchlistApiDto.startIndex,
-            endIndex = matchlistApiDto.endIndex
+            matches = matchesApiToDomain(matchlistApiModel.matches),
+            totalGames = matchlistApiModel.totalGames,
+            startIndex = matchlistApiModel.startIndex,
+            endIndex = matchlistApiModel.endIndex
         )
 
-    private fun matchesApiToDomain(matchReferenceApiList: List<MatchReferenceApiDto>): List<MatchReferenceModel> {
+    private fun matchesApiToDomain(matchReferenceApiList: List<MatchReferenceApiModel>): List<MatchReferenceModel> {
         val resultList = mutableListOf<MatchReferenceModel>()
         for (item in matchReferenceApiList) {
             resultList.add(matchReferenceApiToDomainModel(item))
@@ -30,16 +30,16 @@ constructor() {
         return resultList
     }
 
-    private fun matchReferenceApiToDomainModel(matchReferenceApiDto: MatchReferenceApiDto): MatchReferenceModel =
+    private fun matchReferenceApiToDomainModel(matchReferenceApiModel: MatchReferenceApiModel): MatchReferenceModel =
         MatchReferenceModel(
-            lane = matchReferenceApiDto.lane,
-            gameId = matchReferenceApiDto.gameId,
-            champion = matchReferenceApiDto.champion,
-            platformId = matchReferenceApiDto.platformId,
-            season = matchReferenceApiDto.season,
-            queue = matchReferenceApiDto.queue,
-            role = matchReferenceApiDto.role,
-            timestamp = matchReferenceApiDto.timestamp
+            lane = matchReferenceApiModel.lane,
+            gameId = matchReferenceApiModel.gameId,
+            champion = matchReferenceApiModel.champion,
+            platformId = matchReferenceApiModel.platformId,
+            season = matchReferenceApiModel.season,
+            queue = matchReferenceApiModel.queue,
+            role = matchReferenceApiModel.role,
+            timestamp = matchReferenceApiModel.timestamp
         )
 
     /**

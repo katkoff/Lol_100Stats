@@ -1,6 +1,6 @@
 package com.katkov.lolachievements.data.mappers
 
-import com.katkov.lolachievements.data.cloud.model.SummonerApiDto
+import com.katkov.lolachievements.data.cloud.model.SummonerApiModel
 import com.katkov.lolachievements.data.local.model.SummonerDbModel
 import com.katkov.lolachievements.domain.model.SummonerModel
 
@@ -10,24 +10,24 @@ class SummonerMapper
 @Inject
 constructor() {
 
-    fun mapApiToDomainModel(summonerApiDto: SummonerApiDto): SummonerModel = SummonerModel(
-        profileIconId = summonerApiDto.profileIconId,
-        name = summonerApiDto.name,
-        puuid = summonerApiDto.puuid,
-        summonerLevel = summonerApiDto.summonerLevel,
-        revisionDate = summonerApiDto.revisionDate,
-        encryptedId = summonerApiDto.encryptedId,
-        encryptedAccountId = summonerApiDto.accountId
+    fun mapApiToDomainModel(summonerApiModel: SummonerApiModel): SummonerModel = SummonerModel(
+        profileIconId = summonerApiModel.profileIconId,
+        name = summonerApiModel.name,
+        puuid = summonerApiModel.puuid,
+        summonerLevel = summonerApiModel.summonerLevel,
+        revisionDate = summonerApiModel.revisionDate,
+        encryptedId = summonerApiModel.encryptedId,
+        encryptedAccountId = summonerApiModel.accountId
     )
 
-    fun mapApiToDbModel(summonerApiDto: SummonerApiDto): SummonerDbModel = SummonerDbModel(
-        profileIconId = summonerApiDto.profileIconId,
-        name = summonerApiDto.name,
-        puuid = summonerApiDto.puuid,
-        summonerLevel = summonerApiDto.summonerLevel,
-        revisionDate = summonerApiDto.revisionDate,
-        encryptedId = summonerApiDto.encryptedId,
-        encryptedAccountId = summonerApiDto.accountId
+    fun mapApiToDbModel(summonerApiModel: SummonerApiModel): SummonerDbModel = SummonerDbModel(
+        profileIconId = summonerApiModel.profileIconId,
+        name = summonerApiModel.name,
+        puuid = summonerApiModel.puuid,
+        summonerLevel = summonerApiModel.summonerLevel,
+        revisionDate = summonerApiModel.revisionDate,
+        encryptedId = summonerApiModel.encryptedId,
+        encryptedAccountId = summonerApiModel.accountId
     )
 
     fun mapDbToDomainModel(summonerDbModel: SummonerDbModel?): SummonerModel? =

@@ -1,8 +1,8 @@
 package com.katkov.lolachievements.data.cloud.api
 
-import com.katkov.lolachievements.data.cloud.model.ChampionApiDto
-import com.katkov.lolachievements.data.cloud.model.MatchlistApiDto
-import com.katkov.lolachievements.data.cloud.model.SummonerApiDto
+import com.katkov.lolachievements.data.cloud.model.ChampionApiModel
+import com.katkov.lolachievements.data.cloud.model.MatchlistApiModel
+import com.katkov.lolachievements.data.cloud.model.SummonerApiModel
 import com.katkov.lolachievements.data.cloud.utils.ApiUtils
 import io.reactivex.Single
 import retrofit2.http.GET
@@ -15,17 +15,17 @@ interface ApiService {
     fun getSummonerApiDto(
         @Path("summoner_name") summonerName: String,
         @Query("api_key") apiKey: String
-    ): Single<SummonerApiDto>
+    ): Single<SummonerApiModel>
 
     @GET(ApiUtils.BASE_URL + "champion-mastery/v4/champion-masteries/by-summoner/{encryptedSummonerId}")
     fun getChampionApiDto(
         @Path("encryptedSummonerId") encryptedSummonerId: String,
         @Query("api_key") apiKey: String
-    ): Single<List<ChampionApiDto>>
+    ): Single<List<ChampionApiModel>>
 
     @GET(ApiUtils.BASE_URL + "match/v4/matchlists/by-account/{encryptedAccountId}")
     fun getMatchListApiDto(
         @Path("encryptedAccountId") encryptedAccountId: String,
         @Query("api_key") apiKey: String
-    ): Single<MatchlistApiDto>
+    ): Single<MatchlistApiModel>
 }

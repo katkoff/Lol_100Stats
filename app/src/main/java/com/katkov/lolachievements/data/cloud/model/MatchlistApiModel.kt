@@ -2,9 +2,9 @@ package com.katkov.lolachievements.data.cloud.model
 
 import com.google.gson.annotations.SerializedName
 
-data class MatchlistApiDto(
+data class MatchlistApiModel(
     @SerializedName("matches")
-    val matches: List<MatchReferenceApiDto>,
+    val matches: List<MatchReferenceApiModel>,
     @SerializedName("totalGames")
     val totalGames: Int,
     @SerializedName("startIndex")
