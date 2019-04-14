@@ -6,7 +6,6 @@ import com.katkov.lolachievements.data.mappers.ChampionMapper
 import com.katkov.lolachievements.domain.model.ChampionModel
 import io.reactivex.Completable
 import io.reactivex.Single
-import io.reactivex.internal.operators.completable.CompletableFromAction
 import javax.inject.Inject
 
 class ChampionRepository
@@ -25,13 +24,13 @@ constructor(
             championApiRepository.getApiChampion(summonerModel.encryptedId)
                 .map { masteryApiList -> mapper.mapApiToDbList(masteryApiList) }
                 .flatMapCompletable { masteryDbList ->
-                    CompletableFromAction.fromObservable(
-                        championDbRepository.saveChampionDbList(masteryDbList))
+                    championDbRepository.saveChampionDbList(masteryDbList)
                 }
         }
 
-    fun getChampionList(): Single<List<ChampionModel>> = championDbRepository.getChmpionDbList()
-        .map { mapper.mapDbToDomainList(it) }
+    fun getChampionList(): Single<List<ChampionModel>> =
+        championDbRepository.getChmpionDbList()
+            .map { mapper.mapDbToDomainList(it) }
 
     fun updateChampion(): Completable = summonerRepository.getSummoner()
         .flatMapCompletable { summonerModel ->

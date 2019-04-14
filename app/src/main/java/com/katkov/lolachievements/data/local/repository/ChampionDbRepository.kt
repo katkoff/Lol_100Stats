@@ -3,7 +3,6 @@ package com.katkov.lolachievements.data.local.repository
 import com.katkov.lolachievements.data.local.database.AppDataBase
 import com.katkov.lolachievements.data.local.model.ChampionDbModel
 import io.reactivex.Completable
-import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
@@ -18,8 +17,9 @@ constructor(appDataBase: AppDataBase) {
     fun getRowsCount(): Single<Int> = championsDao.getRowsCount()
         .subscribeOn(Schedulers.io())
 
-    fun saveChampionDbList(championDbList: List<ChampionDbModel>): Observable<Unit> =
-        Observable.fromCallable {
+    //TODO repair Observable<Unit> to completable
+    fun saveChampionDbList(championDbList: List<ChampionDbModel>): Completable =
+        Completable.fromAction {
             for (masteryDbModel in championDbList) {
                 championsDao.insert(masteryDbModel)
             }

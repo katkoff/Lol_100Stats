@@ -6,7 +6,6 @@ import com.katkov.lolachievements.data.mappers.MatchesMapper
 import com.katkov.lolachievements.domain.model.MatchReferenceModel
 import io.reactivex.Completable
 import io.reactivex.Single
-import io.reactivex.internal.operators.completable.CompletableFromAction
 import javax.inject.Inject
 
 class MatchesRepository
@@ -25,13 +24,13 @@ constructor(
             matchesApiRepository.getApiMatchList(summonerModel.encryptedAccountId)
                 .map { matchlistApiModel -> mapper.mapApiToDbList(matchlistApiModel.matches) }
                 .flatMapCompletable { matchReferenceDbModel ->
-                    CompletableFromAction.fromObservable(
-                        matchesDbRepository.saveMatchReferenceDbList(matchReferenceDbModel))
+                    matchesDbRepository.saveMatchReferenceDbList(matchReferenceDbModel)
                 }
         }
 
-    fun getMatches(): Single<List<MatchReferenceModel>> = matchesDbRepository.getMatchReferenceDbList()
-        .map { mapper.mapDbToDomainList(it) }
+    fun getMatches(): Single<List<MatchReferenceModel>> =
+        matchesDbRepository.getMatchReferenceDbList()
+            .map { mapper.mapDbToDomainList(it) }
 
     fun removeTable(): Completable = matchesDbRepository.removeTable()
 }
