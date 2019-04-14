@@ -42,15 +42,4 @@ constructor() {
                 encryptedAccountId = summonerDbModel.encryptedAccountId
             )
         }
-
-    fun mapDomainToDbModel(summonerModel: SummonerModel): SummonerDbModel = SummonerDbModel(
-        1,
-        summonerModel.profileIconId,
-        summonerModel.name,
-        summonerModel.puuid,
-        summonerModel.summonerLevel,
-        summonerModel.revisionDate,
-        summonerModel.encryptedId,
-        summonerModel.encryptedAccountId
-    )
 }

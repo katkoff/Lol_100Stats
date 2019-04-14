@@ -33,42 +33,28 @@ internal constructor(
 
         loginInteractor.saveLoginModel(loginModel)
 
-        viewState.setProgressEnable(true)
-        loadSummonerInfo()
+        loadAllInfoToDb()
     }
 
-    //TODO разбить сложные методы на простые
-    //TODO изменить логику прогрессбара
-    private fun loadSummonerInfo() {
+    private fun loadAllInfoToDb() {
+        viewState.setProgressEnable(true)
         // Check that BD doesn't empty
         summonerInteractor.getRowsCount()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ rowsCount ->
-                // DB is empty. Load Summoner from API
+                // If DB is empty, information from API to DB
                 if (rowsCount == 0) {
                     summonerInteractor.loadSummoner()
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe({
                             loadChampions()
-                            loadMatches()
                         }, { throwable ->
                             throwable.printStackTrace()
                             viewState.setProgressEnable(false)
                             viewState.showError(Error(throwable))
                         }).also { compositeDisposable.add(it) }
-
                 } else {
-                    // Summoner exist in DB. Update it
-//                    summonerInteractor.updateSummoner()
-//                        .observeOn(AndroidSchedulers.mainThread())
-//                        .subscribe({
-//                            loadChampions()
-//                            loadMatches()
-//                        }, { throwable ->
-//                            throwable.printStackTrace()
-//                            viewState.setProgressEnable(false)
-//                            viewState.showError(Error(throwable))
-//                        }).also { compositeDisposable.add(it) }
+                    viewState.setProgressEnable(false)
                 }
             }, { throwable ->
                 throwable.printStackTrace()
@@ -78,32 +64,10 @@ internal constructor(
     }
 
     private fun loadChampions() {
-        championInteractor.getRowsCount()
+        championInteractor.loadChampion()
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ rowsCount ->
-                if (rowsCount == 0) {
-                    championInteractor.loadChampion()
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe({
-//                                                        viewState.setProgressEnable(false)
-//                            router.replaceScreen(Screens.BottomNavigationFragmentScreen())
-                        }, { throwable ->
-                            throwable.printStackTrace()
-                            viewState.setProgressEnable(false)
-                            viewState.showError(Error(throwable))
-                        })
-                } else {
-                    championInteractor.updateChampion()
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe({
-//                            viewState.setProgressEnable(false)
-//                            router.replaceScreen(Screens.BottomNavigationFragmentScreen())
-                        }, { throwable ->
-                            throwable.printStackTrace()
-                            viewState.setProgressEnable(false)
-                            viewState.showError(Error(throwable))
-                        })
-                }
+            .subscribe({
+                loadMatches()
             }, { throwable ->
                 throwable.printStackTrace()
                 viewState.setProgressEnable(false)
@@ -112,32 +76,11 @@ internal constructor(
     }
 
     private fun loadMatches() {
-        matchesInteractor.getRowsCount()
+        matchesInteractor.loadMatches()
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ rowsCount ->
-                if (rowsCount == 0) {
-                    matchesInteractor.loadMatches()
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe({
-                            viewState.setProgressEnable(false)
+            .subscribe({
+                viewState.setProgressEnable(false)
 //                            router.replaceScreen(Screens.BottomNavigationFragmentScreen())
-                        }, { throwable ->
-                            throwable.printStackTrace()
-                            viewState.setProgressEnable(false)
-                            viewState.showError(Error(throwable))
-                        })
-                } else {
-                    matchesInteractor.updateMatches()
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe({
-                            viewState.setProgressEnable(false)
-//                            router.replaceScreen(Screens.BottomNavigationFragmentScreen())
-                        }, { throwable ->
-                            throwable.printStackTrace()
-                            viewState.setProgressEnable(false)
-                            viewState.showError(Error(throwable))
-                        })
-                }
             }, { throwable ->
                 throwable.printStackTrace()
                 viewState.setProgressEnable(false)
