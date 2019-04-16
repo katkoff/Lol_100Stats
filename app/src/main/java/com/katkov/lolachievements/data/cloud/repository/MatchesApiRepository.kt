@@ -12,7 +12,11 @@ class MatchesApiRepository
 constructor(
     private val apiService: ApiService
 ) {
-    fun getApiMatchList(encryptedAccountId: String): Single<MatchlistApiModel> =
-        apiService.getMatchListApiDto(encryptedAccountId, ApiUtils.API_KEY)
+    fun getApiMatchList(
+        encryptedAccountId: String,
+        beginIndex: Int,
+        endIndex: Int
+    ): Single<MatchlistApiModel> =
+        apiService.getMatchListApiDto(encryptedAccountId, ApiUtils.API_KEY, beginIndex, endIndex)
             .subscribeOn(Schedulers.io())
 }

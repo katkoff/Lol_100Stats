@@ -26,6 +26,8 @@ interface ApiService {
     @GET(ApiUtils.BASE_URL + "match/v4/matchlists/by-account/{encryptedAccountId}")
     fun getMatchListApiDto(
         @Path("encryptedAccountId") encryptedAccountId: String,
-        @Query("api_key") apiKey: String
+        @Query("api_key") apiKey: String,
+        @Query("beginIndex") beginIndex: Int,
+        @Query("endIndex") endIndex: Int
     ): Single<MatchlistApiModel>
 }
