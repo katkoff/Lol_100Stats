@@ -2,6 +2,7 @@ package com.katkov.lolachievements.application.ui.login
 
 import com.arellomobile.mvp.InjectViewState
 import com.katkov.lolachievements.application.base.BasePresenter
+import com.katkov.lolachievements.application.navigation.Screens
 import com.katkov.lolachievements.di.annotations.GlobalRouter
 import com.katkov.lolachievements.domain.interactor.ChampionInteractor
 import com.katkov.lolachievements.domain.interactor.LoginInteractor
@@ -80,7 +81,7 @@ internal constructor(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 viewState.setProgressEnable(false)
-//                            router.replaceScreen(Screens.BottomNavigationFragmentScreen())
+                router.replaceScreen(Screens.BottomNavigationFragmentScreen())
             }, { throwable ->
                 throwable.printStackTrace()
                 viewState.setProgressEnable(false)
