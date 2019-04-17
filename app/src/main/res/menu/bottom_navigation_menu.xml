@@ -3,9 +3,9 @@
     <item
         android:id="@+id/achievements_menu_item"
         android:icon="@drawable/ic_achievements"
-        android:title="Achiev" />
+        android:title="@string/achievements_menu_item" />
     <item
         android:id="@+id/profile_menu_item"
         android:icon="@drawable/ic_profile"
-        android:title="Profile" />
+        android:title="@string/profile_menu_item" />
 </menu>

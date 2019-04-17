@@ -54,7 +54,7 @@ internal constructor(
         achievements.add(
             AchievementModel(
                 "http://www.clandlan.net/foros/uploads/profile/photo-thumb-42218.png?_r=1547587404",
-                "Начнающий",
+                "Начинающий",
                 "Сыграть 5 матчей",
                 0,
                 5,
@@ -94,7 +94,7 @@ internal constructor(
         achievements.add(
             AchievementModel(
                 "http://www.clandlan.net/foros/uploads/profile/photo-thumb-42218.png?_r=1547587404",
-                "Темный Властелин",
+                "Сенатор Палпатин",
                 "Сыграть 1500 матчей",
                 0,
                 1500,
@@ -102,10 +102,18 @@ internal constructor(
         achievements.add(
             AchievementModel(
                 "http://www.clandlan.net/foros/uploads/profile/photo-thumb-42218.png?_r=1547587404",
-                "Абасраца",
+                "Танос",
                 "Сыграть 2000 матчей",
                 0,
                 2000,
+                twoThousandMatchesProgress))
+        achievements.add(
+            AchievementModel(
+                "http://www.clandlan.net/foros/uploads/profile/photo-thumb-42218.png?_r=1547587404",
+                "Абасраца",
+                "Сыграть 3000 матчей",
+                0,
+                3000,
                 twoThousandMatchesProgress))
 
         return achievements

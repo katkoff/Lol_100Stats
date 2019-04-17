@@ -18,7 +18,6 @@ import toothpick.Toothpick
 import javax.inject.Inject
 import javax.inject.Provider
 
-//TODO extract hardcode strings from all layouts to R.string
 class LoginFragment : BaseFragment(), LoginView {
 
     @Inject
@@ -61,7 +60,7 @@ class LoginFragment : BaseFragment(), LoginView {
     override fun showServerChoiceDialog() {
         val serverNames = ServerNamesHandler.serverNames
         val dialogBuilder = AlertDialog.Builder(context)
-        dialogBuilder.setTitle(getString(R.string.first_entry_choose_server_dialog_title))
+        dialogBuilder.setTitle(getString(R.string.login_screen_choose_server_dialog_title))
             .setItems(serverNames) { _, selectedIndex ->
                 presenter.onServerNameSelected(
                     selectedIndex)

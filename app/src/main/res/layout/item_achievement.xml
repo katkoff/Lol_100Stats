@@ -44,18 +44,29 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toRightOf="@+id/imageView_achievementIcon"
-                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView_achievementTitle"
                 tools:text="Description Description Description" />
+
+            <TextView
+                android:id="@+id/textView_achievementTotalProgress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:textColor="@color/colorAccent"
+                android:fontFamily="@font/achievement_progress_font"
+                android:textSize="32sp"
+                app:layout_constraintBottom_toTopOf="@+id/seekBar_achievement"
+                app:layout_constraintLeft_toRightOf="@+id/textView_achievementDescription"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="1500" />
 
             <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/seekBar_achievement"
                 style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginBottom="8dp"

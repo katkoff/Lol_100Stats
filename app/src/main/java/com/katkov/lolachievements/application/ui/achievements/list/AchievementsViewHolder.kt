@@ -21,5 +21,7 @@ class AchievementsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
         itemView.seekBar_achievement.max = achievement.progressMax
         itemView.seekBar_achievement.progress = achievement.progress
         itemView.seekBar_achievement.isEnabled = false
+
+        itemView.textView_achievementTotalProgress.text = achievement.progress.toString()
     }
 }

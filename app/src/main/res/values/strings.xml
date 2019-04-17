@@ -1,6 +1,26 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ExtraTranslation">
     <string name="app_name">League of Legends</string>
-    
-    <!-- First entry screen -->
-    <string name="first_entry_choose_server_dialog_title">Choose server name:</string>
+
+    <!-- Login screen -->
+    <string name="login_screen_choose_server_dialog_title">Choose server name:</string>
+    <string name="login_screen_summoner_name_hint">Enter summoner name</string>
+    <string name="login_screen_server_name_hint">Enter server name</string>
+    <string name="login_screen_button_login">Login</string>
+
+    <!-- Check entry info screen -->
+    <string name="check_screen_summoner_name_label">Summoner name:</string>
+    <string name="check_screen_server_name_label">Server name:</string>
+    <string name="check_screen_button_summoner_info">Show summoner info</string>
+    <string name="check_screen_button_logout">Logout</string>
+
+    <!-- Summoner info screen -->
+    <string name="info_screen_summoner_name_label">Summoner name:</string>
+    <string name="info_screen_summoner_level_label">Summoner level:</string>
+    <string name="info_screen_granted_chest_label">Granted chest count in season:</string>
+    <string name="info_screen_button_change_summoner">Change summoner</string>
+
+    <!-- Menu items -->
+    <string name="achievements_menu_item">Achiev</string>
+    <string name="profile_menu_item">Profile</string>
+
 </resources>
