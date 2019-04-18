@@ -20,35 +20,35 @@ class CommonModule(context: Context) : Module() {
         bind(Context::class.java).toInstance(context)
 
         bind(SharedPreferences::class.java)
-                .toInstance(context.getSharedPreferences(LOL_PREFERENCE, Context.MODE_PRIVATE))
+            .toInstance(context.getSharedPreferences(LOL_PREFERENCE, Context.MODE_PRIVATE))
 
         bind(OkHttpClient::class.java)
-                .toProvider(OkHttpClientProvider::class.java)
-                .providesSingletonInScope()
+            .toProvider(OkHttpClientProvider::class.java)
+            .providesSingletonInScope()
 
         bind(Gson::class.java).toInstance(GsonBuilder().create())
 
         bind(GsonConverterFactory::class.java)
-                .toInstance(GsonConverterFactory.create())
+            .toInstance(GsonConverterFactory.create())
 
         bind(RxJava2CallAdapterFactory::class.java)
-                .toInstance(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
+            .toInstance(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
 
         bind(Interceptor::class.java)
-                .withName("logInterceptor")
-                .toProvider(LoggingInterceptorProvider::class.java)
+            .withName("logInterceptor")
+            .toProvider(LoggingInterceptorProvider::class.java)
 
         bind(ApiService::class.java)
-                .toProvider(LolApiServiceProvider::class.java)
-                .providesSingletonInScope()
+            .toProvider(LolApiServiceProvider::class.java)
+            .providesSingletonInScope()
 
         bind(Prefser::class.java)
-                .toProvider(PrefserProvider::class.java)
-                .singletonInScope()
+            .toProvider(PrefserProvider::class.java)
+            .singletonInScope()
 
         bind(Interceptor::class.java)
-                .withName("serverNameInterceptor")
-                .toProvider(ServerNameInterceptorProvider::class.java)
+            .withName("serverNameInterceptor")
+            .toProvider(ServerNameInterceptorProvider::class.java)
     }
 
     companion object {

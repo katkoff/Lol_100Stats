@@ -19,12 +19,12 @@ constructor(private val loginModelHolder: LoginModelHolder) : Interceptor {
         val serverCode = loginModelHolder.getLoginModel()!!.serverCode
         val newHost = serverCode + "." + originalUrl.host()
         val newUrl = request.url().newBuilder()
-                .host(newHost)
-                .build()
+            .host(newHost)
+            .build()
 
         request = request.newBuilder()
-                .url(newUrl)
-                .build()
+            .url(newUrl)
+            .build()
 
         return chain.proceed(request)
     }

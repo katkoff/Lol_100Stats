@@ -10,8 +10,7 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.katkov.lolachievements.R
 import com.katkov.lolachievements.application.base.BaseFragment
 import com.katkov.lolachievements.di.Scopes
-import com.katkov.lolachievements.domain.model.SummonerDto
-import com.katkov.lolachievements.utils.CommonStringUtils
+import com.katkov.lolachievements.domain.model.SummonerModel
 import com.katkov.lolachievements.utils.TextInputUtils
 import kotlinx.android.synthetic.main.fragment_summoner_info.*
 import toothpick.Toothpick
@@ -44,13 +43,9 @@ class SummonerInfoFragment : BaseFragment(), SummonerInfoView {
         return inflater.inflate(R.layout.fragment_summoner_info, container, false)
     }
 
-    override fun fillSummonerInfo(summonerDto: SummonerDto) {
-        if (summonerDto.summonerName != null) {
-            TextInputUtils.setText(textView_summonerName, summonerDto.summonerName)
-        } else {
-            TextInputUtils.setText(textView_summonerName, CommonStringUtils.UNKNOWN_VALUE)
-        }
-        TextInputUtils.setText(textView_summonerLevel, summonerDto.summonerLevel.toString())
+    override fun fillSummonerInfo(summonerModel: SummonerModel) {
+        TextInputUtils.setText(textView_summonerName, summonerModel.name)
+        TextInputUtils.setText(textView_summonerLevel, summonerModel.summonerLevel.toString())
     }
 
     override fun fillChestCount(chestCount: Int) {

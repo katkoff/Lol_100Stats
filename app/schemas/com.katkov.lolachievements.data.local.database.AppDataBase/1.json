@@ -2,15 +2,21 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "d2399bdf4523b9bf440e14c37d66b353",
+    "identityHash": "838041955d2c2fbba48f8555d1a14cec",
     "entities": [
       {
-        "tableName": "Summoner",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `name` TEXT, `level` INTEGER NOT NULL, `isAvailable` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "tableName": "SummonerDbModel",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `profileIconId` INTEGER NOT NULL, `name` TEXT NOT NULL, `puuid` TEXT NOT NULL, `summonerLevel` INTEGER NOT NULL, `revisionDate` INTEGER NOT NULL, `encryptedId` TEXT NOT NULL, `encryptedAccountId` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
             "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "profileIconId",
+            "columnName": "profileIconId",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -18,17 +24,171 @@
             "fieldPath": "name",
             "columnName": "name",
             "affinity": "TEXT",
-            "notNull": false
+            "notNull": true
           },
           {
-            "fieldPath": "level",
-            "columnName": "level",
+            "fieldPath": "puuid",
+            "columnName": "puuid",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "summonerLevel",
+            "columnName": "summonerLevel",
             "affinity": "INTEGER",
             "notNull": true
           },
           {
-            "fieldPath": "isAvailable",
-            "columnName": "isAvailable",
+            "fieldPath": "revisionDate",
+            "columnName": "revisionDate",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "encryptedId",
+            "columnName": "encryptedId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "encryptedAccountId",
+            "columnName": "encryptedAccountId",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "ChampionDbModel",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `isChestGranted` INTEGER NOT NULL, `championLevel` INTEGER NOT NULL, `championPoints` INTEGER NOT NULL, `championId` INTEGER NOT NULL, `championPointsUntilNextLevel` INTEGER NOT NULL, `tokensEarned` INTEGER NOT NULL, `championPointsSinceLastLevel` INTEGER NOT NULL, `summonerId` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "isChestGranted",
+            "columnName": "isChestGranted",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "championLevel",
+            "columnName": "championLevel",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "championPoints",
+            "columnName": "championPoints",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "championId",
+            "columnName": "championId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "championPointsUntilNextLevel",
+            "columnName": "championPointsUntilNextLevel",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tokensEarned",
+            "columnName": "tokensEarned",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "championPointsSinceLastLevel",
+            "columnName": "championPointsSinceLastLevel",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "summonerId",
+            "columnName": "summonerId",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "MatchReferenceDbModel",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `lane` TEXT NOT NULL, `gameId` INTEGER NOT NULL, `champion` INTEGER NOT NULL, `platformId` TEXT NOT NULL, `season` INTEGER NOT NULL, `queue` INTEGER NOT NULL, `role` TEXT NOT NULL, `timestamp` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "lane",
+            "columnName": "lane",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "gameId",
+            "columnName": "gameId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "champion",
+            "columnName": "champion",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "platformId",
+            "columnName": "platformId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "season",
+            "columnName": "season",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "queue",
+            "columnName": "queue",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "role",
+            "columnName": "role",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "timestamp",
+            "columnName": "timestamp",
             "affinity": "INTEGER",
             "notNull": true
           }
@@ -37,16 +197,15 @@
           "columnNames": [
             "id"
           ],
-          "autoGenerate": false
+          "autoGenerate": true
         },
         "indices": [],
         "foreignKeys": []
       }
     ],
-    "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"d2399bdf4523b9bf440e14c37d66b353\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"838041955d2c2fbba48f8555d1a14cec\")"
     ]
   }
 }

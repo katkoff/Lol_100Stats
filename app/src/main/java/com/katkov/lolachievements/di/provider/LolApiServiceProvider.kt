@@ -12,17 +12,18 @@ import javax.inject.Provider
 class LolApiServiceProvider
 @Inject
 constructor(
-        private val okHttpClient: OkHttpClient,
-        private val rxJava2CallAdapterFactory: RxJava2CallAdapterFactory,
-        private val gsonConverterFactory: GsonConverterFactory) : Provider<ApiService> {
+    private val okHttpClient: OkHttpClient,
+    private val rxJava2CallAdapterFactory: RxJava2CallAdapterFactory,
+    private val gsonConverterFactory: GsonConverterFactory
+) : Provider<ApiService> {
 
     override fun get(): ApiService {
         val retrofit = Retrofit.Builder()
-                .baseUrl(ApiUtils.BASE_URL)
-                .client(okHttpClient)
-                .addConverterFactory(gsonConverterFactory)
-                .addCallAdapterFactory(rxJava2CallAdapterFactory)
-                .build()
+            .baseUrl(ApiUtils.BASE_URL)
+            .client(okHttpClient)
+            .addConverterFactory(gsonConverterFactory)
+            .addCallAdapterFactory(rxJava2CallAdapterFactory)
+            .build()
         return retrofit.create(ApiService::class.java)
     }
 }

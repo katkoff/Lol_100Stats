@@ -1,12 +1,16 @@
 package com.katkov.lolachievements.application.ui.login
 
 import com.arellomobile.mvp.InjectViewState
-import com.arellomobile.mvp.MvpPresenter
+import com.katkov.lolachievements.application.base.BasePresenter
 import com.katkov.lolachievements.application.navigation.Screens
 import com.katkov.lolachievements.di.annotations.GlobalRouter
+import com.katkov.lolachievements.domain.interactor.ChampionInteractor
+import com.katkov.lolachievements.domain.interactor.LoginInteractor
+import com.katkov.lolachievements.domain.interactor.MatchesInteractor
+import com.katkov.lolachievements.domain.interactor.SummonerInteractor
 import com.katkov.lolachievements.domain.model.LoginModel
-import com.katkov.lolachievements.domain.usecase.LoginUseCase
 import com.katkov.lolachievements.utils.ServerNamesHandler
+import io.reactivex.android.schedulers.AndroidSchedulers
 import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
@@ -14,9 +18,12 @@ import javax.inject.Inject
 class LoginPresenter
 @Inject
 internal constructor(
-    private val loginUseCase: LoginUseCase,
+    private val loginInteractor: LoginInteractor,
+    private val summonerInteractor: SummonerInteractor,
+    private val championInteractor: ChampionInteractor,
+    private val matchesInteractor: MatchesInteractor,
     @GlobalRouter private val router: Router
-) : MvpPresenter<LoginView>() {
+) : BasePresenter<LoginView>() {
 
     private var selectedNameIndex: Int = 0
 
@@ -25,8 +32,61 @@ internal constructor(
             summonerName,
             ServerNamesHandler.getCodeByIndex(selectedNameIndex))
 
-        loginUseCase.saveLoginModel(loginModel)
-        router.replaceScreen(Screens.BottomNavigationFragmentScreen())
+        loginInteractor.saveLoginModel(loginModel)
+
+        loadAllInfoToDb()
+    }
+
+    private fun loadAllInfoToDb() {
+        viewState.setProgressEnable(true)
+        // Check that BD doesn't empty
+        summonerInteractor.getRowsCount()
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ rowsCount ->
+                // If DB is empty, information from API to DB
+                if (rowsCount == 0) {
+                    summonerInteractor.loadSummoner()
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe({
+                            loadChampions()
+                        }, { throwable ->
+                            throwable.printStackTrace()
+                            viewState.setProgressEnable(false)
+                            viewState.showError(Error(throwable))
+                        }).also { compositeDisposable.add(it) }
+                } else {
+                    viewState.setProgressEnable(false)
+                }
+            }, { throwable ->
+                throwable.printStackTrace()
+                viewState.setProgressEnable(false)
+                viewState.showError(Error(throwable))
+            }).also { compositeDisposable.add(it) }
+    }
+
+    private fun loadChampions() {
+        championInteractor.loadChampion()
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                loadMatches()
+            }, { throwable ->
+                throwable.printStackTrace()
+                viewState.setProgressEnable(false)
+                viewState.showError(Error(throwable))
+            }).also { compositeDisposable.add(it) }
+    }
+
+    private fun loadMatches() {
+        matchesInteractor.loadMatches()
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                viewState.setProgressEnable(false)
+                router.replaceScreen(Screens.BottomNavigationFragmentScreen())
+            }, { throwable ->
+                throwable.printStackTrace()
+                viewState.setProgressEnable(false)
+                viewState.showError(Error(throwable))
+            }).also { compositeDisposable.add(it) }
     }
 
     fun onServerNameClicked() {

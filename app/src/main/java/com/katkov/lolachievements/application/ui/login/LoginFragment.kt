@@ -60,7 +60,7 @@ class LoginFragment : BaseFragment(), LoginView {
     override fun showServerChoiceDialog() {
         val serverNames = ServerNamesHandler.serverNames
         val dialogBuilder = AlertDialog.Builder(context)
-        dialogBuilder.setTitle(getString(R.string.first_entry_choose_server_dialog_title))
+        dialogBuilder.setTitle(getString(R.string.login_screen_choose_server_dialog_title))
             .setItems(serverNames) { _, selectedIndex ->
                 presenter.onServerNameSelected(
                     selectedIndex)
@@ -71,6 +71,14 @@ class LoginFragment : BaseFragment(), LoginView {
 
     override fun showSelectedName(selectedName: String) {
         TextInputUtils.setText(inputLayout_serverName, selectedName)
+    }
+
+    override fun setProgressEnable(isEnable: Boolean) {
+        if (isEnable) {
+            progressbar_login.visibility = View.VISIBLE
+        } else {
+            progressbar_login.visibility = View.GONE
+        }
     }
 
     companion object {

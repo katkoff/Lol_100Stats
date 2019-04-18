@@ -1,75 +1,60 @@
 package com.katkov.lolachievements.application.ui.achievements
 
 import com.arellomobile.mvp.InjectViewState
-import com.arellomobile.mvp.MvpPresenter
-import com.katkov.lolachievements.domain.interactor.MatchInteractor
-import com.katkov.lolachievements.domain.interactor.SummonerInfoInteractor
+import com.katkov.lolachievements.application.base.BasePresenter
+import com.katkov.lolachievements.data.commonrepository.MatchesRepository
 import com.katkov.lolachievements.domain.model.AchievementModel
-import com.katkov.lolachievements.domain.model.MatchlistDto
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
 @InjectViewState
 class AchievementsPresenter
 @Inject
 internal constructor(
-    private val matchInteractor: MatchInteractor,
-    private val summonerInfoInteractor: SummonerInfoInteractor
-) : MvpPresenter<AchievementsView>() {
-
-    private val compositeDisposable = CompositeDisposable()
+    private val matchesRepository: MatchesRepository
+) : BasePresenter<AchievementsView>() {
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
 
-        getSummonerInfo()
+        fillAchievements()
     }
 
-    private fun getSummonerInfo() {
-        viewState.setProgressEnable(true)
-        val disposable = summonerInfoInteractor.getSummonerDTO()
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                getMatchlist(it.accountId)
-            }, {
-                viewState.setProgressEnable(false)
-                viewState.showError(Error(it))
-                it.printStackTrace()
-            })
-        compositeDisposable.addAll(disposable)
+    private fun fillAchievements() {
+        getMatches()
     }
 
-    private fun getMatchlist(encryptedAccountId: String) {
-        val disposable = matchInteractor.getMatchlist(encryptedAccountId)
+    private fun getMatches() {
+        matchesRepository.getMatches()
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-
-                val achievements = getMatchAchievements(it)
+            .subscribe({ matches ->
+                val achievements = getMatchAchievements(matches.size)
                 viewState.fillAchievements(achievements)
                 viewState.setProgressEnable(false)
-
             }, {
                 viewState.setProgressEnable(false)
                 viewState.showError(Error(it))
                 it.printStackTrace()
-            })
-        compositeDisposable.addAll(disposable)
+            }).also { compositeDisposable.add(it) }
     }
 
-    private fun getMatchAchievements(matchlistDto: MatchlistDto): MutableList<AchievementModel> {
+    // TODO вынести в другой слой
+    private fun getMatchAchievements(matchesCount: Int): MutableList<AchievementModel> {
         val achievements = mutableListOf<AchievementModel>()
 
-        val totalGames = matchlistDto.totalGames
-        val fiveMatchesProgress = if (totalGames <= 5) 5 else totalGames
-        val twentyFiveMatchesProgress = if (totalGames <= 25) 25 else totalGames
-        val oneHundredFiveMatchesProgress = if (totalGames <= 100) 100 else totalGames
-        val fiveHundredMatchesProgress = if (totalGames <= 500) 500 else totalGames
+        val fiveMatchesProgress = if (matchesCount >= 5) 5 else matchesCount
+        val twentyFiveMatchesProgress = if (matchesCount >= 25) 25 else matchesCount
+        val oneHundredFiveMatchesProgress = if (matchesCount >= 100) 100 else matchesCount
+        val fiveHundredMatchesProgress = if (matchesCount >= 500) 500 else matchesCount
+        val oneThousandMatchesProgress = if (matchesCount >= 1000) 1000 else matchesCount
+        val oneThousandAndFiveHundredMatchesProgress =
+            if (matchesCount >= 1500) 1500 else matchesCount
+        val twoThousandMatchesProgress = if (matchesCount >= 2000) 2000 else matchesCount
 
         achievements.add(
             AchievementModel(
                 "http://www.clandlan.net/foros/uploads/profile/photo-thumb-42218.png?_r=1547587404",
-                "Начнающий",
+                "Начинающий",
                 "Сыграть 5 матчей",
                 0,
                 5,
@@ -98,12 +83,39 @@ internal constructor(
                 0,
                 500,
                 fiveHundredMatchesProgress))
+        achievements.add(
+            AchievementModel(
+                "http://www.clandlan.net/foros/uploads/profile/photo-thumb-42218.png?_r=1547587404",
+                "Наиверховнейший",
+                "Сыграть 1000 матчей",
+                0,
+                1000,
+                oneThousandMatchesProgress))
+        achievements.add(
+            AchievementModel(
+                "http://www.clandlan.net/foros/uploads/profile/photo-thumb-42218.png?_r=1547587404",
+                "Сенатор Палпатин",
+                "Сыграть 1500 матчей",
+                0,
+                1500,
+                oneThousandAndFiveHundredMatchesProgress))
+        achievements.add(
+            AchievementModel(
+                "http://www.clandlan.net/foros/uploads/profile/photo-thumb-42218.png?_r=1547587404",
+                "Танос",
+                "Сыграть 2000 матчей",
+                0,
+                2000,
+                twoThousandMatchesProgress))
+        achievements.add(
+            AchievementModel(
+                "http://www.clandlan.net/foros/uploads/profile/photo-thumb-42218.png?_r=1547587404",
+                "Абасраца",
+                "Сыграть 3000 матчей",
+                0,
+                3000,
+                twoThousandMatchesProgress))
 
         return achievements
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        compositeDisposable.dispose()
     }
 }
