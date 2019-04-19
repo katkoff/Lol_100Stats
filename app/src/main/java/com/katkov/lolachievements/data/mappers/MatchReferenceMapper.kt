@@ -5,7 +5,7 @@ import com.katkov.lolachievements.data.local.model.MatchReferenceDbModel
 import com.katkov.lolachievements.domain.model.MatchReferenceModel
 import javax.inject.Inject
 
-class MatchesMapper
+class MatchReferenceMapper
 @Inject
 constructor() {
 

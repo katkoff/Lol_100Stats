@@ -6,7 +6,7 @@ import com.katkov.lolachievements.application.navigation.Screens
 import com.katkov.lolachievements.di.annotations.GlobalRouter
 import com.katkov.lolachievements.domain.interactor.ChampionInteractor
 import com.katkov.lolachievements.domain.interactor.LoginInteractor
-import com.katkov.lolachievements.domain.interactor.MatchesInteractor
+import com.katkov.lolachievements.domain.interactor.MatchReferenceInteractor
 import com.katkov.lolachievements.domain.interactor.SummonerInteractor
 import com.katkov.lolachievements.domain.model.LoginModel
 import com.katkov.lolachievements.utils.ServerNamesHandler
@@ -21,7 +21,7 @@ internal constructor(
     private val loginInteractor: LoginInteractor,
     private val summonerInteractor: SummonerInteractor,
     private val championInteractor: ChampionInteractor,
-    private val matchesInteractor: MatchesInteractor,
+    private val matchReferenceInteractor: MatchReferenceInteractor,
     @GlobalRouter private val router: Router
 ) : BasePresenter<LoginView>() {
 
@@ -68,7 +68,7 @@ internal constructor(
         championInteractor.loadChampion()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                loadMatches()
+                loadMatchReferenceListToDb()
             }, { throwable ->
                 throwable.printStackTrace()
                 viewState.setProgressEnable(false)
@@ -76,8 +76,8 @@ internal constructor(
             }).also { compositeDisposable.add(it) }
     }
 
-    private fun loadMatches() {
-        matchesInteractor.loadMatches()
+    private fun loadMatchReferenceListToDb() {
+        matchReferenceInteractor.loadMatchReferenceListToDb()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 viewState.setProgressEnable(false)

@@ -2,8 +2,8 @@ package com.katkov.lolachievements.data.local.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.katkov.lolachievements.data.local.dao.ChampionsDao
-import com.katkov.lolachievements.data.local.dao.MatchesDao
+import com.katkov.lolachievements.data.local.dao.ChampionDao
+import com.katkov.lolachievements.data.local.dao.MatchReferenceDao
 import com.katkov.lolachievements.data.local.dao.SummonerDao
 import com.katkov.lolachievements.data.local.model.ChampionDbModel
 import com.katkov.lolachievements.data.local.model.MatchReferenceDbModel
@@ -18,6 +18,6 @@ import com.katkov.lolachievements.data.local.model.SummonerDbModel
 abstract class AppDataBase : RoomDatabase() {
 
     abstract fun summonerDao(): SummonerDao
-    abstract fun championsDao(): ChampionsDao
-    abstract fun matchesDao(): MatchesDao
+    abstract fun championsDao(): ChampionDao
+    abstract fun matchesDao(): MatchReferenceDao
 }

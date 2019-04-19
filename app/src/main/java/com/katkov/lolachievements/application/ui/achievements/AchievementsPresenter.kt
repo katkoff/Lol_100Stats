@@ -2,7 +2,7 @@ package com.katkov.lolachievements.application.ui.achievements
 
 import com.arellomobile.mvp.InjectViewState
 import com.katkov.lolachievements.application.base.BasePresenter
-import com.katkov.lolachievements.data.commonrepository.MatchesRepository
+import com.katkov.lolachievements.data.commonrepository.MatchReferenceRepository
 import com.katkov.lolachievements.domain.model.AchievementModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import javax.inject.Inject
@@ -11,7 +11,7 @@ import javax.inject.Inject
 class AchievementsPresenter
 @Inject
 internal constructor(
-    private val matchesRepository: MatchesRepository
+    private val matchReferenceRepository: MatchReferenceRepository
 ) : BasePresenter<AchievementsView>() {
 
     override fun onFirstViewAttach() {
@@ -25,7 +25,7 @@ internal constructor(
     }
 
     private fun getMatches() {
-        matchesRepository.getMatches()
+        matchReferenceRepository.getMatches()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ matches ->
                 val achievements = getMatchAchievements(matches.size)

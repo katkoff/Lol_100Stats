@@ -8,7 +8,7 @@ import com.katkov.lolachievements.data.local.model.MatchReferenceDbModel
 import io.reactivex.Single
 
 @Dao
-interface MatchesDao {
+interface MatchReferenceDao {
 
     @Query("SELECT COUNT(*) FROM MatchReferenceDbModel")
     fun getRowsCount(): Single<Int>

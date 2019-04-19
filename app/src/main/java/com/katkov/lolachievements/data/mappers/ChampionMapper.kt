@@ -17,16 +17,17 @@ constructor() {
         return result
     }
 
-    private fun mapApiToDbModel(championApiModel: ChampionApiModel): ChampionDbModel = ChampionDbModel(
-        isChestGranted = championApiModel.isChestGranted,
-        championLevel = championApiModel.championLevel,
-        championPoints = championApiModel.championPoints,
-        championId = championApiModel.championId,
-        championPointsUntilNextLevel = championApiModel.championPointsUntilNextLevel,
-        tokensEarned = championApiModel.tokensEarned,
-        championPointsSinceLastLevel = championApiModel.championPointsSinceLastLevel,
-        summonerId = championApiModel.summonerId
-    )
+    private fun mapApiToDbModel(championApiModel: ChampionApiModel): ChampionDbModel =
+        ChampionDbModel(
+            isChestGranted = championApiModel.isChestGranted,
+            championLevel = championApiModel.championLevel,
+            championPoints = championApiModel.championPoints,
+            championId = championApiModel.championId,
+            championPointsUntilNextLevel = championApiModel.championPointsUntilNextLevel,
+            tokensEarned = championApiModel.tokensEarned,
+            championPointsSinceLastLevel = championApiModel.championPointsSinceLastLevel,
+            summonerId = championApiModel.summonerId
+        )
 
     fun mapDbToDomainList(championDbList: List<ChampionDbModel>): List<ChampionModel> {
         val result = mutableListOf<ChampionModel>()

@@ -7,7 +7,7 @@ import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class MatchesDbRepository
+class MatchReferenceDbRepository
 @Inject
 constructor(appDataBase: AppDataBase) {
 

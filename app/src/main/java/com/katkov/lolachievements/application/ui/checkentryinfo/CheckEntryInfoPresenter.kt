@@ -8,7 +8,7 @@ import com.katkov.lolachievements.di.annotations.AfterLoggingRouter
 import com.katkov.lolachievements.di.annotations.GlobalRouter
 import com.katkov.lolachievements.domain.interactor.ChampionInteractor
 import com.katkov.lolachievements.domain.interactor.LoginInteractor
-import com.katkov.lolachievements.domain.interactor.MatchesInteractor
+import com.katkov.lolachievements.domain.interactor.MatchReferenceInteractor
 import com.katkov.lolachievements.domain.interactor.SummonerInteractor
 import io.reactivex.android.schedulers.AndroidSchedulers
 import ru.terrakok.cicerone.Router
@@ -24,7 +24,7 @@ constructor(
     private val loginInteractor: LoginInteractor,
     private val summonerInteractor: SummonerInteractor,
     private val championInteractor: ChampionInteractor,
-    private val matchesInteractor: MatchesInteractor
+    private val matchReferenceInteractor: MatchReferenceInteractor
 ) : BasePresenter<CheckEntryInfoView>() {
 
     override fun onFirstViewAttach() {
@@ -67,7 +67,7 @@ constructor(
     }
 
     private fun removeMatchesDBTable() {
-        matchesInteractor.removeTable()
+        matchReferenceInteractor.removeTable()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 viewState.setProgressEnable(false)
