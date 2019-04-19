@@ -11,7 +11,7 @@ class MatchReferenceDbRepository
 @Inject
 constructor(appDataBase: AppDataBase) {
 
-    private var matchesDao = appDataBase.matchesDao()
+    private var matchesDao = appDataBase.matchReferenceDao()
 
     // For checking that table rows exist before starting download from API
     fun getRowsCount(): Single<Int> = matchesDao.getRowsCount()
@@ -25,7 +25,7 @@ constructor(appDataBase: AppDataBase) {
         }
             .subscribeOn(Schedulers.io())
 
-    fun getMatchReferenceDbList(): Single<List<MatchReferenceDbModel>> = matchesDao.getMatches()
+    fun getMatchReferenceDbList(): Single<List<MatchReferenceDbModel>> = matchesDao.getMatchReferenceDbList()
         .subscribeOn(Schedulers.io())
 
     fun removeTable(): Completable = Completable.fromAction { matchesDao.removeTable() }

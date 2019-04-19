@@ -17,7 +17,7 @@ interface MatchReferenceDao {
     fun insert(matchReferenceDbModel: MatchReferenceDbModel)
 
     @Query("SELECT * FROM MatchReferenceDbModel")
-    fun getMatches(): Single<List<MatchReferenceDbModel>>
+    fun getMatchReferenceDbList(): Single<List<MatchReferenceDbModel>>
 
     @Query("DELETE FROM MatchReferenceDbModel")
     fun removeTable()
