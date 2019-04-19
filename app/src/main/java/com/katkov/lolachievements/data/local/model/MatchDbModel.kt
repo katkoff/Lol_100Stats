@@ -10,7 +10,7 @@ data class MatchDbModel(
     val matchId: Long,
     val mapId: Int,
     val gameDuration: Long,
-    val win: Boolean,
+    val win: String,
 
     val kills: Int,
     val deaths: Int,
@@ -32,19 +32,20 @@ data class MatchDbModel(
     val firstBlood: Boolean,
 
     val totalDamageTaken: Int,
+    val physicalDamageTaken: Int,
     val magicalDamageTaken: Int,
 
+    val totalDamageDealt: Int,
     val physicalDamageDealt: Int,
     val totalDamageDealtToChampions: Int,
     val physicalDamageDealtToChampions: Int,
-    val totalDamageDealt: Int,
 
     val totalHeal: Int,
 
     val wardsKilled: Int,
     val wardsPlaced: Int,
-    val neutralMinionsKilled: Int,
     val totalMinionsKilled: Int,
+    val neutralMinionsKilled: Int,
     val goldEarned: Int,
     val goldSpent: Int
 
