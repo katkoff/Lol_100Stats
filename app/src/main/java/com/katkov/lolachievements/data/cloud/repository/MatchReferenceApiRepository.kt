@@ -7,7 +7,7 @@ import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class MatchesApiRepository
+class MatchReferenceApiRepository
 @Inject
 constructor(
     private val apiService: ApiService

@@ -1,6 +1,6 @@
 package com.katkov.lolachievements.data.commonrepository
 
-import com.katkov.lolachievements.data.cloud.repository.MatchesApiRepository
+import com.katkov.lolachievements.data.cloud.repository.MatchReferenceApiRepository
 import com.katkov.lolachievements.data.local.repository.MatchReferenceDbRepository
 import com.katkov.lolachievements.data.mappers.MatchReferenceMapper
 import com.katkov.lolachievements.domain.model.MatchReferenceModel
@@ -13,7 +13,7 @@ class MatchReferenceRepository
 @Inject
 constructor(
     private val mapper: MatchReferenceMapper,
-    private val matchesApiRepository: MatchesApiRepository,
+    private val matchReferenceApiRepository: MatchReferenceApiRepository,
     private val matchReferenceDbRepository: MatchReferenceDbRepository,
     private val summonerRepository: SummonerRepository
 ) {
@@ -26,7 +26,7 @@ constructor(
             Observable.range(0, Int.MAX_VALUE)
                 .map { digit -> Pair(digit * 100, digit * 100 + 99) }
                 .concatMap { (beginIndex, endIndex) ->
-                    matchesApiRepository.getApiMatchList(
+                    matchReferenceApiRepository.getApiMatchList(
                         summonerModel.encryptedAccountId, beginIndex, endIndex)
                         .flatMapObservable { matchListApiModel ->
                             matchReferenceDbRepository.saveMatchReferenceDbList(
