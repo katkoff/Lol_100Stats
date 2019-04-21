@@ -33,6 +33,8 @@ constructor(
             }
     }
 
+    //TODO Заканчивается с ошибкой 503 Service Unavailable.
+    // сохраняет рандомом было и 800+ матчей и 250+
     private fun getMatchCompletableList(
         matchReferenceList: List<MatchReferenceModel>,
         summonerModel: SummonerModel

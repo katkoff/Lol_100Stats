@@ -24,6 +24,7 @@ internal constructor(
 
     private var selectedNameIndex: Int = 0
 
+    //TODO добавить валидацию заполнения полей логина и пароля
     fun onLoginButtonClicked(summonerName: String) {
         val loginModel = LoginModel(
             summonerName,
