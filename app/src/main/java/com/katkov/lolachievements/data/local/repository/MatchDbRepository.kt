@@ -16,12 +16,8 @@ constructor(appDataBase: AppDataBase) {
     fun getRowsCount(): Single<Int> = matchDao.getRowsCount()
         .subscribeOn(Schedulers.io())
 
-    fun saveMatchDbList(matchDbModelList: List<MatchDbModel>): Completable =
-        Completable.fromAction {
-            for (matchDbModel in matchDbModelList) {
-                matchDao.insert(matchDbModel)
-            }
-        }
+    fun saveMatchDbModel(matchDbModel: MatchDbModel): Completable =
+        Completable.fromAction { matchDao.insert(matchDbModel) }
             .subscribeOn(Schedulers.io())
 
     fun getMatchDbList(): Single<List<MatchDbModel>> = matchDao.getMatches()

@@ -20,7 +20,7 @@ constructor(
 
     fun getRowsCount(): Single<Int> = matchReferenceDbRepository.getRowsCount()
 
-    //TODO проверить на девайсе, правильно ли работает
+    //TODO неправильно считает кол-во матчей. кажется, 2000 максимум...
     fun loadMatchReferenceListToDb(): Completable = summonerRepository.getSummoner()
         .flatMapCompletable { summonerModel ->
             Observable.range(0, Int.MAX_VALUE)
@@ -34,7 +34,7 @@ constructor(
                                 .andThen(Observable.just(matchListApiModel))
                         }
                 }
-                .takeUntil { matchListApiModel -> matchListApiModel.matches.size < 100 }
+                .takeUntil { matchListApiModel -> matchListApiModel.matches.size < 99 }
                 .ignoreElements()
         }
 

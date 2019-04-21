@@ -2,12 +2,8 @@ package com.katkov.lolachievements.application.ui.login
 
 import com.arellomobile.mvp.InjectViewState
 import com.katkov.lolachievements.application.base.BasePresenter
-import com.katkov.lolachievements.application.navigation.Screens
 import com.katkov.lolachievements.di.annotations.GlobalRouter
-import com.katkov.lolachievements.domain.interactor.ChampionInteractor
-import com.katkov.lolachievements.domain.interactor.LoginInteractor
-import com.katkov.lolachievements.domain.interactor.MatchReferenceInteractor
-import com.katkov.lolachievements.domain.interactor.SummonerInteractor
+import com.katkov.lolachievements.domain.interactor.*
 import com.katkov.lolachievements.domain.model.LoginModel
 import com.katkov.lolachievements.utils.ServerNamesHandler
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -22,6 +18,7 @@ internal constructor(
     private val summonerInteractor: SummonerInteractor,
     private val championInteractor: ChampionInteractor,
     private val matchReferenceInteractor: MatchReferenceInteractor,
+    private val matchInteractor: MatchInteractor,
     @GlobalRouter private val router: Router
 ) : BasePresenter<LoginView>() {
 
@@ -80,8 +77,21 @@ internal constructor(
         matchReferenceInteractor.loadMatchReferenceListToDb()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
+                //                viewState.setProgressEnable(false)
+//                router.replaceScreen(Screens.BottomNavigationFragmentScreen())
+                loadMatchesToDb()
+            }, { throwable ->
+                throwable.printStackTrace()
                 viewState.setProgressEnable(false)
-                router.replaceScreen(Screens.BottomNavigationFragmentScreen())
+                viewState.showError(Error(throwable))
+            }).also { compositeDisposable.add(it) }
+    }
+
+    private fun loadMatchesToDb() {
+        matchInteractor.loadMatchListToDb()
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                viewState.setProgressEnable(false)
             }, { throwable ->
                 throwable.printStackTrace()
                 viewState.setProgressEnable(false)

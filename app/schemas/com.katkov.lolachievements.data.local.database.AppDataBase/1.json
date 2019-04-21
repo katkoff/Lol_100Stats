@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "838041955d2c2fbba48f8555d1a14cec",
+    "identityHash": "064caa0517084ab978ddc5c979e3761a",
     "entities": [
       {
         "tableName": "SummonerDbModel",
@@ -201,11 +201,229 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "MatchDbModel",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `matchId` INTEGER NOT NULL, `mapId` INTEGER NOT NULL, `gameDuration` INTEGER NOT NULL, `win` TEXT NOT NULL, `kills` INTEGER NOT NULL, `deaths` INTEGER NOT NULL, `assists` INTEGER NOT NULL, `firstBloodKill` INTEGER NOT NULL, `firstBloodAssist` INTEGER NOT NULL, `firstTowerKill` INTEGER NOT NULL, `firstTowerAssist` INTEGER NOT NULL, `doubleKills` INTEGER NOT NULL, `tripleKills` INTEGER NOT NULL, `quadraKills` INTEGER NOT NULL, `pentaKills` INTEGER NOT NULL, `firstRiftHerald` INTEGER NOT NULL, `firstBaron` INTEGER NOT NULL, `baronKills` INTEGER NOT NULL, `firstBlood` INTEGER NOT NULL, `totalDamageTaken` INTEGER NOT NULL, `physicalDamageTaken` INTEGER NOT NULL, `magicalDamageTaken` INTEGER NOT NULL, `totalDamageDealt` INTEGER NOT NULL, `physicalDamageDealt` INTEGER NOT NULL, `totalDamageDealtToChampions` INTEGER NOT NULL, `physicalDamageDealtToChampions` INTEGER NOT NULL, `totalHeal` INTEGER NOT NULL, `wardsKilled` INTEGER NOT NULL, `wardsPlaced` INTEGER NOT NULL, `totalMinionsKilled` INTEGER NOT NULL, `neutralMinionsKilled` INTEGER NOT NULL, `goldEarned` INTEGER NOT NULL, `goldSpent` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "matchId",
+            "columnName": "matchId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mapId",
+            "columnName": "mapId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "gameDuration",
+            "columnName": "gameDuration",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "win",
+            "columnName": "win",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "kills",
+            "columnName": "kills",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "deaths",
+            "columnName": "deaths",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "assists",
+            "columnName": "assists",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "firstBloodKill",
+            "columnName": "firstBloodKill",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "firstBloodAssist",
+            "columnName": "firstBloodAssist",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "firstTowerKill",
+            "columnName": "firstTowerKill",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "firstTowerAssist",
+            "columnName": "firstTowerAssist",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "doubleKills",
+            "columnName": "doubleKills",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tripleKills",
+            "columnName": "tripleKills",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "quadraKills",
+            "columnName": "quadraKills",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pentaKills",
+            "columnName": "pentaKills",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "firstRiftHerald",
+            "columnName": "firstRiftHerald",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "firstBaron",
+            "columnName": "firstBaron",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "baronKills",
+            "columnName": "baronKills",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "firstBlood",
+            "columnName": "firstBlood",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "totalDamageTaken",
+            "columnName": "totalDamageTaken",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "physicalDamageTaken",
+            "columnName": "physicalDamageTaken",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "magicalDamageTaken",
+            "columnName": "magicalDamageTaken",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "totalDamageDealt",
+            "columnName": "totalDamageDealt",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "physicalDamageDealt",
+            "columnName": "physicalDamageDealt",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "totalDamageDealtToChampions",
+            "columnName": "totalDamageDealtToChampions",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "physicalDamageDealtToChampions",
+            "columnName": "physicalDamageDealtToChampions",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "totalHeal",
+            "columnName": "totalHeal",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "wardsKilled",
+            "columnName": "wardsKilled",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "wardsPlaced",
+            "columnName": "wardsPlaced",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "totalMinionsKilled",
+            "columnName": "totalMinionsKilled",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "neutralMinionsKilled",
+            "columnName": "neutralMinionsKilled",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "goldEarned",
+            "columnName": "goldEarned",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "goldSpent",
+            "columnName": "goldSpent",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
       }
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"838041955d2c2fbba48f8555d1a14cec\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"064caa0517084ab978ddc5c979e3761a\")"
     ]
   }
 }
