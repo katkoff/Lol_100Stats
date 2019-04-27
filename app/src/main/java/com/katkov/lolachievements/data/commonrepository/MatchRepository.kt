@@ -4,10 +4,13 @@ import com.katkov.lolachievements.data.cloud.model.match.MatchApiModel
 import com.katkov.lolachievements.data.cloud.repository.MatchApiRepository
 import com.katkov.lolachievements.data.local.repository.MatchDbRepository
 import com.katkov.lolachievements.data.mappers.MatchMapper
+import com.katkov.lolachievements.domain.model.LoadProgressModel
 import com.katkov.lolachievements.domain.model.MatchReferenceModel
 import com.katkov.lolachievements.domain.model.SummonerModel
 import io.reactivex.Completable
+import io.reactivex.Observable
 import io.reactivex.Single
+import io.reactivex.subjects.BehaviorSubject
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
@@ -21,12 +24,19 @@ constructor(
     private val matchReferenceRepository: MatchReferenceRepository
 ) {
 
+    private var loadProgressSubject: BehaviorSubject<LoadProgressModel> = BehaviorSubject.create()
+
+    fun getLoadProgressObservable(): Observable<LoadProgressModel> = loadProgressSubject
+
     fun loadMatchesToDb(): Completable {
         return getSummonerName()
             .flatMapCompletable { summonerModel ->
                 getMatchReferenceList()
                     .flatMapCompletable { matchReferenceList ->
-                        Completable.concat(getMatchCompletableList(matchReferenceList, summonerModel))
+                        Completable.concat(
+                            getMatchCompletableList(
+                                matchReferenceList,
+                                summonerModel))
                     }
             }
     }
@@ -38,11 +48,16 @@ constructor(
     ): List<Completable> {
         val summonerName = summonerModel.name
         val resultList = mutableListOf<Completable>()
+        var progress = 1
+
         matchReferenceList.forEach {
             val completable =
                 matchApiRepository.getMatchApiModel(it.gameId)
                     .delay(1200, TimeUnit.MILLISECONDS)
                     .flatMapCompletable { matchApiModel ->
+                        loadProgressSubject.onNext(LoadProgressModel(progress, resultList.size))
+                        progress += 1
+
                         saveMatchToDb(matchApiModel, summonerName)
                     }
             resultList.add(completable)
