@@ -21,5 +21,5 @@ internal constructor(
 
     fun onAchievementMenuItemClick() = router.replaceScreen(Screens.AchievementsScreen())
 
-    fun onProfileMenuItemClick() = router.replaceScreen(Screens.CheckFirstEntryInfoScreen())
+    fun onProfileMenuItemClick() = router.replaceScreen(Screens.ProfileScreen())
 }

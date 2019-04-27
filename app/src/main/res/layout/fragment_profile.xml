@@ -46,16 +46,6 @@
         tools:text="show server name" />
 
     <Button
-        android:id="@+id/button_summonerInfo"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/check_screen_button_summoner_info"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_serverName" />
-
-    <Button
         android:id="@+id/button_logout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

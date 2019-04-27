@@ -1,4 +1,4 @@
-package com.katkov.lolachievements.application.ui.checkentryinfo
+package com.katkov.lolachievements.application.ui.profile
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,21 +13,21 @@ import com.katkov.lolachievements.di.Scopes
 import com.katkov.lolachievements.domain.model.LoginModel
 import com.katkov.lolachievements.utils.ServerNamesHandler
 import com.katkov.lolachievements.utils.TextInputUtils
-import kotlinx.android.synthetic.main.fragment_check_entry_info.*
+import kotlinx.android.synthetic.main.fragment_profile.*
 import toothpick.Toothpick
 import javax.inject.Inject
 import javax.inject.Provider
 
-class CheckEntryInfoFragment : BaseFragment(), CheckEntryInfoView {
+class ProfileFragment : BaseFragment(), ProfileView {
 
     @Inject
-    lateinit var presenterProvider: Provider<CheckEntryInfoPresenter>
+    lateinit var presenterProvider: Provider<ProfilePresenter>
 
     @InjectPresenter
-    lateinit var presenter: CheckEntryInfoPresenter
+    lateinit var presenter: ProfilePresenter
 
     @ProvidePresenter
-    internal fun providePresenter(): CheckEntryInfoPresenter {
+    internal fun providePresenter(): ProfilePresenter {
         return presenterProvider.get()
     }
 
@@ -41,7 +41,7 @@ class CheckEntryInfoFragment : BaseFragment(), CheckEntryInfoView {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_check_entry_info, container, false)
+        return inflater.inflate(R.layout.fragment_profile, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -51,7 +51,6 @@ class CheckEntryInfoFragment : BaseFragment(), CheckEntryInfoView {
 
     private fun initListeners() {
         button_logout.setOnClickListener { presenter.onLogoutButtonClicked() }
-        button_summonerInfo.setOnClickListener { presenter.onSummonerInfoButtonClicked() }
     }
 
     override fun fillInfo(loginModel: LoginModel?) {
@@ -70,6 +69,6 @@ class CheckEntryInfoFragment : BaseFragment(), CheckEntryInfoView {
     }
 
     companion object {
-        fun newInstance() = CheckEntryInfoFragment().apply { arguments = bundleOf() }
+        fun newInstance() = ProfileFragment().apply { arguments = bundleOf() }
     }
 }

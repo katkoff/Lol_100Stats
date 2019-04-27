@@ -1,4 +1,4 @@
-package com.katkov.lolachievements.application.ui.checkentryinfo
+package com.katkov.lolachievements.application.ui.profile
 
 import com.arellomobile.mvp.MvpView
 import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy
@@ -7,7 +7,7 @@ import com.katkov.lolachievements.application.base.ErrorView
 import com.katkov.lolachievements.application.base.ProgressView
 import com.katkov.lolachievements.domain.model.LoginModel
 
-interface CheckEntryInfoView : MvpView, ErrorView, ProgressView {
+interface ProfileView : MvpView, ErrorView, ProgressView {
 
     @StateStrategyType(AddToEndSingleStrategy::class)
     fun fillInfo(loginModel: LoginModel?)

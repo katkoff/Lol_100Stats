@@ -5,12 +5,16 @@ import com.katkov.lolachievements.data.cloud.model.match.ParticipantApiModel
 import com.katkov.lolachievements.data.cloud.model.match.ParticipantIdentityApiModel
 import com.katkov.lolachievements.data.cloud.model.match.TeamStatsApiModel
 import com.katkov.lolachievements.data.local.model.MatchDbModel
+import com.katkov.lolachievements.domain.model.MatchDomainModel
 import javax.inject.Inject
 
 class MatchMapper
 @Inject
 constructor() {
 
+    /**
+     * API to DB
+     */
     fun mapApiMatchToDbList(
         matchApiList: List<MatchApiModel>,
         summonerName: String
@@ -63,11 +67,57 @@ constructor() {
             goldSpent = getGoldSpent(matchApiModel, summonerName)
         )
 
+    /**
+     * DB to DOMAIN
+     */
+    fun mapDbToDomainList(matchDbList: List<MatchDbModel>): List<MatchDomainModel> {
+        val result = mutableListOf<MatchDomainModel>()
+        for (matchDbModel in matchDbList) {
+            result.add(mapDbToDomainModel(matchDbModel))
+        }
+        return result
+    }
+
+    private fun mapDbToDomainModel(matchDbModel: MatchDbModel): MatchDomainModel =
+        MatchDomainModel(
+            matchId = matchDbModel.matchId,
+            mapId = matchDbModel.mapId,
+            gameDuration = matchDbModel.gameDuration,
+            win = matchDbModel.win,
+            kills = matchDbModel.kills,
+            deaths = matchDbModel.deaths,
+            assists = matchDbModel.assists,
+            firstBloodKill = matchDbModel.firstBloodKill,
+            firstBloodAssist = matchDbModel.firstBloodAssist,
+            firstTowerKill = matchDbModel.firstTowerKill,
+            firstTowerAssist = matchDbModel.firstTowerAssist,
+            doubleKills = matchDbModel.doubleKills,
+            tripleKills = matchDbModel.tripleKills,
+            quadraKills = matchDbModel.quadraKills,
+            pentaKills = matchDbModel.pentaKills,
+            firstRiftHerald = matchDbModel.firstRiftHerald,
+            firstBaron = matchDbModel.firstBaron,
+            baronKills = matchDbModel.baronKills,
+            firstBlood = matchDbModel.firstBlood,
+            totalDamageTaken = matchDbModel.totalDamageTaken,
+            physicalDamageTaken = matchDbModel.physicalDamageTaken,
+            magicalDamageTaken = matchDbModel.magicalDamageTaken,
+            totalDamageDealt = matchDbModel.totalDamageDealt,
+            physicalDamageDealt = matchDbModel.physicalDamageDealt,
+            totalDamageDealtToChampions = matchDbModel.totalDamageDealtToChampions,
+            physicalDamageDealtToChampions = matchDbModel.physicalDamageDealtToChampions,
+            totalHeal = matchDbModel.totalHeal,
+            wardsKilled = matchDbModel.wardsKilled,
+            wardsPlaced = matchDbModel.wardsPlaced,
+            totalMinionsKilled = matchDbModel.totalMinionsKilled,
+            neutralMinionsKilled = matchDbModel.neutralMinionsKilled,
+            goldEarned = matchDbModel.goldEarned,
+            goldSpent = matchDbModel.goldSpent
+        )
 
     /**
      * GET PROPERTIES
      */
-
     private fun getWin(matchApiModel: MatchApiModel, summonerName: String): String {
         val teamStats = getTeamStats(matchApiModel, summonerName)
         return teamStats?.win ?: DEFAULT_STRING
@@ -227,7 +277,6 @@ constructor() {
     /**
      * COMMON NEEDS
      */
-
     private fun getParticipantIdentity(
         summonerName: String,
         participantIdentities: List<ParticipantIdentityApiModel>
@@ -269,30 +318,6 @@ constructor() {
         }
         return null
     }
-
-//    private fun getParticipantId(
-//        summonerName: String,
-//        participantIdentities: List<ParticipantIdentityApiModel>
-//    ): Int? {
-//        for (participantIdentity in participantIdentities) {
-//            if (participantIdentity.player.summonerName == summonerName) {
-//                return participantIdentity.participantId
-//            }
-//        }
-//        return null
-//    }
-
-//    private fun getTeamId(participantId: Int?, participants: List<ParticipantApiModel>): Int? {
-//        if (participantId != null) {
-//            for (participant in participants) {
-//                if (participant.participantId == participantId) {
-//                    return participant.teamId
-//                }
-//            }
-//        }
-//        return null
-//    }
-
 
     companion object {
         const val DEFAULT_STRING = ""

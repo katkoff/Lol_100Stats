@@ -6,6 +6,7 @@ import com.katkov.lolachievements.data.cloud.repository.MatchApiRepository
 import com.katkov.lolachievements.data.local.repository.MatchDbRepository
 import com.katkov.lolachievements.data.mappers.MatchMapper
 import com.katkov.lolachievements.domain.model.LoadProgressModel
+import com.katkov.lolachievements.domain.model.MatchDomainModel
 import com.katkov.lolachievements.domain.model.MatchReferenceModel
 import com.katkov.lolachievements.domain.model.SummonerModel
 import io.reactivex.Completable
@@ -42,7 +43,6 @@ constructor(
             }
     }
 
-    //TODO Заканчивается с ошибкой 503 Service Unavailable.
     private fun getMatchCompletableList(
         matchReferenceList: List<MatchReferenceModel>,
         summonerModel: SummonerModel
@@ -82,12 +82,11 @@ constructor(
 
     fun getRowsCount(): Single<Int> = matchDbRepository.getRowsCount()
 
-//
-//    fun getChampionList(): Single<List<ChampionModel>> =
-//        championDbRepository.getChmpionDbList()
-//            .map { mapper.mapDbToDomainList(it) }
-//
-//    fun updateChampion(): Completable = summonerRepository.getSummoner()
+    fun getMatchListFromDb(): Single<List<MatchDomainModel>> =
+        matchDbRepository.getMatchDbList()
+            .map { mapper.mapDbToDomainList(it) }
+
+    //    fun updateChampion(): Completable = summonerRepository.getSummoner()
 //        .flatMapCompletable { summonerModel ->
 //            championApiRepository.getApiChampion(summonerModel.encryptedId)
 //                .map { mapper.mapApiToDbList(it) }
@@ -95,6 +94,6 @@ constructor(
 //                    championDbRepository.updateChampionDbList(masteryDbList)
 //                }
 //        }
-//
-//    fun removeTable(): Completable = championDbRepository.removeTable()
+
+    fun removeTable(): Completable = matchDbRepository.removeTable()
 }

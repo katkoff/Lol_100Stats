@@ -1,12 +1,9 @@
-package com.katkov.lolachievements.data.local.model
+package com.katkov.lolachievements.domain.model
 
 import androidx.room.Entity
-import androidx.room.PrimaryKey
 
 @Entity
-data class MatchDbModel(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int? = null,
+data class MatchDomainModel(
     val matchId: Long,
     val mapId: Int,
     val gameDuration: Long,
