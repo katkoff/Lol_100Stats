@@ -1,5 +1,6 @@
 package com.katkov.lolachievements.data.commonrepository
 
+import android.util.Log
 import com.katkov.lolachievements.data.cloud.model.match.MatchApiModel
 import com.katkov.lolachievements.data.cloud.repository.MatchApiRepository
 import com.katkov.lolachievements.data.local.repository.MatchDbRepository
@@ -46,6 +47,7 @@ constructor(
         matchReferenceList: List<MatchReferenceModel>,
         summonerModel: SummonerModel
     ): List<Completable> {
+        Log.d("myLog", "== Start loading ==")
         val summonerName = summonerModel.name
         val resultList = mutableListOf<Completable>()
         var progress = 1
@@ -56,6 +58,7 @@ constructor(
                     .delay(1200, TimeUnit.MILLISECONDS)
                     .flatMapCompletable { matchApiModel ->
                         loadProgressSubject.onNext(LoadProgressModel(progress, resultList.size))
+                        Log.d("myLog", "Load " + progress + " match")
                         progress += 1
 
                         saveMatchToDb(matchApiModel, summonerName)

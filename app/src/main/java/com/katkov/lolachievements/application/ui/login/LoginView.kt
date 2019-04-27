@@ -14,4 +14,10 @@ interface LoginView : MvpView, ErrorView, ProgressView {
 
     @StateStrategyType(AddToEndSingleStrategy::class)
     fun showSelectedName(selectedName: String)
+
+    @StateStrategyType(AddToEndSingleStrategy::class)
+    fun setProgressDialogValues(progress: Int, progressMax: Int)
+
+    @StateStrategyType(AddToEndSingleStrategy::class)
+    fun setProgressDialogEnable(isEnable: Boolean)
 }

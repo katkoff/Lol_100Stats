@@ -1,6 +1,7 @@
 package com.katkov.lolachievements.application.ui.login
 
 import android.app.AlertDialog
+import android.app.ProgressDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +20,8 @@ import javax.inject.Inject
 import javax.inject.Provider
 
 class LoginFragment : BaseFragment(), LoginView {
+
+    lateinit var progressDialog: ProgressDialog
 
     @Inject
     lateinit var presenterProvider: Provider<LoginPresenter>
@@ -47,6 +50,7 @@ class LoginFragment : BaseFragment(), LoginView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initListeners()
+        initProgressDialog()
     }
 
     private fun initListeners() {
@@ -78,6 +82,28 @@ class LoginFragment : BaseFragment(), LoginView {
             progressbar_login.visibility = View.VISIBLE
         } else {
             progressbar_login.visibility = View.GONE
+        }
+    }
+
+    private fun initProgressDialog() {
+        progressDialog = ProgressDialog(context)
+        progressDialog.setTitle("Загрузка")
+        progressDialog.setMessage("Ждём и прокрастинируем...")
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL)
+    }
+
+    override fun setProgressDialogValues(progress: Int, progressMax: Int) {
+        progressDialog.progress = progress
+        progressDialog.max = progressMax
+
+        if (progressDialog.progress == progressDialog.max) progressDialog.dismiss()
+    }
+
+    override fun setProgressDialogEnable(isEnable: Boolean) {
+        if (isEnable) {
+            progressDialog.show()
+        } else {
+            progressDialog.dismiss()
         }
     }
 

@@ -2,6 +2,6 @@ package com.katkov.lolachievements.data.cloud.utils
 
 object ApiUtils {
 
-    const val API_KEY = "RGAPI-e0b35579-fc71-4f43-974b-2ab1706fc7db"
+    const val API_KEY = "RGAPI-fbd128a6-88ef-442d-95c6-f04b73dc8f24"
     const val BASE_URL = "https://api.riotgames.com/lol/"
 }

@@ -2,6 +2,7 @@ package com.katkov.lolachievements.application.ui.login
 
 import com.arellomobile.mvp.InjectViewState
 import com.katkov.lolachievements.application.base.BasePresenter
+import com.katkov.lolachievements.application.navigation.Screens
 import com.katkov.lolachievements.di.annotations.GlobalRouter
 import com.katkov.lolachievements.domain.interactor.*
 import com.katkov.lolachievements.domain.model.LoginModel
@@ -78,12 +79,26 @@ internal constructor(
         matchReferenceInteractor.loadMatchReferenceListToDb()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                // viewState.setProgressEnable(false)
-                // router.replaceScreen(Screens.BottomNavigationFragmentScreen())
+                viewState.setProgressEnable(false)
+
                 loadMatchesToDb()
+                showLoadMatchesToDbProgress()
             }, { throwable ->
                 throwable.printStackTrace()
                 viewState.setProgressEnable(false)
+                viewState.showError(Error(throwable))
+            }).also { compositeDisposable.add(it) }
+    }
+
+    private fun showLoadMatchesToDbProgress() {
+        viewState.setProgressDialogEnable(true)
+        matchInteractor.getLoadProgressObservable()
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ progressData ->
+                viewState.setProgressDialogValues(progressData.progress, progressData.maxProgress)
+            }, { throwable ->
+                throwable.printStackTrace()
+                viewState.setProgressDialogEnable(false)
                 viewState.showError(Error(throwable))
             }).also { compositeDisposable.add(it) }
     }
@@ -93,6 +108,8 @@ internal constructor(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 viewState.setProgressEnable(false)
+
+                router.replaceScreen(Screens.BottomNavigationFragmentScreen())
             }, { throwable ->
                 throwable.printStackTrace()
                 viewState.setProgressEnable(false)
