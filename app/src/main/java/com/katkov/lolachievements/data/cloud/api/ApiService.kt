@@ -3,6 +3,7 @@ package com.katkov.lolachievements.data.cloud.api
 import com.katkov.lolachievements.data.cloud.model.ChampionApiModel
 import com.katkov.lolachievements.data.cloud.model.MatchlistApiModel
 import com.katkov.lolachievements.data.cloud.model.SummonerApiModel
+import com.katkov.lolachievements.data.cloud.model.match.MatchApiModel
 import com.katkov.lolachievements.data.cloud.utils.ApiUtils
 import io.reactivex.Single
 import retrofit2.http.GET
@@ -30,4 +31,10 @@ interface ApiService {
         @Query("beginIndex") beginIndex: Int,
         @Query("endIndex") endIndex: Int
     ): Single<MatchlistApiModel>
+
+    @GET(ApiUtils.BASE_URL + "match/v4/matches/{matchId}")
+    fun getMatchApiModel(
+        @Path("matchId") matchId: Long,
+        @Query("api_key") apiKey: String
+    ): Single<MatchApiModel>
 }

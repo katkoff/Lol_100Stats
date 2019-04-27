@@ -8,7 +8,7 @@ import com.katkov.lolachievements.data.local.model.MatchReferenceDbModel
 import io.reactivex.Single
 
 @Dao
-interface MatchesDao {
+interface MatchReferenceDao {
 
     @Query("SELECT COUNT(*) FROM MatchReferenceDbModel")
     fun getRowsCount(): Single<Int>
@@ -17,7 +17,7 @@ interface MatchesDao {
     fun insert(matchReferenceDbModel: MatchReferenceDbModel)
 
     @Query("SELECT * FROM MatchReferenceDbModel")
-    fun getMatches(): Single<List<MatchReferenceDbModel>>
+    fun getMatchReferenceDbList(): Single<List<MatchReferenceDbModel>>
 
     @Query("DELETE FROM MatchReferenceDbModel")
     fun removeTable()

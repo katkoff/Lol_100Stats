@@ -11,7 +11,7 @@ class ChampionDbRepository
 @Inject
 constructor(appDataBase: AppDataBase) {
 
-    private var championsDao = appDataBase.championsDao()
+    private var championsDao = appDataBase.championDao()
 
     // For checking that table rows exist before starting download from API
     fun getRowsCount(): Single<Int> = championsDao.getRowsCount()
