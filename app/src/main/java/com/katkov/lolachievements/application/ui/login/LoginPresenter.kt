@@ -78,8 +78,8 @@ internal constructor(
         matchReferenceInteractor.loadMatchReferenceListToDb()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                //                viewState.setProgressEnable(false)
-//                router.replaceScreen(Screens.BottomNavigationFragmentScreen())
+                // viewState.setProgressEnable(false)
+                // router.replaceScreen(Screens.BottomNavigationFragmentScreen())
                 loadMatchesToDb()
             }, { throwable ->
                 throwable.printStackTrace()

@@ -26,30 +26,25 @@ constructor(
             .flatMapCompletable { summonerModel ->
                 getMatchReferenceList()
                     .flatMapCompletable { matchReferenceList ->
-                        Completable.concat(
-                            getMatchCompletableList(
-                                matchReferenceList, summonerModel))
+                        Completable.concat(getMatchCompletableList(matchReferenceList, summonerModel))
                     }
             }
     }
 
     //TODO Заканчивается с ошибкой 503 Service Unavailable.
-    // сохраняет рандомом было и 800+ матчей и 250+
     private fun getMatchCompletableList(
         matchReferenceList: List<MatchReferenceModel>,
         summonerModel: SummonerModel
     ): List<Completable> {
         val summonerName = summonerModel.name
         val resultList = mutableListOf<Completable>()
-
         matchReferenceList.forEach {
             val completable =
                 matchApiRepository.getMatchApiModel(it.gameId)
-                    .delay(1000, TimeUnit.MILLISECONDS)
+                    .delay(1200, TimeUnit.MILLISECONDS)
                     .flatMapCompletable { matchApiModel ->
                         saveMatchToDb(matchApiModel, summonerName)
                     }
-
             resultList.add(completable)
         }
 
