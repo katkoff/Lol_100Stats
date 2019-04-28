@@ -16,4 +16,14 @@
         <item name="android:longClickable">false</item>
     </style>
 
+    <!-- Divider -->
+    <style name="Divider">
+        <item name="android:background">#ffffff</item>
+    </style>
+
+    <style name="Divider.Vertical" parent="Divider">
+        <item name="android:layout_width">1dp</item>
+        <item name="android:layout_height">0dp</item>
+    </style>
+
 </resources>

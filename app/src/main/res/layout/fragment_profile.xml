@@ -4,55 +4,845 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:padding="16dp"
+    tools:ignore="ContentDescription">
 
-    <TextView
-        android:id="@+id/textView_summonerNameLabel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/check_screen_summoner_name_label"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView_summonerName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_summonerNameLabel"
-        tools:text="show summoner name" />
-
-    <TextView
-        android:id="@+id/textView_serverNameLabel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/check_screen_server_name_label"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_summonerName" />
-
-    <TextView
-        android:id="@+id/textView_serverName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_serverNameLabel"
-        tools:text="show server name" />
-
-    <Button
-        android:id="@+id/button_logout"
+    <ScrollView
+        android:id="@+id/scrollView_root"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/check_screen_button_logout"
+        android:layout_height="0dp"
+        android:fillViewport="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageView_summonerIcon"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@color/colorAccent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView_summonerNameLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:text="@string/profile_summoner_name_label"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                app:layout_constraintLeft_toRightOf="@+id/imageView_summonerIcon"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView_summonerName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="4dp"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                app:layout_constraintLeft_toRightOf="@+id/imageView_summonerIcon"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_summonerNameLabel"
+                tools:text="Jake" />
+
+            <TextView
+                android:id="@+id/textView_summonerLevelLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/profile_summoner_level"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                app:layout_constraintLeft_toRightOf="@+id/imageView_summonerIcon"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_summonerName" />
+
+            <TextView
+                android:id="@+id/textView_summonerLevel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="4dp"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                app:layout_constraintLeft_toRightOf="@+id/imageView_summonerIcon"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_summonerLevelLabel"
+                tools:text="125" />
+
+            <!-- GENERAL INFORMATION -->
+
+            <TextView
+                android:id="@+id/textView_generalInfoLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:gravity="center"
+                android:text="@string/profile_general_info_label"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView_summonerIcon" />
+
+            <!-- GAME -->
+
+            <TextView
+                android:id="@+id/textView_totalGamesLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/profile_total_games_label"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_generalInfoLabel" />
+
+            <TextView
+                android:id="@+id/textView_totalGames"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintLeft_toRightOf="@+id/textView_totalGamesLabel"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_generalInfoLabel"
+                tools:text="500" />
+
+            <TextView
+                android:id="@+id/textView_timeInGameLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/profile_time_in_game_label"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_totalGames" />
+
+            <TextView
+                android:id="@+id/textView_timeInGame"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintLeft_toRightOf="@+id/textView_timeInGameLabel"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_totalGames"
+                tools:text="too much time" />
+
+            <TextView
+                android:id="@+id/textView_winsLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/profile_wins_label"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_timeInGameLabel" />
+
+            <TextView
+                android:id="@+id/textView_wins"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintLeft_toRightOf="@+id/textView_winsLabel"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_timeInGameLabel"
+                tools:text="450" />
+
+            <!-- KILLS -->
+
+            <TextView
+                android:id="@+id/textView_killsLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/profile_kills_label"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                app:layout_constraintBottom_toTopOf="@+id/textView_kills"
+                app:layout_constraintLeft_toLeftOf="@+id/textView_kills"
+                app:layout_constraintRight_toRightOf="@+id/textView_kills"
+                app:layout_constraintTop_toBottomOf="@+id/textView_winsLabel" />
+
+            <TextView
+                android:id="@+id/textView_kills"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/view_killsLeftDivider"
+                app:layout_constraintTop_toBottomOf="@+id/textView_killsLabel"
+                tools:text="1500" />
+
+            <View
+                android:id="@+id/view_killsLeftDivider"
+                style="@style/Divider.Vertical"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView_kills"
+                app:layout_constraintLeft_toRightOf="@+id/textView_kills"
+                app:layout_constraintRight_toLeftOf="@+id/textView_deaths"
+                app:layout_constraintTop_toTopOf="@+id/textView_killsLabel" />
+
+            <TextView
+                android:id="@+id/textView_deathLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/profile_deaths_label"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                app:layout_constraintBottom_toTopOf="@+id/textView_deaths"
+                app:layout_constraintLeft_toLeftOf="@+id/textView_deaths"
+                app:layout_constraintRight_toRightOf="@+id/textView_deaths"
+                app:layout_constraintTop_toBottomOf="@+id/textView_winsLabel" />
+
+            <TextView
+                android:id="@+id/textView_deaths"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                app:layout_constraintLeft_toRightOf="@+id/view_killsLeftDivider"
+                app:layout_constraintRight_toLeftOf="@+id/view_killsRightDivider"
+                app:layout_constraintTop_toBottomOf="@+id/textView_killsLabel"
+                tools:text="1000" />
+
+            <View
+                android:id="@+id/view_killsRightDivider"
+                style="@style/Divider.Vertical"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView_kills"
+                app:layout_constraintLeft_toRightOf="@+id/textView_deaths"
+                app:layout_constraintRight_toLeftOf="@+id/textView_assists"
+                app:layout_constraintTop_toTopOf="@+id/textView_killsLabel" />
+
+            <TextView
+                android:id="@+id/textView_assistsLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/profile_assists_label"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                app:layout_constraintBottom_toTopOf="@+id/textView_assists"
+                app:layout_constraintLeft_toLeftOf="@+id/textView_assists"
+                app:layout_constraintRight_toRightOf="@+id/textView_assists"
+                app:layout_constraintTop_toBottomOf="@+id/textView_winsLabel" />
+
+            <TextView
+                android:id="@+id/textView_assists"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                app:layout_constraintLeft_toRightOf="@+id/view_killsRightDivider"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_killsLabel"
+                tools:text="1000" />
+
+            <!-- Combo kills -->
+
+            <TextView
+                android:id="@+id/textView_doubleKillsLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/profile_double_kills_label"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                app:layout_constraintBottom_toTopOf="@+id/textView_doubleKills"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/view_comboKillsLeftDivider"
+                app:layout_constraintTop_toBottomOf="@+id/textView_kills" />
+
+            <TextView
+                android:id="@+id/textView_doubleKills"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                app:layout_constraintLeft_toLeftOf="@+id/textView_doubleKillsLabel"
+                app:layout_constraintRight_toRightOf="@+id/textView_doubleKillsLabel"
+                app:layout_constraintTop_toBottomOf="@+id/textView_doubleKillsLabel"
+                tools:text="1500" />
+
+            <View
+                android:id="@+id/view_comboKillsLeftDivider"
+                style="@style/Divider.Vertical"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView_doubleKills"
+                app:layout_constraintLeft_toRightOf="@+id/textView_doubleKillsLabel"
+                app:layout_constraintRight_toLeftOf="@+id/textView_tripleKillsLabel"
+                app:layout_constraintTop_toTopOf="@+id/textView_doubleKillsLabel" />
+
+            <TextView
+                android:id="@+id/textView_tripleKillsLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/profile_triple_kills_label"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                app:layout_constraintBottom_toTopOf="@+id/textView_tripleKills"
+                app:layout_constraintLeft_toRightOf="@+id/view_comboKillsLeftDivider"
+                app:layout_constraintRight_toLeftOf="@+id/view_comboKillsMiddleDivider"
+                app:layout_constraintTop_toBottomOf="@+id/textView_kills" />
+
+            <TextView
+                android:id="@+id/textView_tripleKills"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                app:layout_constraintLeft_toLeftOf="@+id/textView_tripleKillsLabel"
+                app:layout_constraintRight_toRightOf="@+id/textView_tripleKillsLabel"
+                app:layout_constraintTop_toBottomOf="@+id/textView_tripleKillsLabel"
+                tools:text="1000" />
+
+            <View
+                android:id="@+id/view_comboKillsMiddleDivider"
+                style="@style/Divider.Vertical"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView_doubleKills"
+                app:layout_constraintLeft_toRightOf="@+id/textView_tripleKillsLabel"
+                app:layout_constraintRight_toLeftOf="@+id/textView_quadraKillsLabel"
+                app:layout_constraintTop_toTopOf="@+id/textView_doubleKillsLabel" />
+
+            <TextView
+                android:id="@+id/textView_quadraKillsLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/profile_quadra_kills_label"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                app:layout_constraintBottom_toTopOf="@+id/textView_quadraKills"
+                app:layout_constraintLeft_toRightOf="@+id/view_comboKillsMiddleDivider"
+                app:layout_constraintRight_toLeftOf="@+id/view_comboKillsRightDivider"
+                app:layout_constraintTop_toBottomOf="@+id/textView_kills" />
+
+            <TextView
+                android:id="@+id/textView_quadraKills"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                app:layout_constraintLeft_toLeftOf="@+id/textView_quadraKillsLabel"
+                app:layout_constraintRight_toRightOf="@+id/textView_quadraKillsLabel"
+                app:layout_constraintTop_toBottomOf="@+id/textView_quadraKillsLabel"
+                tools:text="1000" />
+
+            <View
+                android:id="@+id/view_comboKillsRightDivider"
+                style="@style/Divider.Vertical"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView_doubleKills"
+                app:layout_constraintLeft_toRightOf="@+id/textView_quadraKillsLabel"
+                app:layout_constraintRight_toLeftOf="@+id/textView_pentaKillsLabel"
+                app:layout_constraintTop_toTopOf="@+id/textView_doubleKillsLabel" />
+
+            <TextView
+                android:id="@+id/textView_pentaKillsLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/profile_penta_kills_label"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                app:layout_constraintBottom_toTopOf="@+id/textView_pentaKills"
+                app:layout_constraintLeft_toRightOf="@+id/view_comboKillsRightDivider"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_kills" />
+
+            <TextView
+                android:id="@+id/textView_pentaKills"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                app:layout_constraintLeft_toLeftOf="@+id/textView_pentaKillsLabel"
+                app:layout_constraintRight_toRightOf="@+id/textView_pentaKillsLabel"
+                app:layout_constraintTop_toBottomOf="@+id/textView_pentaKillsLabel"
+                tools:text="1000" />
+
+            <!-- First kills -->
+
+            <TextView
+                android:id="@+id/textView_firstBloodKillsLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/profile_first_blood_kills_label"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_doubleKills" />
+
+            <TextView
+                android:id="@+id/textView_firstBloodKills"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="32dp"
+                app:layout_constraintLeft_toRightOf="@+id/textView_firstBloodKillsLabel"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_doubleKills"
+                tools:text="500" />
+
+            <TextView
+                android:id="@+id/textView_firstBloodAssistsLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/profile_first_blood_assists_label"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_firstBloodKills" />
+
+            <TextView
+                android:id="@+id/textView_firstBloodAssists"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintLeft_toRightOf="@+id/textView_firstBloodAssistsLabel"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_firstBloodKills"
+                tools:text="500" />
+
+            <TextView
+                android:id="@+id/textView_firstTowerKillsLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/profile_first_tower_kills_label"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_firstBloodAssists" />
+
+            <TextView
+                android:id="@+id/textView_firstTowerKills"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintLeft_toRightOf="@+id/textView_firstTowerKillsLabel"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_firstBloodAssists"
+                tools:text="500" />
+
+            <TextView
+                android:id="@+id/textView_firstTowerAssistsLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/profile_first_tower_assists_label"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_firstTowerKills" />
+
+            <TextView
+                android:id="@+id/textView_firstTowerAssists"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintLeft_toRightOf="@+id/textView_firstTowerAssistsLabel"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_firstTowerKills"
+                tools:text="500" />
+
+            <!-- Damage taken -->
+
+            <TextView
+                android:id="@+id/textView_totalDamageTakenLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/profile_total_damage_taken_label"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_firstTowerAssists" />
+
+            <TextView
+                android:id="@+id/textView_totalDamageTaken"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="24dp"
+                app:layout_constraintLeft_toRightOf="@+id/textView_totalDamageTakenLabel"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_firstTowerAssists"
+                tools:text="500" />
+
+            <TextView
+                android:id="@+id/textView_physicalDamageTakenLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/profile_physical_damage_taken_label"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_totalDamageTaken" />
+
+            <TextView
+                android:id="@+id/textView_physicalDamageTaken"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintLeft_toRightOf="@+id/textView_physicalDamageTakenLabel"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_totalDamageTaken"
+                tools:text="500" />
+
+            <TextView
+                android:id="@+id/textView_magicalDamageTakenLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/profile_magical_damage_taken_label"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_physicalDamageTaken" />
+
+            <TextView
+                android:id="@+id/textView_magicalDamageTaken"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintLeft_toRightOf="@+id/textView_magicalDamageTakenLabel"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_physicalDamageTaken"
+                tools:text="500" />
+
+            <!-- Damage dealt -->
+
+            <TextView
+                android:id="@+id/textView_totalDamageDealtLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/profile_total_damage_dealt_label"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_magicalDamageTaken" />
+
+            <TextView
+                android:id="@+id/textView_totalDamageDealt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="24dp"
+                app:layout_constraintLeft_toRightOf="@+id/textView_totalDamageDealtLabel"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_magicalDamageTaken"
+                tools:text="500" />
+
+            <TextView
+                android:id="@+id/textView_physicalDamageDealtLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/profile_magical_damage_taken_label"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_totalDamageDealt" />
+
+            <TextView
+                android:id="@+id/textView_physicalDamageDealt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintLeft_toRightOf="@+id/textView_physicalDamageDealtLabel"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_totalDamageDealt"
+                tools:text="500" />
+
+            <TextView
+                android:id="@+id/textView_totalDamageDealtToChampionsLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/profile_total_damage_dealt_to_champions_label"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_physicalDamageDealt" />
+
+            <TextView
+                android:id="@+id/textView_totalDamageDealtToChampions"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintLeft_toRightOf="@+id/textView_totalDamageDealtToChampionsLabel"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_physicalDamageDealt"
+                tools:text="500" />
+
+            <TextView
+                android:id="@+id/textView_physicalDamageDealtToChampionsLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/profile_physical_damage_dealt_to_champions_label"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_totalDamageDealtToChampions" />
+
+            <TextView
+                android:id="@+id/textView_physicalDamageDealtToChampions"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintLeft_toRightOf="@+id/textView_physicalDamageDealtToChampionsLabel"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_totalDamageDealtToChampions"
+                tools:text="500" />
+
+            <!-- Heal -->
+
+            <TextView
+                android:id="@+id/textView_totalHealLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/profile_total_heal_label"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_physicalDamageDealtToChampions" />
+
+            <TextView
+                android:id="@+id/textView_totalHeal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="24dp"
+                app:layout_constraintLeft_toRightOf="@+id/textView_totalHealLabel"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_physicalDamageDealtToChampions"
+                tools:text="500" />
+
+            <!-- Wards -->
+
+            <TextView
+                android:id="@+id/textView_wardsKilledLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/profile_wards_killed_label"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_totalHeal" />
+
+            <TextView
+                android:id="@+id/textView_wardsKilled"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="24dp"
+                app:layout_constraintLeft_toRightOf="@+id/textView_wardsKilledLabel"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_totalHeal"
+                tools:text="500" />
+
+            <TextView
+                android:id="@+id/textView_wardsPlacedLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/profile_wards_placed_label"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_wardsKilled" />
+
+            <TextView
+                android:id="@+id/textView_wardsPlaced"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintLeft_toRightOf="@+id/textView_wardsPlacedLabel"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_wardsKilled"
+                tools:text="500" />
+
+            <!-- Minions -->
+
+            <TextView
+                android:id="@+id/textView_totalMinionsKilledLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/profile_total_minions_killed_label"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_wardsPlaced" />
+
+            <TextView
+                android:id="@+id/textView_totalMinionsKilled"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="24dp"
+                app:layout_constraintLeft_toRightOf="@+id/textView_totalMinionsKilledLabel"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_wardsPlaced"
+                tools:text="500" />
+
+            <TextView
+                android:id="@+id/textView_neutralMinionsKilledLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/profile_neutral_minions_killed_label"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_totalMinionsKilled" />
+
+            <TextView
+                android:id="@+id/textView_neutralMinionsKilled"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintLeft_toRightOf="@+id/textView_neutralMinionsKilledLabel"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_totalMinionsKilled"
+                tools:text="500" />
+
+            <!-- Gold -->
+
+            <TextView
+                android:id="@+id/textView_goldEarnedLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/profile_gold_earned_label"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_neutralMinionsKilled" />
+
+            <TextView
+                android:id="@+id/textView_goldEarned"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="24dp"
+                app:layout_constraintLeft_toRightOf="@+id/textView_goldEarnedLabel"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_neutralMinionsKilled"
+                tools:text="500" />
+
+            <TextView
+                android:id="@+id/textView_goldSpentLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/profile_gold_spent_label"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_goldEarned" />
+
+            <TextView
+                android:id="@+id/textView_goldSpent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintLeft_toRightOf="@+id/textView_goldSpentLabel"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_goldEarned"
+                tools:text="500" />
+
+            <!-- Team scoring -->
+
+            <TextView
+                android:id="@+id/textView_teamScoringLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:gravity="center"
+                android:text="@string/profile_team_scoring_label"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_goldSpent" />
+
+            <TextView
+                android:id="@+id/textView_totalBaronKillsByTeamLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/profile_total_barons_killed_by_team_label"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_teamScoringLabel" />
+
+            <TextView
+                android:id="@+id/textView_totalBaronKillsByTeam"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintLeft_toRightOf="@+id/textView_totalBaronKillsByTeamLabel"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_teamScoringLabel"
+                tools:text="500" />
+
+            <TextView
+                android:id="@+id/textView_firstBaronKillsByTeamLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/profile_first_barons_killed_by_team_label"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_totalBaronKillsByTeam" />
+
+            <TextView
+                android:id="@+id/textView_firstBaronKillsByTeam"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintLeft_toRightOf="@+id/textView_firstBaronKillsByTeamLabel"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_totalBaronKillsByTeam"
+                tools:text="500" />
+
+            <TextView
+                android:id="@+id/textView_firstHeraldKillsByTeamLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/profile_first_herald_killed_by_team_label"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_firstBaronKillsByTeam" />
+
+            <TextView
+                android:id="@+id/textView_firstHeraldKillsByTeam"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintLeft_toRightOf="@+id/textView_firstHeraldKillsByTeamLabel"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_firstBaronKillsByTeam"
+                tools:text="500" />
+
+            <TextView
+                android:id="@+id/textView_firstBloodKillsByTeamLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/profile_first_blood_killed_by_team_label"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_firstHeraldKillsByTeam" />
+
+            <TextView
+                android:id="@+id/textView_firstBloodKillsByTeam"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintLeft_toRightOf="@+id/textView_firstBloodKillsByTeamLabel"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_firstHeraldKillsByTeam"
+                tools:text="500" />
+
+            <Button
+                android:id="@+id/button_logout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/profile_button_logout"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_firstBloodKillsByTeam" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </ScrollView>
+
 
     <ProgressBar
         android:id="@+id/progressbar_check_entry_info"

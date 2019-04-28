@@ -8,10 +8,55 @@
     <string name="login_screen_button_login">Login</string>
 
     <!-- Profile screen -->
-    <string name="check_screen_summoner_name_label">Summoner name:</string>
-    <string name="check_screen_server_name_label">Server name:</string>
-    <string name="check_screen_button_summoner_info">Show summoner info</string>
-    <string name="check_screen_button_logout">Logout</string>
+    <string name="profile_summoner_name_label">Summoner name:</string>
+    <string name="profile_summoner_level">Summoner level:</string>
+
+    <string name="profile_general_info_label">General information for all games:</string>
+    <string name="profile_total_games_label">Total games:</string>
+    <string name="profile_time_in_game_label">Time in game:</string>
+    <string name="profile_wins_label">Wins:</string>
+
+    <string name="profile_kills_label">kills</string>
+    <string name="profile_deaths_label">deaths</string>
+    <string name="profile_assists_label">assists</string>
+
+    <string name="profile_double_kills_label">double</string>
+    <string name="profile_triple_kills_label">triple</string>
+    <string name="profile_quadra_kills_label">quadra</string>
+    <string name="profile_penta_kills_label">penta</string>
+
+    <string name="profile_first_blood_kills_label">First blood kills:</string>
+    <string name="profile_first_blood_assists_label">First blood assists:</string>
+    <string name="profile_first_tower_kills_label">First tower kills:</string>
+    <string name="profile_first_tower_assists_label">First tower assists:</string>
+
+    <string name="profile_total_damage_taken_label">Total damage taken:</string>
+    <string name="profile_physical_damage_taken_label">Physical damage taken:</string>
+    <string name="profile_magical_damage_taken_label">Magical damage taken:</string>
+
+    <string name="profile_total_damage_dealt_label">Total damage dealt:</string>
+    <string name="profile_physical_damage_dealt_label">Physical damage dealt:</string>
+    <string name="profile_total_damage_dealt_to_champions_label">Total damage dealt to champions:</string>
+    <string name="profile_physical_damage_dealt_to_champions_label">Physical damage dealt to champions:</string>
+
+    <string name="profile_total_heal_label">Total heal:</string>
+
+    <string name="profile_wards_killed_label">Wards killed:</string>
+    <string name="profile_wards_placed_label">Wards placed:</string>
+
+    <string name="profile_total_minions_killed_label">Total minions killed:</string>
+    <string name="profile_neutral_minions_killed_label">Neutral minions killed:</string>
+
+    <string name="profile_gold_earned_label">Gold earned:</string>
+    <string name="profile_gold_spent_label">Gold spent:</string>
+
+    <string name="profile_team_scoring_label">Team scoring:</string>
+    <string name="profile_total_barons_killed_by_team_label">Total Barons killed by your team:</string>
+    <string name="profile_first_barons_killed_by_team_label">First Barons killed by your team:</string>
+    <string name="profile_first_herald_killed_by_team_label">First Herald killed by your team:</string>
+    <string name="profile_first_blood_killed_by_team_label">First blood killed by your team:</string>
+
+    <string name="profile_button_logout">Logout</string>
 
     <!-- Bottom items -->
     <string name="achievements_menu_item">Achiev</string>

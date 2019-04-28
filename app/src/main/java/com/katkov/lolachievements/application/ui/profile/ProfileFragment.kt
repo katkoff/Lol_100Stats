@@ -56,7 +56,7 @@ class ProfileFragment : BaseFragment(), ProfileView {
     override fun fillInfo(loginModel: LoginModel?) {
         TextInputUtils.setText(textView_summonerName, loginModel!!.summonerName)
         TextInputUtils.setText(
-            textView_serverName,
+            textView_summonerLevel,
             ServerNamesHandler.getNameByCode(loginModel.serverCode))
     }
 
