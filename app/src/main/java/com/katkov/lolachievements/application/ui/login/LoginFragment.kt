@@ -87,8 +87,8 @@ class LoginFragment : BaseFragment(), LoginView {
 
     private fun initProgressDialog() {
         progressDialog = ProgressDialog(context)
-        progressDialog.setTitle("Загрузка")
-        progressDialog.setMessage("Ждём и прокрастинируем...")
+        progressDialog.setTitle(resources.getString(R.string.login_progress_dialog_title))
+        progressDialog.setMessage(resources.getString(R.string.login_progress_dialog_message))
         progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL)
     }
 

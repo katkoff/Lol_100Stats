@@ -113,6 +113,7 @@ internal constructor(
             }, { throwable ->
                 throwable.printStackTrace()
                 viewState.setProgressEnable(false)
+                viewState.setProgressDialogEnable(false)
                 viewState.showError(Error(throwable))
             }).also { compositeDisposable.add(it) }
     }

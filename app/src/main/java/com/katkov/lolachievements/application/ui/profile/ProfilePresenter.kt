@@ -28,7 +28,7 @@ constructor(
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-        viewState.fillInfo(loginInteractor.getLoginModel())
+
         createUiModel()
     }
 
@@ -105,7 +105,8 @@ constructor(
                     totalBaronKillsByTeam = profileMapper.mapTotalBaronKillsByTeam(allMatches),
                     firstBloodKillsByTeam = profileMapper.mapFirstBloodKillsByTeam(allMatches)
                 )
-                val sdf = 0
+
+                viewState.fillInfo(profileUiModel)
             }, {
                 it.printStackTrace()
                 viewState.setProgressEnable(false)

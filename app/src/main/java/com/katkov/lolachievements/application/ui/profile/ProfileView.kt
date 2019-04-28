@@ -5,10 +5,9 @@ import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
 import com.katkov.lolachievements.application.base.ErrorView
 import com.katkov.lolachievements.application.base.ProgressView
-import com.katkov.lolachievements.domain.model.LoginModel
 
 interface ProfileView : MvpView, ErrorView, ProgressView {
 
     @StateStrategyType(AddToEndSingleStrategy::class)
-    fun fillInfo(loginModel: LoginModel?)
+    fun fillInfo(profileUiModel: ProfileUiModel)
 }
