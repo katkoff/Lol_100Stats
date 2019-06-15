@@ -5,8 +5,10 @@ data class ProfileUiModel(
     var summonerLevel: Long,
 
     var totalGames: Int,
+    var firstGameCreation: String,
     var totalGameDuration: String,
     var wins: Int,
+    var winRate: String,
 
     var kills: Int,
     var deaths: Int,

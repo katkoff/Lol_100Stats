@@ -113,13 +113,33 @@
                 tools:text="500" />
 
             <TextView
+                android:id="@+id/textView_firstGameCreationLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/profile_first_game_creation_label"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_totalGames" />
+
+            <TextView
+                android:id="@+id/textView_firstGameCreation"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintLeft_toRightOf="@+id/textView_firstGameCreationLabel"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_totalGames"
+                tools:text="15 15 15" />
+
+            <TextView
                 android:id="@+id/textView_timeInGameLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="@string/profile_time_in_game_label"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_totalGames" />
+                app:layout_constraintTop_toBottomOf="@+id/textView_firstGameCreation" />
 
             <TextView
                 android:id="@+id/textView_timeInGame"
@@ -129,7 +149,7 @@
                 android:layout_marginTop="4dp"
                 app:layout_constraintLeft_toRightOf="@+id/textView_timeInGameLabel"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_totalGames"
+                app:layout_constraintTop_toBottomOf="@+id/textView_firstGameCreation"
                 tools:text="too much time" />
 
             <TextView
@@ -148,6 +168,26 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="4dp"
                 app:layout_constraintLeft_toRightOf="@+id/textView_winsLabel"
+                app:layout_constraintTop_toBottomOf="@+id/textView_timeInGameLabel"
+                tools:text="450" />
+
+            <TextView
+                android:id="@+id/textView_winRateLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="16dp"
+                android:text="@string/profile_win_rate_label"
+                app:layout_constraintLeft_toRightOf="@+id/textView_wins"
+                app:layout_constraintTop_toBottomOf="@+id/textView_timeInGameLabel" />
+
+            <TextView
+                android:id="@+id/textView_winRate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintLeft_toRightOf="@+id/textView_winRateLabel"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView_timeInGameLabel"
                 tools:text="450" />
@@ -531,7 +571,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="@string/profile_magical_damage_taken_label"
+                android:text="@string/profile_physical_damage_dealt_label"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView_totalDamageDealt" />
 

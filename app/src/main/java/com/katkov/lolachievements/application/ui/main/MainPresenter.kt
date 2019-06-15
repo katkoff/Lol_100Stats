@@ -14,8 +14,8 @@ import javax.inject.Inject
 class MainPresenter
 @Inject
 internal constructor(
-    @GlobalRouter val router: Router,
-    private val loginInteractor: LoginInteractor
+        @GlobalRouter val router: Router,
+        private val loginInteractor: LoginInteractor
 ) : BasePresenter<MainView>() {
 
     override fun onFirstViewAttach() {

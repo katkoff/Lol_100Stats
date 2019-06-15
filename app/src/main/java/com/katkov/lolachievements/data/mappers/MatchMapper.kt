@@ -5,7 +5,7 @@ import com.katkov.lolachievements.data.cloud.model.match.ParticipantApiModel
 import com.katkov.lolachievements.data.cloud.model.match.ParticipantIdentityApiModel
 import com.katkov.lolachievements.data.cloud.model.match.TeamStatsApiModel
 import com.katkov.lolachievements.data.local.model.MatchDbModel
-import com.katkov.lolachievements.domain.model.MatchDomainModel
+import com.katkov.lolachievements.domain.model.MatchModel
 import javax.inject.Inject
 
 class MatchMapper
@@ -31,6 +31,7 @@ constructor() {
             matchId = matchApiModel.gameId,
             mapId = matchApiModel.mapId,
             gameDuration = matchApiModel.gameDuration,
+            gameCreation = matchApiModel.gameCreation,
             win = getWin(matchApiModel, summonerName),
             kills = getKills(matchApiModel, summonerName),
             deaths = getDeaths(matchApiModel, summonerName),
@@ -70,19 +71,20 @@ constructor() {
     /**
      * DB to DOMAIN
      */
-    fun mapDbToDomainList(matchDbList: List<MatchDbModel>): List<MatchDomainModel> {
-        val result = mutableListOf<MatchDomainModel>()
+    fun mapDbToDomainList(matchDbList: List<MatchDbModel>): List<MatchModel> {
+        val result = mutableListOf<MatchModel>()
         for (matchDbModel in matchDbList) {
             result.add(mapDbToDomainModel(matchDbModel))
         }
         return result
     }
 
-    private fun mapDbToDomainModel(matchDbModel: MatchDbModel): MatchDomainModel =
-        MatchDomainModel(
+    private fun mapDbToDomainModel(matchDbModel: MatchDbModel): MatchModel =
+        MatchModel(
             matchId = matchDbModel.matchId,
             mapId = matchDbModel.mapId,
             gameDuration = matchDbModel.gameDuration,
+            gameCreation = matchDbModel.gameCreation,
             win = matchDbModel.win,
             kills = matchDbModel.kills,
             deaths = matchDbModel.deaths,

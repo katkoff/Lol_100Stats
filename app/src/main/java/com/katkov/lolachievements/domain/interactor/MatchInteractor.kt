@@ -2,7 +2,7 @@ package com.katkov.lolachievements.domain.interactor
 
 import com.katkov.lolachievements.data.commonrepository.MatchRepository
 import com.katkov.lolachievements.domain.model.LoadProgressModel
-import com.katkov.lolachievements.domain.model.MatchDomainModel
+import com.katkov.lolachievements.domain.model.MatchModel
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single
@@ -20,7 +20,7 @@ constructor(
     fun getLoadProgressObservable(): Observable<LoadProgressModel> =
         matchRepository.getLoadProgressObservable()
 
-    fun getMatchListFromDb(): Single<List<MatchDomainModel>> =
+    fun getMatchListFromDb(): Single<List<MatchModel>> =
         matchRepository.getMatchListFromDb()
 
     fun removeTable(): Completable = matchRepository.removeTable()

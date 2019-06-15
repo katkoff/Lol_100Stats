@@ -56,8 +56,10 @@ class ProfileFragment : BaseFragment(), ProfileView {
         TextInputUtils.setText(textView_summonerLevel, profileUiModel.summonerLevel.toString())
 
         TextInputUtils.setText(textView_totalGames, profileUiModel.totalGames.toString())
+        TextInputUtils.setText(textView_firstGameCreation, profileUiModel.firstGameCreation)
         TextInputUtils.setText(textView_timeInGame, profileUiModel.totalGameDuration)
         TextInputUtils.setText(textView_wins, profileUiModel.wins.toString())
+        TextInputUtils.setText(textView_winRate, profileUiModel.winRate)
 
         TextInputUtils.setText(textView_kills, profileUiModel.kills.toString())
         TextInputUtils.setText(textView_deaths, profileUiModel.deaths.toString())

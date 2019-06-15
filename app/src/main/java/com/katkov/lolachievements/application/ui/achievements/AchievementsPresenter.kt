@@ -50,6 +50,7 @@ internal constructor(
         val oneThousandAndFiveHundredMatchesProgress =
             if (matchesCount >= 1500) 1500 else matchesCount
         val twoThousandMatchesProgress = if (matchesCount >= 2000) 2000 else matchesCount
+        val threeThousandMatchesProgress = if (matchesCount >= 3000) 3000 else matchesCount
 
         achievements.add(
             AchievementModel(
@@ -114,7 +115,7 @@ internal constructor(
                 "Сыграть 3000 матчей",
                 0,
                 3000,
-                twoThousandMatchesProgress))
+                threeThousandMatchesProgress))
 
         return achievements
     }

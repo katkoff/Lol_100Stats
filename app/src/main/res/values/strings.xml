@@ -15,8 +15,10 @@
 
     <string name="profile_general_info_label">General information for all games:</string>
     <string name="profile_total_games_label">Total games:</string>
+    <string name="profile_first_game_creation_label">First game created at:</string>
     <string name="profile_time_in_game_label">Time in game:</string>
     <string name="profile_wins_label">Wins:</string>
+    <string name="profile_win_rate_label">Win rate:</string>
 
     <string name="profile_kills_label">kills</string>
     <string name="profile_deaths_label">deaths</string>

@@ -6,10 +6,11 @@ import com.katkov.lolachievements.data.cloud.repository.MatchApiRepository
 import com.katkov.lolachievements.data.local.repository.MatchDbRepository
 import com.katkov.lolachievements.data.mappers.MatchMapper
 import com.katkov.lolachievements.domain.model.LoadProgressModel
-import com.katkov.lolachievements.domain.model.MatchDomainModel
+import com.katkov.lolachievements.domain.model.MatchModel
 import com.katkov.lolachievements.domain.model.MatchReferenceModel
 import com.katkov.lolachievements.domain.model.SummonerModel
 import io.reactivex.Completable
+import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.subjects.BehaviorSubject
@@ -56,6 +57,9 @@ constructor(
             val completable =
                 matchApiRepository.getMatchApiModel(it.gameId)
                     .delay(1200, TimeUnit.MILLISECONDS)
+                    .retryWhen { throwableObservable ->
+                        retryGetMatchApiModel(throwableObservable)
+                    }
                     .flatMapCompletable { matchApiModel ->
                         loadProgressSubject.onNext(LoadProgressModel(progress, resultList.size))
                         Log.d("myLog", "Load " + progress + " match")
@@ -68,6 +72,26 @@ constructor(
 
         return resultList
     }
+
+    private fun retryGetMatchApiModel(throwableObservable: Flowable<Throwable>): Flowable<Throwable> {
+        return throwableObservable
+            .flatMap { throwable ->
+                //              if (shouldRetry(throwable)) {
+                Log.d("myLog", "== ERROR DETECTED! == ")
+                Log.d("myLog", "Localized message: " + throwable.localizedMessage)
+                Flowable.just(throwable)
+//              } else {
+//                  Flowable.error<Throwable>(throwable)
+//              }
+            }
+            .take(3)
+            .delay(1200, TimeUnit.MILLISECONDS)
+            .doOnNext { Log.d("myLog", "== Retry getting this match ==") }
+    }
+
+//    private fun shouldRetry(throwable: Throwable): Boolean {
+//        return throwable is HttpException && throwable.code() == 503
+//    }
 
     private fun saveMatchToDb(matchApiModel: MatchApiModel, summonerName: String): Completable {
         val matchDbModel = mapper.mapApiMatchToDbModel(matchApiModel, summonerName)
@@ -82,7 +106,7 @@ constructor(
 
     fun getRowsCount(): Single<Int> = matchDbRepository.getRowsCount()
 
-    fun getMatchListFromDb(): Single<List<MatchDomainModel>> =
+    fun getMatchListFromDb(): Single<List<MatchModel>> =
         matchDbRepository.getMatchDbList()
             .map { mapper.mapDbToDomainList(it) }
 

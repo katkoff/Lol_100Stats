@@ -10,6 +10,7 @@ data class MatchDbModel(
     val matchId: Long,
     val mapId: Int,
     val gameDuration: Long,
+    val gameCreation: Long,
     val win: String,
 
     val kills: Int,

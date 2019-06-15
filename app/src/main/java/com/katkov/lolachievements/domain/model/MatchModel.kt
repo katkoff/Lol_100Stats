@@ -3,10 +3,11 @@ package com.katkov.lolachievements.domain.model
 import androidx.room.Entity
 
 @Entity
-data class MatchDomainModel(
+data class MatchModel(
     val matchId: Long,
     val mapId: Int,
     val gameDuration: Long,
+    val gameCreation: Long,
     val win: String,
 
     val kills: Int,

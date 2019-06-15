@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "064caa0517084ab978ddc5c979e3761a",
+    "identityHash": "3836e33a5fde7b3f8312d833132da84d",
     "entities": [
       {
         "tableName": "SummonerDbModel",
@@ -204,7 +204,7 @@
       },
       {
         "tableName": "MatchDbModel",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `matchId` INTEGER NOT NULL, `mapId` INTEGER NOT NULL, `gameDuration` INTEGER NOT NULL, `win` TEXT NOT NULL, `kills` INTEGER NOT NULL, `deaths` INTEGER NOT NULL, `assists` INTEGER NOT NULL, `firstBloodKill` INTEGER NOT NULL, `firstBloodAssist` INTEGER NOT NULL, `firstTowerKill` INTEGER NOT NULL, `firstTowerAssist` INTEGER NOT NULL, `doubleKills` INTEGER NOT NULL, `tripleKills` INTEGER NOT NULL, `quadraKills` INTEGER NOT NULL, `pentaKills` INTEGER NOT NULL, `firstRiftHerald` INTEGER NOT NULL, `firstBaron` INTEGER NOT NULL, `baronKills` INTEGER NOT NULL, `firstBlood` INTEGER NOT NULL, `totalDamageTaken` INTEGER NOT NULL, `physicalDamageTaken` INTEGER NOT NULL, `magicalDamageTaken` INTEGER NOT NULL, `totalDamageDealt` INTEGER NOT NULL, `physicalDamageDealt` INTEGER NOT NULL, `totalDamageDealtToChampions` INTEGER NOT NULL, `physicalDamageDealtToChampions` INTEGER NOT NULL, `totalHeal` INTEGER NOT NULL, `wardsKilled` INTEGER NOT NULL, `wardsPlaced` INTEGER NOT NULL, `totalMinionsKilled` INTEGER NOT NULL, `neutralMinionsKilled` INTEGER NOT NULL, `goldEarned` INTEGER NOT NULL, `goldSpent` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `matchId` INTEGER NOT NULL, `mapId` INTEGER NOT NULL, `gameDuration` INTEGER NOT NULL, `gameCreation` INTEGER NOT NULL, `win` TEXT NOT NULL, `kills` INTEGER NOT NULL, `deaths` INTEGER NOT NULL, `assists` INTEGER NOT NULL, `firstBloodKill` INTEGER NOT NULL, `firstBloodAssist` INTEGER NOT NULL, `firstTowerKill` INTEGER NOT NULL, `firstTowerAssist` INTEGER NOT NULL, `doubleKills` INTEGER NOT NULL, `tripleKills` INTEGER NOT NULL, `quadraKills` INTEGER NOT NULL, `pentaKills` INTEGER NOT NULL, `firstRiftHerald` INTEGER NOT NULL, `firstBaron` INTEGER NOT NULL, `baronKills` INTEGER NOT NULL, `firstBlood` INTEGER NOT NULL, `totalDamageTaken` INTEGER NOT NULL, `physicalDamageTaken` INTEGER NOT NULL, `magicalDamageTaken` INTEGER NOT NULL, `totalDamageDealt` INTEGER NOT NULL, `physicalDamageDealt` INTEGER NOT NULL, `totalDamageDealtToChampions` INTEGER NOT NULL, `physicalDamageDealtToChampions` INTEGER NOT NULL, `totalHeal` INTEGER NOT NULL, `wardsKilled` INTEGER NOT NULL, `wardsPlaced` INTEGER NOT NULL, `totalMinionsKilled` INTEGER NOT NULL, `neutralMinionsKilled` INTEGER NOT NULL, `goldEarned` INTEGER NOT NULL, `goldSpent` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -227,6 +227,12 @@
           {
             "fieldPath": "gameDuration",
             "columnName": "gameDuration",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "gameCreation",
+            "columnName": "gameCreation",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -423,7 +429,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"064caa0517084ab978ddc5c979e3761a\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"3836e33a5fde7b3f8312d833132da84d\")"
     ]
   }
 }

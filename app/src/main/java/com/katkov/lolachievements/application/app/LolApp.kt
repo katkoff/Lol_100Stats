@@ -2,6 +2,7 @@ package com.katkov.lolachievements.application.app
 
 import android.app.Application
 import com.facebook.stetho.Stetho
+import com.jakewharton.threetenabp.AndroidThreeTen
 import com.katkov.lolachievements.di.Scopes
 import com.katkov.lolachievements.di.module.AppDataBaseModule
 import com.katkov.lolachievements.di.module.CommonModule
@@ -15,6 +16,7 @@ class LolApp : Application() {
 
         initDi()
         initStetho()
+        initThreeTenAbp()
     }
 
     private fun initDi() {
@@ -26,4 +28,6 @@ class LolApp : Application() {
     }
 
     private fun initStetho() = Stetho.initializeWithDefaults(this)
+
+    private fun initThreeTenAbp() = AndroidThreeTen.init(this)
 }

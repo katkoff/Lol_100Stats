@@ -60,8 +60,10 @@ constructor(
                     summonerLevel = level,
 
                     totalGames = allMatches.size,
+                    firstGameCreation = profileMapper.mapFirstGameCreation(allMatches),
                     totalGameDuration = profileMapper.mapTotalGameDuration(allMatches),
                     wins = profileMapper.mapWins(allMatches),
+                    winRate = profileMapper.mapWinRate(allMatches),
 
                     kills = profileMapper.mapKills(allMatches),
                     deaths = profileMapper.mapDeath(allMatches),
